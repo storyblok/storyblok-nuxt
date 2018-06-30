@@ -27,7 +27,7 @@ The module features
 
 The module installs two Vue.js plugins.
 
-1. $storyapi: The Storyblok API client
+1. $storyapi: The Storyblok API client 
 2. $storyblok: The Storyblok JS bridge for clickable editable blocks
 
 Example of fetching data of the homepage and listening to the change events of the JS bridge:
@@ -57,8 +57,15 @@ export default {
 }
 ```
 
+## Asked Question
+
+- [Why is there a `script` tag added to my `head` and can it be loaded `async`?](https://github.com/storyblok/storyblok-nuxt/issues/1)
+- Is there a more advanced demo setup using nuxt.js?
+  - [NuxtDoc - Documentation Setup using Nuxt, Storyblok and Netlify](https://github.com/storyblok/nuxtdoc)
+  - [NuxtWebsite - Basic Website/Blog Setup using Nuxt, Storyblok and Netlify](https://github.com/storyblok/nuxtwebsite)
+
 ## License
 
 [MIT License](./LICENSE)
 
-Copyright (c) Alexander Feiglstorfer <delooks@gmail.com>
+Copyright (c) Storyblok <it@storyblok.com>
