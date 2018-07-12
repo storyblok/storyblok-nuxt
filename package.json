@@ -1,6 +1,6 @@
 {
   "name": "storyblok-nuxt",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Storyblok Nuxt.js module",
   "license": "MIT",
   "contributors": [
@@ -34,7 +34,7 @@
     ]
   },
   "dependencies": {
-    "storyblok-js-client": "^1.0.7",
+    "storyblok-js-client": "^1.0.12",
     "storyblok-vue": "^1.0.4"
   },
   "devDependencies": {

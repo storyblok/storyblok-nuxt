@@ -18,7 +18,11 @@ The module features
 ```js
 {
   modules: [
-    ['storyblok-nuxt', {accessToken: 'YOUR_PREVIEW_TOKEN', cacheProvider: 'memory'}],
+    ['storyblok-nuxt', {
+      accessToken: 'YOUR_PREVIEW_TOKEN',
+      cacheProvider: 'memory',
+      timeout: 5000
+    }],
  ]
 }
 ```
