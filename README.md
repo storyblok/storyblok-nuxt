@@ -20,8 +20,7 @@ The module features
   modules: [
     ['storyblok-nuxt', {
       accessToken: 'YOUR_PREVIEW_TOKEN',
-      cacheProvider: 'memory',
-      timeout: 5000
+      cacheProvider: 'memory'
     }],
  ]
 }
