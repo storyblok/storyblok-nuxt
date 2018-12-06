@@ -28,10 +28,10 @@ The module features
 
 ## Usage
 
-The module installs two Vue.js plugins.
+This module adds two objects to the the Nuxt.js context.
 
 1. $storyapi: The Storyblok API client 
-2. $storyblok: The Storyblok JS bridge for clickable editable blocks
+2. $storybridge: The Storyblok JS bridge for clickable editable blocks
 
 Example of fetching data of the homepage and listening to the change events of the JS bridge:
 
@@ -39,33 +39,39 @@ Example of fetching data of the homepage and listening to the change events of t
 export default {
   data () {
     return {
-      
+      return { story: { content: {} } }
     }
   },
   mounted () {
-    this.$storyblok.init()
-    this.$storyblok.on('change', function () {
-      window.location.reload()
+    this.$storybridge.on(['input', 'published', 'change'], (event) => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
     })
   },
   asyncData (context) {
     return context.app.$storyapi.get('cdn/stories/home', {
       version: 'draft'
     }).then((res) => {
-      return res
+      return res.data
     }).catch((res) => {
-      context.error({ statusCode: res.response.status, message: res.response.data })
+      if (!res.response) {
+        console.error(res)
+        context.error({ statusCode: 404, message: 'Failed to receive content form api' })
+      } else {
+        console.error(res.response.data)
+        context.error({ statusCode: res.response.status, message: res.response.data })
+      }
     })
   }
 }
 ```
 
-## Asked Question
-
-- [Why is there a `script` tag added to my `head` and can it be loaded `async`?](https://github.com/storyblok/storyblok-nuxt/issues/1)
-- Is there a more advanced demo setup using nuxt.js?
-  - [NuxtDoc - Documentation Setup using Nuxt, Storyblok and Netlify](https://github.com/storyblok/nuxtdoc)
-  - [NuxtWebsite - Basic Website/Blog Setup using Nuxt, Storyblok and Netlify](https://github.com/storyblok/nuxtwebsite)
+Checkout the following boilerplate to see an example setup: https://github.com/storyblok/vue-nuxt-boilerplate
 
 ## License
 
