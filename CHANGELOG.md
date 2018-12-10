@@ -1,5 +1,10 @@
 # Change Log
 
+<a name="1.0.1"></a>
+## 1.0.1 (2018-12-10)
+
+* Adds "endpoint" option for on-premise users with custom api endpoints
+
 <a name="1.0.0"></a>
 ## 1.0.0 (2018-12-06)
 
