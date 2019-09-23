@@ -1,11 +1,16 @@
 {
   "name": "storyblok-nuxt",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Storyblok Nuxt.js module",
   "license": "MIT",
   "contributors": [
     {
-      "name": "Alexander Feiglstorfer <delooks@gmail.com>"
+      "name": "Alexander Feiglstorfer",
+      "email": "delooks@gmail.com"
+    },
+    {
+      "name": "Marvin Rudolph",
+      "email": "info@marvin-rudolph.de"
     }
   ],
   "main": "lib/module.js",
@@ -14,30 +19,34 @@
     "access": "public"
   },
   "scripts": {
-    "lint": "eslint lib test",
-    "test": "npm run lint && jest",
-    "release": "standard-version && git push --follow-tags && npm publish"
+    "dev": "nuxt example",
+    "lint": "eslint --ext .js,.vue example lib test",
+    "test": "yarn lint && jest",
+    "release": "yarn test && standard-version && git push --follow-tags && npm publish"
   },
-  "eslintIgnore": [
-    "lib/templates/*.*"
-  ],
   "files": [
     "lib"
   ],
-  "jest": {
-    "testEnvironment": "node",
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "lib",
-      "test"
-    ]
-  },
   "dependencies": {
-    "storyblok-js-client": "^1.0.12",
-    "storyblok-vue": "^1.0.4"
+    "storyblok-js-client": "^2.0.2",
+    "storyblok-vue": "^1.0.5"
   },
   "devDependencies": {
-    "nuxt-module-builder": "latest"
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@nuxtjs/eslint-config": "latest",
+    "babel-eslint": "latest",
+    "babel-jest": "latest",
+    "codecov": "latest",
+    "eslint": "latest",
+    "get-port": "latest",
+    "husky": "latest",
+    "jest": "latest",
+    "nuxt-edge": "latest",
+    "request": "latest",
+    "request-promise-native": "latest",
+    "standard-version": "latest"
   }
 }
