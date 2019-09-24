@@ -14,6 +14,7 @@
     }
   ],
   "main": "lib/module.js",
+  "types": "types/index.d.ts",
   "repository": "https://github.com/storyblok/storyblok-nuxt",
   "publishConfig": {
     "access": "public"
@@ -25,7 +26,8 @@
     "release": "yarn test && standard-version && git push --follow-tags && npm publish"
   },
   "files": [
-    "lib"
+    "lib",
+    "types/*.d.ts"
   ],
   "dependencies": {
     "storyblok-js-client": "^2.0.2",
