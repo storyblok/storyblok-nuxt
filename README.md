@@ -39,7 +39,7 @@ Example of fetching data of the homepage and listening to the change events of t
 export default {
   data () {
     return {
-      return { story: { content: {} } }
+      story: { content: {} }
     }
   },
   mounted () {
