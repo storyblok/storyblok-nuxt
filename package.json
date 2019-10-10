@@ -30,7 +30,7 @@
     "types/*.d.ts"
   ],
   "dependencies": {
-    "storyblok-js-client": "^2.0.2",
+    "storyblok-js-client": "^1.0.34",
     "storyblok-vue": "^1.0.5"
   },
   "devDependencies": {
