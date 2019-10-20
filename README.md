@@ -14,7 +14,7 @@
 ## Setup
 1. Add `storyblok-nuxt` dependency to your project
 ```
-yarn add --dev storyblok-nuxt # npm install --save-dev storyblok-nuxt
+yarn add --dev storyblok-nuxt # or npm install --save-dev storyblok-nuxt
 ```
 
 2. Add `storyblok-nuxt` to the `modules` section of your `nuxt.config.js`.
