@@ -2,21 +2,23 @@ import Vue from 'vue'
 import StoryblokClient from 'storyblok-js-client'
 import StoryblokVue from 'storyblok-vue'
 
-const loadScript = function(src, cb) {
-  if (document.getElementById('storyblok-javascript-bridge')) {
+const loadScript = (src, cb) => {
+  const id = 'storyblok-javascript-bridge'
+
+  if (document.getElementById(id)) {
     return cb()
   }
 
-  var script = document.createElement('script')
+  const script = document.createElement('script')
   script.async = true
   script.src = src
-  script.id = 'storyblok-javascript-bridge'
+  script.id = id
 
-  script.onerror = function() {
-    cb(new Error('Failed to load' + src))
+  script.onerror = () => {
+    cb(new Error(`Failed to load ${src}`))
   }
 
-  script.onload = function() {
+  script.onload = () => {
     cb()
   }
 
@@ -24,23 +26,25 @@ const loadScript = function(src, cb) {
 }
 
 const Client = {
-  install () {
+  install() {
+    const scriptSrc = 'https://app.storyblok.com/f/storyblok-latest.js'
+
     if (!Vue.prototype.$storyapi) {
       Vue.prototype.$storyapi = new StoryblokClient({
         accessToken: '<%= options.accessToken %>',
         cache: {
           clear: 'auto',
-          type: '<%= options.cacheProvider || 'memory' %>'
+          type: '<%= options.cacheProvider %>'
         },
-        timeout: <%= options.timeout || 0 %><% if (options.region) { %>,
-        region: '<%= options.region %>'<% } %><% if (typeof options.https !== 'undefined') { %>,
+        timeout: <%= options.timeout || 0 %><% if(options.region) { %>,
+        region: '<%= options.region %>' <% } %><% if (typeof options.https !== 'undefined') { %>,
         https: <%= options.https %><% } %>
-      }<% if (typeof options.endpoint !== 'undefined') { %>, '<%= options.endpoint %>'<% } %>)
+      }<% if (typeof options.endpoint !== 'undefined') { %>, '<%= options.endpoint %>' <% } %>)
 
       Vue.prototype.$storybridge = {
         doLoadScript: true,
         proxy: null,
-        on: function(events, cb, options) {
+        on: function (events, cb, options) {
           var options = options || {}
           options.accessToken = '<%= options.accessToken %>'
 
@@ -54,9 +58,9 @@ const Client = {
             })
           })
         },
-        load: function(cb, errorCb) {
+        load: (cb, errorCb) => {
           if (typeof errorCb !== 'function') {
-            errorCb = function() {}
+            errorCb = () => {}
           }
 
           if (window.location == window.parent.location) {
@@ -74,7 +78,7 @@ const Client = {
           }
 
           this.doLoadScript = false
-          loadScript('https://app.storyblok.com/f/storyblok-latest.js', () => {
+          loadScript(scriptSrc, () => {
             Vue.prototype.$storybridge.proxy = window.storyblok
             cb()
           })
@@ -87,15 +91,16 @@ const Client = {
 Vue.use(Client)
 Vue.use(StoryblokVue)
 
-export default (ctx) => {
-  const { app, store } = ctx
+export default function (context) {
+  const { app, store } = context
+  const { $storyapi, $storybridge } = Vue.prototype
 
-  app.$storyapi = Vue.prototype.$storyapi
-  ctx.$storyapi = Vue.prototype.$storyapi
-  app.$storybridge = Vue.prototype.$storybridge
-  ctx.$storybridge = Vue.prototype.$storybridge
+  app.$storyapi = $storyapi
+  context.$storyapi = $storyapi
+  app.$storybridge = $storybridge
+  context.$storybridge = $storybridge
 
   if (store) {
-    store.$storyapi = Vue.prototype.$storyapi
+    store.$storyapi = $storyapi
   }
 }
