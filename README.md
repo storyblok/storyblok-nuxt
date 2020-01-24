@@ -21,6 +21,7 @@ The module features
     ['storyblok-nuxt', {
       accessToken: 'YOUR_PREVIEW_TOKEN',
       cacheProvider: 'memory'
+      customParent: 'YOUR_URL_WHERE_RUN_STORYBLOK_APP' // optional https://www.storyblok.com/docs/Guides/storyblok-latest-js#storyblokinitconfig
     }],
  ]
 }
