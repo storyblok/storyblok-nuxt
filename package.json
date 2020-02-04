@@ -14,9 +14,7 @@
     "access": "public"
   },
   "scripts": {
-    "lint": "eslint lib test",
-    "test": "npm run lint && jest",
-    "release": "standard-version && git push --follow-tags && npm publish"
+    "test": "echo \"No test specified\" && exit 0"
   },
   "eslintIgnore": [
     "lib/templates/*.*"
