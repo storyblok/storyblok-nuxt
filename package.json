@@ -32,8 +32,8 @@
     ]
   },
   "dependencies": {
-    "storyblok-js-client": "^1.0.34",
-    "storyblok-vue": "^1.0.4"
+    "storyblok-js-client": "^2.0.12",
+    "storyblok-vue": "^1.0.5"
   },
   "devDependencies": {
     "nuxt-module-builder": "1.0.0"
