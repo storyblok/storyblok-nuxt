@@ -32,7 +32,7 @@
     ]
   },
   "dependencies": {
-    "storyblok-js-client": "^2.0.12",
+    "storyblok-js-client": "^2.5.2",
     "storyblok-vue": "^1.0.5"
   },
   "devDependencies": {
