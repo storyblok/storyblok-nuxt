@@ -121,6 +121,18 @@ Parameters:
 * **cb** `Function`: a callback function that will be executed when the script loads;
 * **errorCb** `Function`: a callack to capture the error.
 
+## Typescript
+
+Add the following code to `tsconfig.json`
+
+```
+"compilerOptions": {
+  "types": [
+    "storyblok-nuxt"
+  ]
+}
+  ```
+
 ## Contribution
 
 Fork me on [Github](https://github.com/storyblok/storyblok-nuxt).

@@ -19,8 +19,10 @@
   "eslintIgnore": [
     "lib/templates/*.*"
   ],
+  "types": "types/index.d.ts",
   "files": [
-    "lib"
+    "lib",
+    "types/*.d.ts"
   ],
   "jest": {
     "testEnvironment": "node",
