@@ -6,6 +6,9 @@
   "contributors": [
     {
       "name": "Alexander Feiglstorfer <delooks@gmail.com>"
+    },
+    {
+      "name": "Florent Giraud <hello@florent.dev>"
     }
   ],
   "main": "lib/module.js",
@@ -14,7 +17,16 @@
     "access": "public"
   },
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "npm run test:e2e",
+    "test:e2e": "npm run cypress:run",
+    "test:e2e:dev": "npm run cypress:dev",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "start": "nuxt start",
+    "run": "cypress run",
+    "open": "cypress open",
+    "cypress:run": "npm run build && start-server-and-test start http://localhost:3000 run",
+    "cypress:dev": "start-server-and-test dev http://localhost:3000 open"
   },
   "eslintIgnore": [
     "lib/templates/*.*"
@@ -22,20 +34,16 @@
   "files": [
     "lib"
   ],
-  "jest": {
-    "testEnvironment": "node",
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "lib",
-      "test"
-    ]
-  },
   "dependencies": {
-    "storyblok-js-client": "^2.5.2",
+    "axios": "^0.21.1",
+    "storyblok-js-client": "^3.3.1",
     "storyblok-vue": "^1.0.5"
   },
   "devDependencies": {
-    "nuxt-module-builder": "1.0.0"
+    "@nuxtjs/axios": "^5.12.5",
+    "chai": "^4.2.0",
+    "cypress": "^6.2.1",
+    "nuxt": "^2.14.12",
+    "start-server-and-test": "^1.11.7"
   }
 }

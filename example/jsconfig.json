@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "~/*": [
+          "./*"
+        ],
+        "@/*": [
+          "./*"
+        ],
+        "~~/*": [
+          "./*"
+        ],
+        "@@/*": [
+          "./*"
+        ]
+      }
+    },
+    "exclude": [
+      "node_modules",
+      ".nuxt",
+      "dist"
+    ],
+    "include": [
+      "./node_modules/cypress",
+      "cypress/**/*.js"
+    ]
+  }

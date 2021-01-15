@@ -10,20 +10,20 @@ jobs:
 
       # Restore cache
       - restore_cache:
-          key: yarn-{{ checksum "yarn.lock" }}
+          key: npm-{{ checksum "package-lock.json" }}
 
       # Install dependencies
       - run:
           name: Install Dependencies
-          command: NODE_ENV=dev yarn
+          command: NODE_ENV=dev npm install
 
       # Keep cache
       - save_cache:
-          key: yarn-{{ checksum "yarn.lock" }}
+          key: npm-{{ checksum "package-lock.json" }}
           paths:
             - "node_modules"
 
       # Test
       - run:
           name: Tests
-          command: yarn test && yarn codecov
+          command: npm run test
