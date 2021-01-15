@@ -11,26 +11,24 @@
       "name": "Florent Giraud <hello@florent.dev>"
     }
   ],
-  "main": "lib/module.js",
+  "main": "./lib",
   "repository": "https://github.com/storyblok/storyblok-nuxt",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "test": "npm run test:e2e",
+    "test": "npm run lint && npm run test:e2e",
     "test:e2e": "npm run cypress:run",
     "test:e2e:dev": "npm run cypress:dev",
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "lint": "eslint --ext .js ./lib",
     "start": "nuxt start",
     "run": "cypress run",
     "open": "cypress open",
     "cypress:run": "npm run build && start-server-and-test start http://localhost:3000 run",
     "cypress:dev": "start-server-and-test dev http://localhost:3000 open"
   },
-  "eslintIgnore": [
-    "lib/templates/*.*"
-  ],
   "files": [
     "lib"
   ],
@@ -40,9 +38,14 @@
     "storyblok-vue": "^1.0.5"
   },
   "devDependencies": {
-    "@nuxtjs/axios": "^5.12.5",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@nuxtjs/eslint-config": "^5.0.0",
+    "babel-eslint": "^10.1.0",
     "chai": "^4.2.0",
     "cypress": "^6.2.1",
+    "eslint": "^7.17.0",
+    "husky": "^4.3.7",
     "nuxt": "^2.14.12",
     "start-server-and-test": "^1.11.7"
   }

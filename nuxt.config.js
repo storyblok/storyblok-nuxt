@@ -13,6 +13,5 @@ export default {
     storyblok: {
       accessToken: process.env.STORYBLOK_TOKEN
     }
-  },
-  modules: ['@nuxtjs/axios']
+  }
 }
