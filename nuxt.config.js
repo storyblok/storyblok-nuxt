@@ -11,7 +11,7 @@ export default {
   // },
   publicRuntimeConfig: {
     storyblok: {
-      accessToken: process.env.STORYBLOK_TOKEN
+      accessToken: 'd6IKUtAUDiKyAhpJtrLFcwtt'
     }
   }
 }

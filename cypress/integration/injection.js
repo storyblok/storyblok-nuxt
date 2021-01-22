@@ -21,7 +21,7 @@ describe('Storyblok', () => {
 
         chai
           .expect(html)
-          .contain('Giraud Florent');
+          .contain('hello');
       })
     })
   })
