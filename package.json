@@ -3,9 +3,11 @@
     "version": "1.4.0",
     "description": "Storyblok Nuxt.js module",
     "license": "MIT",
-    "contributors": [{
-        "name": "Alexander Feiglstorfer <delooks@gmail.com>"
-    }],
+    "contributors": [
+        {
+            "name": "Alexander Feiglstorfer <delooks@gmail.com>"
+        }
+    ],
     "main": "lib/module.js",
     "repository": "https://github.com/storyblok/storyblok-nuxt",
     "publishConfig": {
@@ -30,6 +32,7 @@
         ]
     },
     "dependencies": {
+        "axios": "^0.21.1",
         "storyblok-js-client": "^3.3.1",
         "storyblok-vue": "^1.0.5"
     }
