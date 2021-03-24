@@ -1,41 +1,38 @@
 {
-  "name": "storyblok-nuxt",
-  "version": "0.0.0-development",
-  "description": "Storyblok Nuxt.js module",
-  "license": "MIT",
-  "contributors": [
-    {
-      "name": "Alexander Feiglstorfer <delooks@gmail.com>"
+    "name": "storyblok-nuxt",
+    "version": "0.0.0-development",
+    "description": "Storyblok Nuxt.js module",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Alexander Feiglstorfer <delooks@gmail.com>"
+        }
+    ],
+    "main": "lib/module.js",
+    "repository": "https://github.com/storyblok/storyblok-nuxt",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "test": "echo \"No test specified\" && exit 0"
+    },
+    "eslintIgnore": [
+        "lib/templates/*.*"
+    ],
+    "files": [
+        "lib"
+    ],
+    "jest": {
+        "testEnvironment": "node",
+        "coverageDirectory": "./coverage/",
+        "collectCoverage": true,
+        "collectCoverageFrom": [
+            "lib",
+            "test"
+        ]
+    },
+    "dependencies": {
+        "storyblok-js-client": "^3.3.1",
+        "storyblok-vue": "^1.0.5"
     }
-  ],
-  "main": "lib/module.js",
-  "repository": "https://github.com/storyblok/storyblok-nuxt",
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
-  },
-  "eslintIgnore": [
-    "lib/templates/*.*"
-  ],
-  "files": [
-    "lib"
-  ],
-  "jest": {
-    "testEnvironment": "node",
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "lib",
-      "test"
-    ]
-  },
-  "dependencies": {
-    "storyblok-js-client": "^3.3.1",
-    "storyblok-vue": "^1.0.5"
-  },
-  "devDependencies": {
-    "nuxt-module-builder": "1.0.0"
-  }
 }
