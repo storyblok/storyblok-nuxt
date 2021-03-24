@@ -1,13 +1,11 @@
 {
     "name": "storyblok-nuxt",
-    "version": "0.0.0-development",
+    "version": "1.3.1",
     "description": "Storyblok Nuxt.js module",
     "license": "MIT",
-    "contributors": [
-        {
-            "name": "Alexander Feiglstorfer <delooks@gmail.com>"
-        }
-    ],
+    "contributors": [{
+        "name": "Alexander Feiglstorfer <delooks@gmail.com>"
+    }],
     "main": "lib/module.js",
     "repository": "https://github.com/storyblok/storyblok-nuxt",
     "publishConfig": {
