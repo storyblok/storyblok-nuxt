@@ -26,12 +26,27 @@ The module features
  ]
 }
 ```
+### Initialize with a proxy server
+
+```js
+{
+  modules: [
+    ['storyblok-nuxt', {
+      ...
+      proxy: {
+        host: host,
+        port: port,
+      }
+    }],
+ ]
+}
+```
 
 ## Usage
 
 This module adds two objects to the the Nuxt.js context.
 
-1. $storyapi: The Storyblok API client 
+1. $storyapi: The Storyblok API client
 2. $storybridge: The Storyblok JS bridge for clickable editable blocks
 
 Example of fetching data of the homepage and listening to the change events of the JS bridge:
