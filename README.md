@@ -21,7 +21,6 @@ The module features
     ['storyblok-nuxt', {
       accessToken: 'YOUR_PREVIEW_TOKEN',
       cacheProvider: 'memory'
-      customParent: 'YOUR_URL_WHERE_RUN_STORYBLOK_APP' // optional https://www.storyblok.com/docs/Guides/storyblok-latest-js#storyblokinitconfig
     }],
  ]
 }
@@ -31,8 +30,8 @@ The module features
 
 This module adds two objects to the the Nuxt.js context.
 
-1. $storyapi: The Storyblok API client 
-2. $storybridge: The Storyblok JS bridge for clickable editable blocks
+1. $storyapi: The [Storyblok API client](https://github.com/storyblok/storyblok-js-client).
+2. $storybridge: A loader for the [Storyblok JS bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js) that is responsible for adding the editing interface to your website.
 
 Example of fetching data of the homepage and listening to the change events of the JS bridge:
 
@@ -44,14 +43,20 @@ export default {
     }
   },
   mounted () {
-    this.$storybridge.on(['input', 'published', 'change'], (event) => {
-      if (event.action == 'input') {
-        if (event.story.id === this.story.id) {
-          this.story.content = event.story.content
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge()
+
+      storyblokInstance.on(['input', 'published', 'change'], (event) => {
+        if (event.action == 'input') {
+          if (event.story.id === this.story.id) {
+            this.story.content = event.story.content
+          }
+        } else {
+          window.location.reload()
         }
-      } else {
-        window.location.reload()
-      }
+      })
+    }, (error) => {
+      console.error(error)
     })
   },
   asyncData (context) {
@@ -82,44 +87,9 @@ Like described above, this package includes two objects into Nuxt.js context:
 
 This object is a instance of StoryblokClient. You can check the documentation about StoryblokClient in the repository: https://github.com/storyblok/storyblok-js-client
 
-### $storybridge
+### $storybridge(successCallback, errorCallback)
 
-You can use this object to connect and interact with our [Storyblok Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js). You can use the following methods:
-
-#### $storybridge.on(events, callback, options)
-
-Use this function to interact with the [Storyblok Bridge events](https://www.storyblok.com/docs/Guides/storyblok-latest-js#events)
-
-Parameters:
-
-* **events** `Array<Object>`: an array of allowed events to interact, like `input` and `published`. You can check the [allowed events in the documentation](https://www.storyblok.com/docs/Guides/storyblok-latest-js#events);
-* **callback** `Function`: a callback fuction that receives the `event` object;
-* **options** `Object`: an **optional** object that will be pass to `init` method.
-
-#### $storybridge.resolveRelations(relationsToResolve, callback)
-
-Use this method to receive the data with the correct relations already resolved. An example:
-
-```js
-this.$storybridge.resolveRelations(['relations.categories'], (data) => {
-  // data.story.content has now the resolved relations
-  this.story.content = data.story.content
-})
-```
-
-Parameters:
-
-* **relationsToResolve** `Array<String>`: an array of relations to resolve in the specific story;
-* **callback** `Function`: a callback fuction that receives the `data` object from `input` event.
-
-#### $storybridge.load(callback, errorCallback)
-
-Use this method to load the Javascript code to Storyblok Bridge. You won't need to do this, because the other functions already use this method internally.
-
-Parameters:
-
-* **cb** `Function`: a callback function that will be executed when the script loads;
-* **errorCb** `Function`: a callack to capture the error.
+You can use this object to load the [Storyblok JS Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js). In the success callback you will it have available in the window variable StoryblokBridge.
 
 ## Contribution
 
