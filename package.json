@@ -32,8 +32,7 @@
         ]
     },
     "dependencies": {
-        "axios": "^0.21.1",
-        "storyblok-js-client": "^3.3.1",
+        "storyblok-js-client": "^4.0.3",
         "storyblok-vue": "^1.0.5"
     }
 }
