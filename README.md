@@ -12,6 +12,7 @@
 The module features
 
 ## Setup
+- Add `axios` dependency as it's a peer dependecy of the `storyblok-js-client` used by `storyblok-nuxt`
 - Add `storyblok-nuxt` dependency using yarn or npm to your project
 - Add `storyblok-nuxt` to `modules` section of `nuxt.config.js`
 
