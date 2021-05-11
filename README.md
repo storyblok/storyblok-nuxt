@@ -5,16 +5,28 @@
 [![Dependencies](https://david-dm.org/storyblok/storyblok-nuxt/status.svg?style=flat-square)](https://david-dm.org/storyblok/storyblok-nuxt)
 [![js-standard-style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com)
 
-> Storyblok Nuxt.js module
+> Nuxt module for the [Storyblok](https://www.storyblok.com/), Headless CMS.
 
-## Features
+## Getting Started
 
-The module features
+If you are first-time user of the Storyblok, read [Nuxt Getting Started](https://www.storyblok.com/docs/guide/getting-started) guide at Storyblok website.
 
 ## Setup
+
 - Add `axios` dependency as it's a peer dependecy of the `storyblok-js-client` used by `storyblok-nuxt`
 - Add `storyblok-nuxt` dependency using yarn or npm to your project
 - Add `storyblok-nuxt` to `modules` section of `nuxt.config.js`
+
+### Installation
+
+```bash
+npm install --save-dev nuxt-storyblok axios
+// yarn add nuxt-storyblok axios
+```
+
+> *Hint: You don't have to install Axios if you already installed Axios module of Nuxt.*
+
+Add following code to modules section of `config.nuxt.js` and replace the accessToken with API token from Storyblok space.
 
 ```js
 {
@@ -78,7 +90,7 @@ export default {
 }
 ```
 
-Checkout the following boilerplate to see an example setup: https://github.com/storyblok/vue-nuxt-boilerplate
+> *Hint: Find out more how to use Nuxt together with Storyblok in [Nuxt Technology Hub](https://www.storyblok.com/tc/nuxtjs)*
 
 ## API
 
@@ -91,6 +103,61 @@ This object is a instance of StoryblokClient. You can check the documentation ab
 ### $storybridge(successCallback, errorCallback)
 
 You can use this object to load the [Storyblok JS Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js). In the success callback you will it have available in the window variable StoryblokBridge.
+
+## Migrate from 1.x to 2.x
+
+### Listening to Visual Editor events in 1.x
+
+Most of our tutorials and recordings still using following deprecated approach for real-time editing and listening to Storyblok's Visual Editor events. **This approach can be used only with 1.x version of the storyblok-nuxt.**
+
+```js
+export default {
+  mounted () {
+    // Use the input event for instant update of content
+    this.$storybridge.on('input', (event) => {
+      if (event.story.id === this.story.id) {
+        this.story.content = event.story.content
+      }
+    })
+    // Use the bridge to listen the events
+    this.$storybridge.on(['published', 'change'], (event) => {
+      this.$nuxt.$router.go({
+        path: this.$nuxt.$router.currentRoute,
+        force: true,
+      })
+    })
+  }
+}
+```
+
+### Listening to Visual Editor events in 2.x
+
+The recommended approach for 2.x storyblok-nuxt plugin.
+
+```js
+export default {
+  mounted () {
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge()
+
+      storyblokInstance.on(['input', 'published', 'change'], (event) => {
+        if (event.action == 'input') {
+          if (event.story.id === this.story.id) {
+            this.story.content = event.story.content
+          }
+        } else {
+          this.$nuxt.$router.go({
+            path: this.$nuxt.$router.currentRoute,
+            force: true,
+          })
+        }
+      })
+    }, (error) => {
+      console.error(error)
+    })
+  }
+}
+```
 
 ## Contribution
 
