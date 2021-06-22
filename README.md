@@ -5,15 +5,28 @@
 [![Dependencies](https://david-dm.org/storyblok/storyblok-nuxt/status.svg?style=flat-square)](https://david-dm.org/storyblok/storyblok-nuxt)
 [![js-standard-style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com)
 
-> Storyblok Nuxt.js module
+> Nuxt module for the [Storyblok](https://www.storyblok.com/), Headless CMS.
 
-## Features
+## Getting Started
 
-The module features
+If you are first-time user of the Storyblok, read [Nuxt Getting Started](https://www.storyblok.com/docs/guide/getting-started) guide at Storyblok website.
 
 ## Setup
+
+- Add `axios` dependency as it's a peer dependecy of the `storyblok-js-client` used by `storyblok-nuxt`
 - Add `storyblok-nuxt` dependency using yarn or npm to your project
 - Add `storyblok-nuxt` to `modules` section of `nuxt.config.js`
+
+### Installation
+
+```bash
+npm install --save-dev nuxt-storyblok axios
+// yarn add nuxt-storyblok axios
+```
+
+> *Hint: You don't have to install Axios if you already installed Axios module of Nuxt.*
+
+Add following code to modules section of `config.nuxt.js` and replace the accessToken with API token from Storyblok space.
 
 ```js
 {
@@ -21,7 +34,6 @@ The module features
     ['storyblok-nuxt', {
       accessToken: 'YOUR_PREVIEW_TOKEN',
       cacheProvider: 'memory'
-      customParent: 'YOUR_URL_WHERE_RUN_STORYBLOK_APP' // optional https://www.storyblok.com/docs/Guides/storyblok-latest-js#storyblokinitconfig
     }],
  ]
 }
@@ -46,8 +58,8 @@ The module features
 
 This module adds two objects to the the Nuxt.js context.
 
-1. $storyapi: The Storyblok API client
-2. $storybridge: The Storyblok JS bridge for clickable editable blocks
+1. $storyapi: The [Storyblok API client](https://github.com/storyblok/storyblok-js-client).
+2. $storybridge: A loader for the [Storyblok JS bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js) that is responsible for adding the editing interface to your website.
 
 Example of fetching data of the homepage and listening to the change events of the JS bridge:
 
@@ -59,14 +71,20 @@ export default {
     }
   },
   mounted () {
-    this.$storybridge.on(['input', 'published', 'change'], (event) => {
-      if (event.action == 'input') {
-        if (event.story.id === this.story.id) {
-          this.story.content = event.story.content
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge()
+
+      storyblokInstance.on(['input', 'published', 'change'], (event) => {
+        if (event.action == 'input') {
+          if (event.story.id === this.story.id) {
+            this.story.content = event.story.content
+          }
+        } else {
+          window.location.reload()
         }
-      } else {
-        window.location.reload()
-      }
+      })
+    }, (error) => {
+      console.error(error)
     })
   },
   asyncData (context) {
@@ -87,7 +105,7 @@ export default {
 }
 ```
 
-Checkout the following boilerplate to see an example setup: https://github.com/storyblok/vue-nuxt-boilerplate
+> *Hint: Find out more how to use Nuxt together with Storyblok in [Nuxt Technology Hub](https://www.storyblok.com/tc/nuxtjs)*
 
 ## API
 
@@ -97,44 +115,64 @@ Like described above, this package includes two objects into Nuxt.js context:
 
 This object is a instance of StoryblokClient. You can check the documentation about StoryblokClient in the repository: https://github.com/storyblok/storyblok-js-client
 
-### $storybridge
+### $storybridge(successCallback, errorCallback)
 
-You can use this object to connect and interact with our [Storyblok Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js). You can use the following methods:
+You can use this object to load the [Storyblok JS Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js). In the success callback you will it have available in the window variable StoryblokBridge.
 
-#### $storybridge.on(events, callback, options)
+## Migrate from 1.x to 2.x
 
-Use this function to interact with the [Storyblok Bridge events](https://www.storyblok.com/docs/Guides/storyblok-latest-js#events)
+### Listening to Visual Editor events in 1.x
 
-Parameters:
-
-* **events** `Array<Object>`: an array of allowed events to interact, like `input` and `published`. You can check the [allowed events in the documentation](https://www.storyblok.com/docs/Guides/storyblok-latest-js#events);
-* **callback** `Function`: a callback fuction that receives the `event` object;
-* **options** `Object`: an **optional** object that will be pass to `init` method.
-
-#### $storybridge.resolveRelations(relationsToResolve, callback)
-
-Use this method to receive the data with the correct relations already resolved. An example:
+Most of our tutorials and recordings still using following deprecated approach for real-time editing and listening to Storyblok's Visual Editor events. **This approach can be used only with 1.x version of the storyblok-nuxt.**
 
 ```js
-this.$storybridge.resolveRelations(['relations.categories'], (data) => {
-  // data.story.content has now the resolved relations
-  this.story.content = data.story.content
-})
+export default {
+  mounted () {
+    // Use the input event for instant update of content
+    this.$storybridge.on('input', (event) => {
+      if (event.story.id === this.story.id) {
+        this.story.content = event.story.content
+      }
+    })
+    // Use the bridge to listen the events
+    this.$storybridge.on(['published', 'change'], (event) => {
+      this.$nuxt.$router.go({
+        path: this.$nuxt.$router.currentRoute,
+        force: true,
+      })
+    })
+  }
+}
 ```
 
-Parameters:
+### Listening to Visual Editor events in 2.x
 
-* **relationsToResolve** `Array<String>`: an array of relations to resolve in the specific story;
-* **callback** `Function`: a callback fuction that receives the `data` object from `input` event.
+The recommended approach for 2.x storyblok-nuxt plugin.
 
-#### $storybridge.load(callback, errorCallback)
+```js
+export default {
+  mounted () {
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge()
 
-Use this method to load the Javascript code to Storyblok Bridge. You won't need to do this, because the other functions already use this method internally.
-
-Parameters:
-
-* **cb** `Function`: a callback function that will be executed when the script loads;
-* **errorCb** `Function`: a callack to capture the error.
+      storyblokInstance.on(['input', 'published', 'change'], (event) => {
+        if (event.action == 'input') {
+          if (event.story.id === this.story.id) {
+            this.story.content = event.story.content
+          }
+        } else {
+          this.$nuxt.$router.go({
+            path: this.$nuxt.$router.currentRoute,
+            force: true,
+          })
+        }
+      })
+    }, (error) => {
+      console.error(error)
+    })
+  }
+}
+```
 
 ## Contribution
 
