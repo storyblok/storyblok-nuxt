@@ -40,6 +40,8 @@ Add following code to modules section of `config.nuxt.js` and replace the access
 ```
 ### Initialize with a proxy server
 
+Add following lines for general proxy configuration:
+
 ```js
 {
   modules: [
@@ -48,7 +50,40 @@ Add following code to modules section of `config.nuxt.js` and replace the access
       proxy: {
         host: host,
         port: port,
-      }
+      },
+    }],
+ ]
+}
+```
+
+The following lines will add authentication:
+```js
+{
+  modules: [
+    ['storyblok-nuxt', {
+      ...
+      proxy: {
+        ...
+        auth: {
+            username: 'foo',
+            password: 'bar',
+        },
+      },
+    }],
+ ]
+}
+```
+
+Add these lines to use [https-proxy-agent](https://github.com/TooTallNate/node-https-proxy-agent)
+```js
+{
+  modules: [
+    ['storyblok-nuxt', {
+      ...
+      proxy: {
+        ...
+      },
+      useHttpsAgent: true,
     }],
  ]
 }
