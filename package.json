@@ -32,7 +32,8 @@
         ]
     },
     "dependencies": {
-        "storyblok-js-client": "^4.0.3",
-        "storyblok-vue": "^1.0.5"
+        "storyblok-js-client": "git+https://github.com/mbr74/storyblok-js-client.git",
+        "storyblok-vue": "^1.0.5",
+        "https-proxy-agent": "^5.0.0"
     }
 }
