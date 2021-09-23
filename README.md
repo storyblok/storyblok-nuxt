@@ -20,8 +20,8 @@ If you are first-time user of the Storyblok, read [Nuxt Getting Started](https:/
 ### Installation
 
 ```bash
-npm install --save-dev nuxt-storyblok axios
-// yarn add nuxt-storyblok axios
+npm install --save-dev storyblok-nuxt axios
+// yarn add -D storyblok-nuxt axios
 ```
 
 > *Hint: You don't have to install Axios if you already installed Axios module of Nuxt.*
