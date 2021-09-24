@@ -32,7 +32,7 @@
 
 ## 🚀 Usage
 
-If you are first-time user of the Storyblok, read [Nuxt Getting Started](https://www.storyblok.com/docs/guide/getting-started) guide at Storyblok website.
+If you are first-time user of the Storyblok, read [Nuxt Getting Started](https://www.storyblok.com/docs/guide/getting-started?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) guide at Storyblok website.
 
 ### Setup
 
