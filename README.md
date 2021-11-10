@@ -42,8 +42,6 @@ npm install --save-dev @storyblok/nuxt@next axios
 # yarn add -D @storyblok/nuxt@next axios
 ```
 
-> _Hint: You don't have to install Axios if you already installed Axios module of Nuxt._
-
 Add following code to modules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
 
 ```js
