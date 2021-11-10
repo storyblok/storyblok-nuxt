@@ -16,6 +16,7 @@
     "@commitlint/config-conventional": "^14.1.0",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^8.0.3",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1"
@@ -34,8 +35,12 @@
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
+      "plugin:vue/recommended",
       "prettier"
-    ]
+    ],
+    "rules": {
+      "vue/multi-word-component-names": 1
+    }
   },
   "eslintIgnore": [
     "templates/plugin.js"
