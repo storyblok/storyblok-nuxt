@@ -27,7 +27,7 @@
   </a>
 </p>
 
-**Note**: This plugin is for Nuxt 2. [Check out the @next version for Nuxt 3](https://github.com/storyblok/storyblok-nuxt/tree/next)
+**Note**: This plugin is for Nuxt 3. [Check out the docs for Nuxt 2 version](https://github.com/storyblok/storyblok-nuxt/tree/master)
 
 ## 🚀 Usage
 
@@ -35,11 +35,11 @@
 
 ### Installation
 
-Install `@storyblok/nuxt` and `axios` as its peer dependency:
+Install `@storyblok/nuxt@next` and `axios` as its peer dependency:
 
 ```bash
-npm install --save-dev @storyblok/nuxt axios
-# yarn add -D @storyblok/nuxt axios
+npm install --save-dev @storyblok/nuxt@next axios
+# yarn add -D @storyblok/nuxt@next axios
 ```
 
 > _Hint: You don't have to install Axios if you already installed Axios module of Nuxt._
@@ -47,17 +47,27 @@ npm install --save-dev @storyblok/nuxt axios
 Add following code to modules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
 
 ```js
-{
+import { defineNuxtConfig } from "nuxt3";
+
+export default defineNuxtConfig({
   modules: [
-    [
-      "@storyblok/nuxt",
-      {
-        accessToken: "YOUR_PREVIEW_TOKEN",
-        cacheProvider: "memory",
-      },
-    ],
-  ];
-}
+    ["@storyblok/nuxt", { accessToken: "YOUR_ACCESS_TOKEN" }],
+    // ...
+  ],
+});
+```
+
+You can also use the `storyblok` config if you prefer:
+
+```js
+import { defineNuxtConfig } from "nuxt3";
+
+export default defineNuxtConfig({
+  modules: ["@storyblok/nuxt"],
+  storyblok: {
+    accessToken: "YOUR_ACCESS_TOKEN",
+  },
+});
 ```
 
 ### Getting started
@@ -67,24 +77,46 @@ This module adds two objects to the the Nuxt.js context.
 1. $storyapi: The [Storyblok API client](https://github.com/storyblok/storyblok-nuxt).
 2. $storybridge: A loader for the [Storyblok JS bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js) that is responsible for adding the editing interface to your website.
 
-Example of fetching data of the homepage and listening to the change events of the JS bridge:
+### Examples
 
-```js
-export default {
-  data() {
-    return {
-      story: { content: {} },
-    };
-  },
-  mounted() {
-    this.$storybridge(
+#### Fetching data
+
+Use `$storyapi` available on nuxt context:
+
+```html
+<template>
+  <div>
+    <p v-for="story in stories" :key="story.id">{{ story.name }}</p>
+  </div>
+</template>
+
+<script setup>
+  const app = useNuxtApp();
+
+  const { data } = await app.$storyapi.get("cdn/stories");
+  const stories = data.stories;
+</script>
+```
+
+#### Listen to Storyblok editor events
+
+Use `$storybridge` available on nuxt context:
+
+```html
+<script setup>
+  const app = useNuxtApp();
+  const { data } = await app.$storyapi.get("cdn/stories/health");
+  const story = data.story;
+
+  onMounted(() => {
+    app.$storybridge(
       () => {
-        const storyblokInstance = new StoryblokBridge();
+        const storyblokInstance = new window.StoryblokBridge();
 
         storyblokInstance.on(["input", "published", "change"], (event) => {
           if (event.action == "input") {
-            if (event.story.id === this.story.id) {
-              this.story.content = event.story.content;
+            if (event.story.id === story.id) {
+              story.content = event.story.content;
             }
           } else {
             window.location.reload();
@@ -95,32 +127,8 @@ export default {
         console.error(error);
       }
     );
-  },
-  asyncData(context) {
-    return context.app.$storyapi
-      .get("cdn/stories/home", {
-        version: "draft",
-      })
-      .then((res) => {
-        return res.data;
-      })
-      .catch((res) => {
-        if (!res.response) {
-          console.error(res);
-          context.error({
-            statusCode: 404,
-            message: "Failed to receive content form api",
-          });
-        } else {
-          console.error(res.response.data);
-          context.error({
-            statusCode: res.response.status,
-            message: res.response.data,
-          });
-        }
-      });
-  },
-};
+  });
+</script>
 ```
 
 > _Hint: Find out more how to use Nuxt together with Storyblok in [Nuxt Technology Hub](https://www.storyblok.com/tc/nuxtjs)_
@@ -136,64 +144,6 @@ This object is a instance of StoryblokClient. You can check the documentation ab
 #### $storybridge(successCallback, errorCallback)
 
 You can use this object to load the [Storyblok JS Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js). In the success callback you will it have available in the window variable StoryblokBridge.
-
-### Migrate from 1.x to 2.x
-
-#### Listening to Visual Editor events in 1.x
-
-Most of our tutorials and recordings still using following deprecated approach for real-time editing and listening to Storyblok's Visual Editor events. **This approach can be used only with 1.x version of the storyblok-nuxt.**
-
-```js
-export default {
-  mounted() {
-    // Use the input event for instant update of content
-    this.$storybridge.on("input", (event) => {
-      if (event.story.id === this.story.id) {
-        this.story.content = event.story.content;
-      }
-    });
-    // Use the bridge to listen the events
-    this.$storybridge.on(["published", "change"], (event) => {
-      this.$nuxt.$router.go({
-        path: this.$nuxt.$router.currentRoute,
-        force: true,
-      });
-    });
-  },
-};
-```
-
-#### Listening to Visual Editor events in 2.x
-
-The recommended approach for 2.x storyblok-nuxt plugin.
-
-```js
-export default {
-  mounted() {
-    this.$storybridge(
-      () => {
-        const storyblokInstance = new StoryblokBridge();
-
-        storyblokInstance.on(["input", "published", "change"], (event) => {
-          if (event.action == "input") {
-            if (event.story.id === this.story.id) {
-              this.story.content = event.story.content;
-            }
-          } else {
-            this.$nuxt.$router.go({
-              path: this.$nuxt.$router.currentRoute,
-              force: true,
-            });
-          }
-        });
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  },
-};
-```
 
 ## 🔗 Related Links
 
