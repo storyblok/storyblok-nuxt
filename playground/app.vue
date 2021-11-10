@@ -7,14 +7,9 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    stories: [],
-  }),
-  async mounted() {
-    const { data } = await this.$storyapi.get("cdn/stories");
-    this.stories = data.stories;
-  },
-};
+<script setup>
+const app = useNuxtApp();
+
+const { data } = await app.$storyapi.get("cdn/stories");
+const stories = data.stories;
 </script>
