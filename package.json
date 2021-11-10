@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "demo": "npm run demo --workspace=playground",
-    "test": "npm run test:e2e --workspace=lib",
+    "test:e2e": "npm run test:e2e --workspace=lib",
     "prepare": "husky install"
   },
   "devDependencies": {
