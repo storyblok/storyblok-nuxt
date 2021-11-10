@@ -43,6 +43,6 @@
     }
   },
   "eslintIgnore": [
-    "templates/plugin.js"
+    "**/templates/plugin.js"
   ]
 }
