@@ -26,8 +26,8 @@
     "./templates"
   ],
   "dependencies": {
-    "storyblok-js-client": "^4.0.3",
-    "storyblok-vue": "^1.0.5"
+    "@storyblok/vue": "^2.0.0",
+    "storyblok-js-client": "^4.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

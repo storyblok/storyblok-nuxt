@@ -22,9 +22,12 @@
     "prettier": "^2.4.1"
   },
   "lint-staged": {
-    "*.{vue,js,css,md}": [
+    "*.{vue,js,css}": [
       "prettier --write",
       "eslint"
+    ],
+    "*.md": [
+      "prettier --write"
     ]
   },
   "commitlint": {
