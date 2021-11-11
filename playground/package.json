@@ -6,6 +6,8 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
+    "@storyblok/nuxt": "^3.0.0",
+    "axios": "^0.24.0",
     "nuxt3": "latest"
   }
 }
