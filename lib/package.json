@@ -8,7 +8,6 @@
       "name": "Alexander Feiglstorfer <delooks@gmail.com>"
     }
   ],
-  "type": "module",
   "main": "./module.js",
   "repository": "https://github.com/storyblok/storyblok-nuxt",
   "scripts": {
@@ -28,7 +27,7 @@
   ],
   "dependencies": {
     "@storyblok/vue": "^2.0.0",
-    "storyblok-js-client": "^4.1.5"
+    "storyblok-js-client": "^2.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
