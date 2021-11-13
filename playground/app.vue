@@ -8,12 +8,11 @@
 </template>
 
 <script setup>
-const app = useNuxtApp();
-
-const { data } = await app.$storyapi.get("cdn/stories");
+const storyapi = useStoryApi();
+const { data } = await storyapi.get("cdn/stories");
 const stories = data.stories;
 
-const blok = {
-  _editable: `<!--#storyblok#{ "id": 12345, "uid": "fc34-uad1"}-->`,
-};
+// onMounted(() => {
+//   useStoryBridge(id, (story) => (data.story = story));
+// });
 </script>

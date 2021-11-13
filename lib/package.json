@@ -23,7 +23,8 @@
   },
   "files": [
     "./module.js",
-    "./templates"
+    "./templates",
+    "./composables"
   ],
   "dependencies": {
     "@storyblok/vue": "^3.0.0",
