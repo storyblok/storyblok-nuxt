@@ -8,12 +8,14 @@
   ],
   "scripts": {
     "demo": "npm run demo --workspace=playground",
+    "build": "npm run build --workspace=lib",
     "test:e2e": "npm run test:e2e --workspace=lib",
     "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
+    "@nuxt/kit": "latest",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^8.0.3",

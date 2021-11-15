@@ -1,0 +1,12 @@
+{
+  "name": "@storyblok/nuxt-composables",
+  "version": "0.0.0",
+  "main": "./dist/composables.umd.js",
+  "module": "./dist/composables.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/composables.es.js",
+      "require": "./dist/composables.umd.js"
+    }
+  }
+}
