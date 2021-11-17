@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-const app = useNuxtApp();
 const storyapi = useStoryApi();
 const { data } = await storyapi.get("cdn/stories", { version: "draft" });
 const state = reactive({ stories: data.stories });
@@ -22,4 +21,12 @@ const blok = {
 // onMounted(() => {
 //   useStoryBridge(id, (story) => (state.story = story));
 // });
+</script>
+
+<script>
+export default {
+  mounted() {
+    console.log(this.$storyapi);
+  },
+};
 </script>

@@ -79,7 +79,7 @@ This module adds two objects to the the Nuxt.js context.
 
 #### Fetching data
 
-Use `$storyapi` available on nuxt context:
+Use `useStoryApi` composable, auto-imported when using `<script setup>`:
 
 ```html
 <template>
@@ -89,32 +89,61 @@ Use `$storyapi` available on nuxt context:
 </template>
 
 <script setup>
-  const app = useNuxtApp();
-
-  const { data } = await app.$storyapi.get("cdn/stories");
-  const stories = data.stories;
+  const storyapi = useStoryApi();
+  const { data } = await storyapi.get("cdn/stories", { version: "draft" });
 </script>
+```
+
+If you need to import them manually, do it from `composables`:
+
+```js
+import { useStoryApi, useStoryBridge } from "@storyblok/nuxt/composables";
 ```
 
 #### Listen to Storyblok editor events
 
-Use `$storybridge` available on nuxt context:
+Use `useStoryBridge`. You need to pass the story id as first param, and a callback function as second param to update the new story:
 
 ```html
 <script setup>
-  const app = useNuxtApp();
-  const { data } = await app.$storyapi.get("cdn/stories/health");
-  const story = data.story;
+  const storyapi = useStoryApi();
+  const { data } = await storyapi.get("cdn/stories/home", { version: "draft" });
+  const state = reactive({ stories: data.story });
 
   onMounted(() => {
-    app.$storybridge(
+    useStoryBridge(state.story.id, story => (state.story = story));
+  });
+</script>
+```
+
+You can pass [Bridge options](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) as a third parameter as well:
+
+```js
+useStoryBridge(state.story.id, (story) => (state.story = story), {
+  resolveRelations: ["Article.author"],
+});
+```
+
+### Options API
+
+Traditional Option API is used just like in [version 2](/../../):
+
+```js
+export default {
+  data() {
+    return {
+      story: { content: {} },
+    };
+  },
+  mounted() {
+    this.$storybridge(
       () => {
-        const storyblokInstance = new window.StoryblokBridge();
+        const storyblokInstance = new StoryblokBridge();
 
         storyblokInstance.on(["input", "published", "change"], (event) => {
           if (event.action == "input") {
-            if (event.story.id === story.id) {
-              story.content = event.story.content;
+            if (event.story.id === this.story.id) {
+              this.story.content = event.story.content;
             }
           } else {
             window.location.reload();
@@ -125,15 +154,47 @@ Use `$storybridge` available on nuxt context:
         console.error(error);
       }
     );
-  });
-</script>
+  },
+  asyncData(context) {
+    return context.app.$storyapi
+      .get("cdn/stories/home", {
+        version: "draft",
+      })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((res) => {
+        if (!res.response) {
+          console.error(res);
+          context.error({
+            statusCode: 404,
+            message: "Failed to receive content form api",
+          });
+        } else {
+          console.error(res.response.data);
+          context.error({
+            statusCode: res.response.status,
+            message: res.response.data,
+          });
+        }
+      });
+  },
+};
 ```
 
-> _Hint: Find out more how to use Nuxt together with Storyblok in [Nuxt Technology Hub](https://www.storyblok.com/tc/nuxtjs)_
+> _Hint: Find out more how to use Nuxt together with Storyblok in [Nuxt Technology Hub](https://www.storyblok.com/tc/nuxtjs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)_
 
 ### API
 
-Like described above, this package includes two objects into Nuxt.js context:
+Like described above, this package includes two composablestwo objects into Nuxt.js context:
+
+#### useStoryApi()
+
+It's basically a convenient way to access `$storyapi`
+
+#### useStoryBridge(storyId, callback, bridgeOptions)
+
+Use this one-line composable to cover the most common use case: updating the story when any kind of change happens on Storyblok side. It's the equivalent to the [Options API code you've seen above](/../../tree/new#options-api).
 
 #### $storyapi
 
@@ -141,7 +202,7 @@ This object is a instance of StoryblokClient. You can check the documentation ab
 
 #### $storybridge(successCallback, errorCallback)
 
-You can use this object to load the [Storyblok JS Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js). In the success callback you will it have available in the window variable StoryblokBridge.
+You can use this object to load the [Storyblok JS Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt). In the success callback you will it have available in the window variable StoryblokBridge.
 
 ## 🔗 Related Links
 
