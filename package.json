@@ -47,5 +47,11 @@
   },
   "eslintIgnore": [
     "**/templates/plugin.js"
-  ]
+  ],
+  "release": {
+    "branches": [
+      "master",
+      "next"
+    ]
+  }
 }
