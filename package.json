@@ -50,5 +50,11 @@
   "eslintIgnore": [
     "**/templates/plugin.js",
     "playground/app.vue"
-  ]
+  ],
+  "release": {
+    "branches": [
+      "master",
+      "next"
+    ]
+  }
 }
