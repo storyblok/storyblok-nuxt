@@ -1,0 +1,17 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "demo": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@storyblok/nuxt": "^2.0.0",
+    "axios": "^0.24.0",
+    "core-js": "^3.15.1",
+    "nuxt": "^2.15.7"
+  }
+}

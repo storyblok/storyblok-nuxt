@@ -1,0 +1,43 @@
+{
+  "name": "@storyblok/nuxt",
+  "version": "2.0.0",
+  "description": "Storyblok Nuxt.js module",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Alexander Feiglstorfer <delooks@gmail.com>"
+    }
+  ],
+  "main": "./module.js",
+  "repository": "https://github.com/storyblok/storyblok-nuxt",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "playground:run": "cd ../playground && npm run start",
+    "pretest:e2e": "cd ../playground && npm run build",
+    "test:e2e": "start-server-and-test playground:run http://localhost:3000 cy:run",
+    "test:e2e-watch": "start-server-and-test playground:run http://localhost:3000 cy:open",
+    "prepublishOnly": "cp ../README.md ./"
+  },
+  "files": [
+    "./module.js",
+    "./templates"
+  ],
+  "dependencies": {
+    "@storyblok/vue": "^2.0.0",
+    "storyblok-js-client": "^4.1.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "babel-jest": "^26.6.3",
+    "cypress": "^8.3.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "jest": "^26.6.3",
+    "start-server-and-test": "^1.14.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "stories": [
+    { "name": "a", "id": 0 },
+    { "name": "b", "id": 1 },
+    { "name": "c", "id": 2 }
+  ]
+}
