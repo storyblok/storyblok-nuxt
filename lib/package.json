@@ -23,9 +23,9 @@
     "prepublishOnly": "npm run build && cp ../README.md ./"
   },
   "files": [
-    "./module.js",
-    "./templates",
-    "./composables"
+    "module.js",
+    "templates",
+    "composables"
   ],
   "dependencies": {
     "@storyblok/vue": "^3.0.0",
