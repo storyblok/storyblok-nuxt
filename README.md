@@ -31,7 +31,7 @@
 
 ## 🚀 Usage
 
-> If you are first-time user of the Storyblok, read the [Getting Started](https://www.storyblok.com/docs/guide/getting-started?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-vue) guide to get a project ready in less than 5 minutes.
+> If you are first-time user of the Storyblok, read the [Getting Started](https://www.storyblok.com/docs/guide/getting-started?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) guide to get a project ready in less than 5 minutes.
 
 ### Installation
 
@@ -65,7 +65,7 @@ Add following code to modules section of `nuxt.config.js` and replace the access
 This module adds two objects to the the Nuxt.js context.
 
 1. $storyapi: The [Storyblok API client](https://github.com/storyblok/storyblok-nuxt).
-2. $storybridge: A loader for the [Storyblok JS bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js) that is responsible for adding the editing interface to your website.
+2. $storybridge: A loader for the [Storyblok JS bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) that is responsible for adding the editing interface to your website.
 
 Example of fetching data of the homepage and listening to the change events of the JS bridge:
 
@@ -123,7 +123,7 @@ export default {
 };
 ```
 
-> _Hint: Find out more how to use Nuxt together with Storyblok in [Nuxt Technology Hub](https://www.storyblok.com/tc/nuxtjs)_
+> _Hint: Find out more how to use Nuxt together with Storyblok in [Nuxt Technology Hub](https://www.storyblok.com/tc/nuxtjs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)_
 
 ### API
 
@@ -135,7 +135,7 @@ This object is a instance of StoryblokClient. You can check the documentation ab
 
 #### $storybridge(successCallback, errorCallback)
 
-You can use this object to load the [Storyblok JS Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js). In the success callback you will it have available in the window variable StoryblokBridge.
+You can use this object to load the [Storyblok JS Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt). In the success callback you will it have available in the window variable StoryblokBridge.
 
 ### Migrate from 1.x to 2.x
 
@@ -206,7 +206,6 @@ export default {
 ### Support
 
 - Bugs or Feature Requests? [Submit an issue](/../../issues/new);
-
 - Do you have questions about Storyblok or you need help? [Join our Discord Community](https://discord.gg/jKrbAMz).
 
 ### Contributing
