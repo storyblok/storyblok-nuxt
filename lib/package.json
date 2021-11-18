@@ -11,15 +11,13 @@
   "main": "./module.js",
   "repository": "https://github.com/storyblok/storyblok-nuxt",
   "scripts": {
-    "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "jest __tests__",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "playground:run": "cd ../playground && npm run start",
     "pretest:e2e": "cd ../playground && npm run build",
     "test:e2e": "start-server-and-test playground:run http://localhost:3000 cy:run",
     "test:e2e-watch": "start-server-and-test playground:run http://localhost:3000 cy:open",
-    "prepublishOnly": "npm run build && cp ../README.md ./"
+    "prepublishOnly": "cp ../README.md ./"
   },
   "files": [
     "./module.js",
