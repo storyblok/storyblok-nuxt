@@ -1,17 +1,13 @@
 {
-  "name": "playground",
-  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "demo": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "demo": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs"
   },
-  "dependencies": {
-    "@storyblok/nuxt": "^2.0.0",
+  "devDependencies": {
+    "@storyblok/nuxt": "^3.0.0",
     "axios": "^0.21.4",
-    "core-js": "^3.15.1",
-    "nuxt": "^2.15.7"
+    "nuxt3": "latest"
   }
 }

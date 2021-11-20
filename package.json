@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "demo": "npm run demo --workspace=playground",
+    "build": "npm run build --workspace=lib",
     "test:e2e": "npm run test:e2e --workspace=lib",
     "prepare": "husky install"
   },
@@ -38,7 +39,7 @@
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
-      "plugin:vue/recommended",
+      "plugin:vue/vue3-recommended",
       "prettier"
     ],
     "rules": {
@@ -46,7 +47,8 @@
     }
   },
   "eslintIgnore": [
-    "**/templates/plugin.js"
+    "**/templates/plugin.js",
+    "playground/app.vue"
   ],
   "release": {
     "branches": [
