@@ -1,6 +1,6 @@
 {
   "name": "@storyblok/nuxt",
-  "version": "3.0.0",
+  "version": "3.0.0-beta.1",
   "description": "Storyblok Nuxt.js module",
   "license": "MIT",
   "contributors": [
