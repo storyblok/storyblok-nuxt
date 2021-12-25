@@ -54,7 +54,7 @@
     "branches": [
       "master",
       {
-        "name": "next",
+        "name": "beta",
         "channel": "next",
         "prerelease": true
       }
