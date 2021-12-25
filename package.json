@@ -49,15 +49,5 @@
   "eslintIgnore": [
     "**/templates/plugin.js",
     "playground/app.vue"
-  ],
-  "release": {
-    "branches": [
-      "master",
-      {
-        "name": "next",
-        "channel": "next",
-        "prerelease": "beta"
-      }
-    ]
-  }
+  ]
 }

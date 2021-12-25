@@ -44,5 +44,15 @@
     "env": {
       "node": true
     }
+  },
+  "release": {
+    "branches": [
+      "master",
+      {
+        "name": "next",
+        "channel": "next",
+        "prerelease": "beta"
+      }
+    ]
   }
 }
