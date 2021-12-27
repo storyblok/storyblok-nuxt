@@ -13,7 +13,7 @@
   <a href="https://npmjs.com/package/@storyblok/nuxt" rel="nofollow">
     <img src="https://img.shields.io/npm/dt/@storyblok/nuxt.svg?style=flat-square" alt="npm">
   </a>
-  </p>
+</p>
 
 <p align="center">
   <a href="https://discord.gg/jKrbAMz">
@@ -49,9 +49,9 @@ import { defineNuxtConfig } from "nuxt3";
 
 export default defineNuxtConfig({
   modules: [
-    ["@storyblok/nuxt", { accessToken: "YOUR_ACCESS_TOKEN" }]
+    ["@storyblok/nuxt", { accessToken: "YOUR_ACCESS_TOKEN" }],
     // ...
-  ]
+  ],
 });
 ```
 
@@ -63,8 +63,8 @@ import { defineNuxtConfig } from "nuxt3";
 export default defineNuxtConfig({
   modules: ["@storyblok/nuxt"],
   storyblok: {
-    accessToken: "YOUR_ACCESS_TOKEN"
-  }
+    accessToken: "YOUR_ACCESS_TOKEN",
+  },
 });
 ```
 
@@ -120,7 +120,7 @@ You can pass [Bridge options](https://www.storyblok.com/docs/Guides/storyblok-la
 
 ```js
 useStoryBridge(state.story.id, (story) => (state.story = story), {
-  resolveRelations: ["Article.author"]
+  resolveRelations: ["Article.author"],
 });
 ```
 
@@ -132,7 +132,7 @@ Traditional Option API is used just like in [version 2](/../../):
 export default {
   data() {
     return {
-      story: { content: {} }
+      story: { content: {} },
     };
   },
   mounted() {
@@ -158,7 +158,7 @@ export default {
   asyncData(context) {
     return context.app.$storyapi
       .get("cdn/stories/home", {
-        version: "draft"
+        version: "draft",
       })
       .then((res) => {
         return res.data;
@@ -168,17 +168,17 @@ export default {
           console.error(res);
           context.error({
             statusCode: 404,
-            message: "Failed to receive content form api"
+            message: "Failed to receive content form api",
           });
         } else {
           console.error(res.response.data);
           context.error({
             statusCode: res.response.status,
-            message: res.response.data
+            message: res.response.data,
           });
         }
       });
-  }
+  },
 };
 ```
 
