@@ -24,7 +24,5 @@ jobs:
       - name: Cypress run
         run: npm run test:e2e
       - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: cd lib && npx semantic-release
+        working-directory: lib
+        run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} NPM_TOKEN=${{ secrets.NPM_TOKEN }} npx semantic-release
