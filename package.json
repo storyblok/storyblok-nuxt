@@ -49,5 +49,11 @@
   "eslintIgnore": [
     "**/templates/plugin.js",
     "playground/app.vue"
-  ]
+  ],
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": false
+  }
 }
