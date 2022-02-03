@@ -15,6 +15,7 @@
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
+    "@nuxtjs/eslint-config-typescript": "latest",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^8.0.3",
@@ -39,6 +40,7 @@
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
+      "@nuxtjs/eslint-config-typescript",
       "plugin:vue/vue3-recommended",
       "prettier"
     ],
@@ -53,7 +55,7 @@
   "prettier": {
     "trailingComma": "es5",
     "tabWidth": 2,
-    "semi": false,
+    "semi": true,
     "singleQuote": false
   }
 }

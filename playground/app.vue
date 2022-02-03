@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-const storyapi = useStoryApi();
+const storyapi = useStoryblokApi();
 const { data } = await storyapi.get("cdn/stories", { version: "draft" });
 const state = reactive({ stories: data.stories });
 
@@ -19,7 +19,7 @@ const blok = {
 };
 
 // onMounted(() => {
-//   useStoryBridge(id, (story) => (state.story = story));
+//   useStoryblokBridge(id, (story) => (state.story = story));
 // });
 </script>
 
