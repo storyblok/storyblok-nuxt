@@ -1,20 +1,24 @@
 <template>
-  <div>
-    <h1>Example stories</h1>
-    <div data-test="stories">
-      <p v-for="story in stories" :key="story.id">{{ story.name }}</p>
-    </div>
-  </div>
+  <StoryblokComponent v-if="story" :blok="story.content" />
+  <!-- <div>Hola</div> -->
 </template>
 
 <script>
+import { useStoryblokBridge, useStoryblokApi } from "@storyblok/nuxt";
+const storyblokApi = useStoryblokApi();
+
 export default {
-  data: () => ({
-    stories: [],
-  }),
-  async mounted() {
-    const { data } = await this.$storyapi.get("cdn/stories");
-    this.stories = data.stories;
+  //eslint-disable-next-line
+  asyncData: async ({ app }) => {
+    const { data } = await storyblokApi.get("cdn/stories/vue", {
+      version: "draft",
+    });
+    // OR: const { data } = await app.$storyapi.get("cdn/stories/vue", { version: "draft" });
+
+    return { story: data.story };
+  },
+  mounted() {
+    useStoryblokBridge(this.story.id, (newStory) => (this.story = newStory));
   },
 };
 </script>

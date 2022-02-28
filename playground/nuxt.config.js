@@ -1,6 +1,6 @@
 export default {
   target: "server",
-
+  components: true,
   head: {
     title: "playground",
     htmlAttrs: {
@@ -13,10 +13,17 @@ export default {
       { name: "format-detection", content: "telephone=no" },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    script: [{ src: "https://cdn.tailwindcss.com" }],
   },
 
   buildModules: [
-    // accessToken from official example https://www.storyblok.com/docs/api/content-delivery/v2
-    ["@storyblok/nuxt", { accessToken: "wANpEQEsMYGOwLxwXQ76Ggtt" }],
+    [
+      "@storyblok/nuxt/module",
+      {
+        accessToken: "OurklwV5XsDJTIE1NJaD2wtt",
+        bridge: process.env.NODE_ENV !== "production",
+      },
+    ],
+    // "@nuxtjs/composition-api/module"
   ],
 };
