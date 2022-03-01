@@ -1,12 +1,12 @@
 <script setup>
-import { onMounted, ref } from "@vue/composition-api";
-import { useStoryblokBridge, useStoryblokApi } from "@storyblok/vue-2";
+import { onMounted, ref } from "@nuxtjs/composition-api";
+import { useStoryblokBridge, useStoryblokApi } from "@storyblok/nuxt";
 
 const story = ref(null);
 
 onMounted(async () => {
   const storyblokApi = useStoryblokApi();
-  const { data } = await storyblokApi.get("cdn/stories/vue", {
+  const { data } = await storyblokApi.get("cdn/stories/vue/test", {
     version: "draft",
   });
   story.value = data.story;

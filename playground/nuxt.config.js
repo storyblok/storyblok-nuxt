@@ -24,6 +24,6 @@ export default {
         bridge: process.env.NODE_ENV !== "production",
       },
     ],
-    // "@nuxtjs/composition-api/module"
+    "@nuxtjs/composition-api/module",
   ],
 };

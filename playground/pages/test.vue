@@ -9,7 +9,7 @@ export default {
   //eslint-disable-next-line
   asyncData: async ({ app }) => {
     const storyblokApi = useStoryblokApi();
-    const { data } = await storyblokApi.get("cdn/stories/vue", {
+    const { data } = await storyblokApi.get("cdn/stories/vue/test", {
       version: "draft",
     });
     // OR: const { data } = await app.$storyapi.get("cdn/stories/vue", { version: "draft" });
