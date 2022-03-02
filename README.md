@@ -2,7 +2,7 @@
 	<a  href="https://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt"  align="center">
 		<img  src="https://a.storyblok.com/f/88751/1776x360/b8979e5c96/sb-nuxt.png"  alt="Storyblok Logo">
 	</a>
-	<h1 align="center">storyblok-nuxt</h1>
+	<h1 align="center">@storyblok/nuxt</h1>
 	<p align="center">Nuxt 2 module for the <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt" target="_blank">Storyblok</a>, Headless CMS.</p> <br />
 </div>
 

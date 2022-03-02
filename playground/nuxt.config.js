@@ -16,13 +16,7 @@ export default {
   },
 
   buildModules: [
-    [
-      "@storyblok/nuxt/module",
-      {
-        accessToken: "OurklwV5XsDJTIE1NJaD2wtt",
-        bridge: process.env.NODE_ENV !== "production",
-      },
-    ],
+    ["@storyblok/nuxt/module", { accessToken: "OurklwV5XsDJTIE1NJaD2wtt" }],
     "@nuxtjs/composition-api/module",
   ],
 };
