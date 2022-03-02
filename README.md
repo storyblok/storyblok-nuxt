@@ -27,7 +27,7 @@
   </a>
 </p>
 
-**Note**: This plugin is for Nuxt 2. [Check out the @next version for Nuxt 3](https://github.com/storyblok/storyblok-nuxt/tree/next)
+**Note**: This module is for Nuxt 2. [Check out `@storyblok/nuxt-beta` for Nuxt 3](https://github.com/storyblok/storyblok-nuxt-beta)
 
 ## 🚀 Usage
 
@@ -35,165 +35,154 @@
 
 ### Installation
 
-Install `@storyblok/nuxt` and `axios` as its peer dependency:
+Install `@storyblok/nuxt`:
 
 ```bash
-npm install --save-dev @storyblok/nuxt axios
-# yarn add -D @storyblok/nuxt axios
+npm install @storyblok/nuxt
+# yarn add @storyblok/nuxt
 ```
 
-> _Hint: You don't have to install Axios if you already installed Axios module of Nuxt._
-
-Add following code to modules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
+Initialize the module by adding it to buildModules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
 
 ```js
 {
-  modules: [
-    [
-      "@storyblok/nuxt",
-      {
-        accessToken: "YOUR_PREVIEW_TOKEN",
-        cacheProvider: "memory",
-      },
-    ],
+  buildModules: [
+    // ...
+    ["@storyblok/nuxt/module", { accessToken: "<your-access-token>" }],
   ];
 }
 ```
 
-### Getting started
+#### Options
 
-This module adds two objects to the the Nuxt.js context.
-
-1. $storyapi: The [Storyblok API client](https://github.com/storyblok/storyblok-nuxt).
-2. $storybridge: A loader for the [Storyblok JS bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) that is responsible for adding the editing interface to your website.
-
-Example of fetching data of the homepage and listening to the change events of the JS bridge:
+When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `useApiClient` options:
 
 ```js
-export default {
-  data() {
-    return {
-      story: { content: {} },
-    };
-  },
-  mounted() {
-    this.$storybridge(
-      () => {
-        const storyblokInstance = new StoryblokBridge();
-
-        storyblokInstance.on(["input", "published", "change"], (event) => {
-          if (event.action == "input") {
-            if (event.story.id === this.story.id) {
-              this.story.content = event.story.content;
-            }
-          } else {
-            window.location.reload();
-          }
-        });
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  },
-  asyncData(context) {
-    return context.app.$storyapi
-      .get("cdn/stories/home", {
-        version: "draft",
-      })
-      .then((res) => {
-        return res.data;
-      })
-      .catch((res) => {
-        if (!res.response) {
-          console.error(res);
-          context.error({
-            statusCode: 404,
-            message: "Failed to receive content form api",
-          });
-        } else {
-          console.error(res.response.data);
-          context.error({
-            statusCode: res.response.status,
-            message: res.response.data,
-          });
-        }
-      });
-  },
-};
+// Defaults
+["@storyblok/nuxt/module", {
+  {
+    accessToken: "<your-access-token>",
+    bridge: process.env.NODE_ENV !== "production", // bridge is disabled in production by default
+    apiOptions: {}, // storyblok-js-client options
+    useApiClient: true
+  }
+}]
 ```
 
-> _Hint: Find out more how to use Nuxt together with Storyblok in [Nuxt Technology Hub](https://www.storyblok.com/tc/nuxtjs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)_
+## Getting started
+
+### 1. Creating and linking your components to Storyblok Visual Editor
+
+To link your Vue components to their equivalent you created in Storyblok:
+
+- First, you need to load them globally. If you use Nuxt 2.13+, you can just place them on the `~/components/storyblok` directory, otherwise you can load them globally (for example, by [using a Nuxt plugin](https://stackoverflow.com/questions/43040692/global-components-in-vue-nuxt)).
+
+- For each components, use the `v-editable` directive on its root element, passing the `blok` property that they receive:
+
+```html
+<div v-editable="blok" / >
+```
+
+- Finally, use `<StoryblokComponent>` which available globally in the Nuxt app:
+
+```html
+<StoryblokComponent blok="blok" />
+```
+
+> The `blok` is the actual blok data coming from [Storblok's Content Delivery API](https://www.storyblok.com/docs/api/content-delivery/v2?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt).
+
+### 2. Getting Storyblok Stories and listen to Visual Editor events
+
+#### Composition API
+
+> To use Nuxt 2 with Composition API, make sure you installed the [@nuxtjs/composition-api](https://composition-api.nuxtjs.org/) plugin.
+
+The simplest way is by using the `useStoryblok` one-liner composable:
+
+```html
+<script setup>
+  import { useStoryblok } from "@storyblok/nuxt";
+  const story = useStoryblok("vue/test", { version: "draft" });
+</script>
+
+<template>
+  <StoryblokComponent v-if="story" :blok="story.content" />
+</template>
+```
+
+Which is the short-hand equivalent to using `useStoryblokApi` and `useStoryblokBridge` functions separately:
+
+```html
+<script setup>
+  import { onMounted, ref } from "@nuxtjs/composition-api";
+  import { useStoryblokBridge, useStoryblokApi } from "@storyblok/nuxt";
+
+  const story = ref(null);
+
+  onMounted(async () => {
+    const storyblokApi = useStoryblokApi();
+    const { data } = await storyblokApi.get("cdn/stories/vue/test", {
+      version: "draft",
+    });
+    story.value = data.story;
+
+    useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory));
+  });
+</script>
+
+<template>
+  <StoryblokComponent v-if="story" :blok="story.content" />
+</template>
+```
+
+#### Options API
+
+You can still use the `useStoryblokApi` and `useStoryblokBridge` as follows:
+
+```html
+<script>
+  import { useStoryblokBridge, useStoryblokApi } from "@storyblok/nuxt";
+
+  export default {
+    asyncData: async ({ app }) => {
+      const storyblokApi = useStoryblokApi();
+      const { data } = await storyblokApi.get("cdn/stories/vue", {
+        version: "draft",
+      });
+      // OR: const { data } = await app.$storyapi.get("cdn/stories/vue", { version: "draft" });
+
+      return { story: data.story };
+    },
+    mounted() {
+      useStoryblokBridge(this.story.id, (newStory) => (this.story = newStory));
+    },
+  };
+</script>
+
+<template>
+  <StoryblokComponent v-if="story" :blok="story.content" />
+</template>
+```
+
+> _As you see in the comment, you can also use `app.$storyapi` if that's more comfortable for you. It's injected into Nuxt context and available in the components instance via `this.$storyapi` as well._
 
 ### API
 
-Like described above, this package includes two objects into Nuxt.js context:
+#### useStoryblok(slug, apiOptions, bridgeOptions)
+
+Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
+
+#### useStoryblokApi()
+
+Returns the instance of the `storyblok-js-client`.
+
+#### useStoryblokBridge(storyId, callback, bridgeOptions)
+
+Use this one-line function to cover the most common use case: updating the story when any kind of change happens on Storyblok Visual Editor.
 
 #### $storyapi
 
-This object is a instance of StoryblokClient. You can check the documentation about StoryblokClient in the repository: https://github.com/storyblok/storyblok-nuxt
-
-#### $storybridge(successCallback, errorCallback)
-
-You can use this object to load the [Storyblok JS Bridge](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt). In the success callback you will it have available in the window variable StoryblokBridge.
-
-### Migrate from 1.x to 2.x
-
-#### Listening to Visual Editor events in 1.x
-
-Most of our tutorials and recordings still using following deprecated approach for real-time editing and listening to Storyblok's Visual Editor events. **This approach can be used only with 1.x version of the storyblok-nuxt.**
-
-```js
-export default {
-  mounted() {
-    // Use the input event for instant update of content
-    this.$storybridge.on("input", (event) => {
-      if (event.story.id === this.story.id) {
-        this.story.content = event.story.content;
-      }
-    });
-    // Use the bridge to listen the events
-    this.$storybridge.on(["published", "change"], (event) => {
-      this.$nuxt.$router.go({
-        path: this.$nuxt.$router.currentRoute,
-        force: true,
-      });
-    });
-  },
-};
-```
-
-#### Listening to Visual Editor events in 2.x
-
-The recommended approach for 2.x storyblok-nuxt plugin.
-
-```js
-export default {
-  mounted() {
-    this.$storybridge(
-      () => {
-        const storyblokInstance = new StoryblokBridge();
-
-        storyblokInstance.on(["input", "published", "change"], (event) => {
-          if (event.action == "input") {
-            if (event.story.id === this.story.id) {
-              this.story.content = event.story.content;
-            }
-          } else {
-            this.$nuxt.$router.go({
-              path: this.$nuxt.$router.currentRoute,
-              force: true,
-            });
-          }
-        });
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  },
-};
-```
+Equivalent to the client that `useStoryblokApi` returns, but accessible in the Nuxt context and components instance.
 
 ## 🔗 Related Links
 

@@ -1,6 +1,5 @@
 export default {
   target: "server",
-  components: true,
   head: {
     title: "playground",
     htmlAttrs: {
