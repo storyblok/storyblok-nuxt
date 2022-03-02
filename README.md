@@ -64,7 +64,7 @@ When you initialize the module, you can pass all [_@storyblok/vue_ options](http
 ["@storyblok/nuxt/module", {
   {
     accessToken: "<your-access-token>",
-    bridge: process.env.NODE_ENV !== "production", // bridge is disabled in production by default
+    bridge: true,
     apiOptions: {}, // storyblok-js-client options
     useApiClient: true
   }
