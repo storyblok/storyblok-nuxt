@@ -1,8 +1,12 @@
 <script setup>
 import { useStoryblok } from "@storyblok/nuxt";
-const story = useStoryblok("vue/test", { version: "draft" });
+const { story, fetchState } = useStoryblok("vue/test", { version: "draft" });
+console.log(story);
 </script>
 
 <template>
-  <StoryblokComponent v-if="story" :blok="story.content" />
+  <div>
+    <p>{{ fetchState }}</p>
+    <StoryblokComponent v-if="story && story.content" :blok="story.content" />
+  </div>
 </template>

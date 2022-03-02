@@ -99,12 +99,12 @@ To link your Vue components to their equivalent you created in Storyblok:
 
 > To use Nuxt 2 with Composition API, make sure you installed the [@nuxtjs/composition-api](https://composition-api.nuxtjs.org/) plugin.
 
-The simplest way is by using the `useStoryblok` one-liner composable:
+The simplest way is by using the `useStoryblok` one-liner composable, which uses the [useFetch from @nuxtjs/composition-api](https://composition-api.nuxtjs.org/lifecycle/useFetch) under the hood:
 
 ```html
 <script setup>
   import { useStoryblok } from "@storyblok/nuxt";
-  const story = useStoryblok("vue", { version: "draft" });
+  const { story, fetchState } = useStoryblok("vue", { version: "draft" });
 </script>
 
 <template>
@@ -116,19 +116,23 @@ Which is the short-hand equivalent to using `useStoryblokApi` and `useStoryblokB
 
 ```html
 <script setup>
-  import { onMounted, ref } from "@nuxtjs/composition-api";
+  import { onMounted, ref, useFetch } from "@nuxtjs/composition-api";
   import { useStoryblokBridge, useStoryblokApi } from "@storyblok/nuxt";
 
   const story = ref(null);
 
-  onMounted(async () => {
+  const { fetch } = useFetch(async () => {
     const storyblokApi = useStoryblokApi();
-    const { data } = await storyblokApi.get("cdn/stories/vue", {
+    const { data } = await storyblokApi.get(`cdn/stories/vue/test`, {
       version: "draft",
     });
     story.value = data.story;
+  });
+  fetch();
 
-    useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory));
+  onMounted(async () => {
+    if (story.value && story.value.id)
+      useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory));
   });
 </script>
 
