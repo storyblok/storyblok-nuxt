@@ -104,7 +104,7 @@ The simplest way is by using the `useStoryblok` one-liner composable:
 ```html
 <script setup>
   import { useStoryblok } from "@storyblok/nuxt";
-  const story = useStoryblok("vue/test", { version: "draft" });
+  const story = useStoryblok("vue", { version: "draft" });
 </script>
 
 <template>
@@ -123,7 +123,7 @@ Which is the short-hand equivalent to using `useStoryblokApi` and `useStoryblokB
 
   onMounted(async () => {
     const storyblokApi = useStoryblokApi();
-    const { data } = await storyblokApi.get("cdn/stories/vue/test", {
+    const { data } = await storyblokApi.get("cdn/stories/vue", {
       version: "draft",
     });
     story.value = data.story;
