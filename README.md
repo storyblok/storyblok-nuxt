@@ -3,7 +3,7 @@
 		<img  src="https://a.storyblok.com/f/88751/1776x360/b8979e5c96/sb-nuxt.png"  alt="Storyblok Logo">
 	</a>
 	<h1 align="center">storyblok-nuxt</h1>
-	<p align="center">Nuxt module for the <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt" target="_blank">Storyblok</a>, Headless CMS.</p> <br />
+	<p align="center">Nuxt 2 module for the <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt" target="_blank">Storyblok</a>, Headless CMS.</p> <br />
 </div>
 
 <p align="center">
@@ -27,9 +27,11 @@
   </a>
 </p>
 
-**Note**: This module is for Nuxt 2. [Check out `@storyblok/nuxt-beta` for Nuxt 3](https://github.com/storyblok/storyblok-nuxt-beta)
+> Try out the **[LIVE DEMO](https://stackblitz.com/edit/nuxt-2-sdk-demo?file=pages%2Findex.vue&terminal=dev)** on Stackblitz and play with code yourself!
 
 ## 🚀 Usage
+
+_Note: This module is for Nuxt 2. [Check out `@storyblok/nuxt-beta` for Nuxt 3](https://github.com/storyblok/storyblok-nuxt-beta)_.
 
 > If you are first-time user of the Storyblok, read the [Getting Started](https://www.storyblok.com/docs/guide/getting-started?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) guide to get a project ready in less than 5 minutes.
 
@@ -186,8 +188,9 @@ Equivalent to the client that `useStoryblokApi` returns, but accessible in the N
 
 ## 🔗 Related Links
 
-- **[Nuxt.js Hub](https://www.storyblok.com/tc/nuxtjs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)**: Learn how to develop your own Nuxt.js applications that use Storyblok APIs to retrieve and manage content;
-- **[Storyblok & Nuxt.js on GitHub](https://github.com/search?q=org%3Astoryblok+topic%3Anuxt)**: Check all of our Nuxt.js open source repos;
+- **[Live Demo on Stackblitz](https://stackblitz.com/edit/nuxt-2-sdk-demo?file=pages%2Findex.vue&terminal=dev)**
+- **[Nuxt.js Hub](https://www.storyblok.com/tc/nuxtjs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)**: Learn how to develop your own Nuxt.js applications that use Storyblok APIs to retrieve and manage content.
+- **[Storyblok & Nuxt.js on GitHub](https://github.com/search?q=org%3Astoryblok+topic%3Anuxt)**: Check all of our Nuxt.js open source repos.
 - **[Storyblok CLI](https://github.com/storyblok/storyblok)**: A simple CLI for scaffolding Storyblok projects and fieldtypes.
 
 ## ℹ️ More Resources
