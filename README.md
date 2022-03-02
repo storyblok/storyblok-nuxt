@@ -42,7 +42,7 @@ npm install @storyblok/nuxt
 # yarn add @storyblok/nuxt
 ```
 
-Initialize the module by adding it to buildModules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
+Initialize the module by adding it to buildModules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space:
 
 ```js
 {
