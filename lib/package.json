@@ -29,7 +29,7 @@
     "@storyblok/vue-2": "^1.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
+    "@babel/core": "^7.17.9",
     "babel-jest": "^26.6.3",
     "cypress": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
