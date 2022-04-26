@@ -26,7 +26,7 @@
     "prepublishOnly": "cp ../README.md ./"
   },
   "dependencies": {
-    "@storyblok/vue-2": "^1.0.2"
+    "@storyblok/vue-2": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
