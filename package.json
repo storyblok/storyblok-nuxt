@@ -9,21 +9,22 @@
   "scripts": {
     "demo": "npm run demo --workspace=playground",
     "build": "npm run build --workspace=lib",
-    "test:e2e": "npm run test:e2e --workspace=lib",
+    "test:e2e": "npm run build && npm run test:e2e --workspace=lib",
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.2.4",
-    "@commitlint/config-conventional": "^16.2.1",
-    "eslint": "^8.15.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-vue": "^8.7.1",
-    "husky": "^8.0.1",
-    "lint-staged": "^12.4.1",
-    "prettier": "^2.6.2"
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "@nuxtjs/eslint-config-typescript": "latest",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
+    "prettier": "^2.4.1"
   },
   "lint-staged": {
-    "!(plugin)*.{vue,js,css}": [
+    "*.{vue,js,css}": [
       "prettier --write",
       "eslint"
     ],
@@ -37,12 +38,10 @@
     ]
   },
   "eslintConfig": {
-      "env": {
-        "node": true
-      },
     "extends": [
       "eslint:recommended",
-      "plugin:vue/recommended",
+      "@nuxtjs/eslint-config-typescript",
+      "plugin:vue/vue3-recommended",
       "prettier"
     ],
     "rules": {
@@ -50,9 +49,13 @@
     }
   },
   "eslintIgnore": [
-    "**/templates/plugin.js"
+    "**/templates/plugin.js",
+    "playground/app.vue"
   ],
-  "dependencies": {
-    "@nuxtjs/composition-api": "^0.32.0"
+  "prettier": {
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": false
   }
 }

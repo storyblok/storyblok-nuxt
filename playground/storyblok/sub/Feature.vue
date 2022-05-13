@@ -4,8 +4,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ["blok"],
-};
+<script setup>
+defineProps({ blok: Object });
 </script>
