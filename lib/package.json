@@ -32,7 +32,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@nuxt/module-builder": "latest",
-    "babel-jest": "^26.6.3",
+    "babel-jest": "^28.1.0",
     "cypress": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
     "jest": "^26.6.3",
