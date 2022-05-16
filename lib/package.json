@@ -11,7 +11,8 @@
     }
   },
   "files": [
-    "src"
+    "src",
+    "dist"
   ],
   "repository": "https://github.com/storyblok/storyblok-nuxt",
   "scripts": {
