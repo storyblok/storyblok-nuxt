@@ -52,7 +52,7 @@ Add following code to buildModules section of `nuxt.config.js` and replace the a
 import { defineNuxtConfig } from "nuxt";
 
 export default defineNuxtConfig({
-  buildModules: [
+  modules: [
     ["@storyblok/nuxt", { accessToken: "<your-access-token>" }]
     // ...
   ]
@@ -65,7 +65,7 @@ You can also use the `storyblok` config if you prefer:
 import { defineNuxtConfig } from "nuxt";
 
 export default defineNuxtConfig({
-  buildModules: ["@storyblok/nuxt"],
+  modules: ["@storyblok/nuxt"],
   storyblok: {
     accessToken: "<your-access-token>"
   }
