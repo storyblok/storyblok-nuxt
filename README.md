@@ -114,7 +114,7 @@ To link your Vue components to their equivalent you created in Storyblok:
 
 #### Composition API
 
-The simplest way is by using the `useStoryblok` one-liner composable (it's autoimported):
+The simplest way is by using the `useStoryblok` one-liner composable (it's autoimported) and passing as a first parameter a name of your content page from Storyblok (in this case, our content page name is `vue`, by default you get a content page named `home`):
 
 ```html
 <script setup>
