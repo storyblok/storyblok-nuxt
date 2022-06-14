@@ -39,14 +39,14 @@ _Note: This module is for Nuxt 3. [Check out `@storyblok/nuxt-2` for Nuxt 2](htt
 
 ### Installation
 
-Install `@storyblok/nuxt`:
+Install `@storyblok/nuxt` and `axios`:
 
 ```bash
 npm install @storyblok/nuxt axios
 # yarn add @storyblok/nuxt axios
 ```
 
-Add following code to buildModules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
+Add following code to modules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
 
 ```js
 import { defineNuxtConfig } from "nuxt";
@@ -102,7 +102,7 @@ To link your Vue components to their equivalent you created in Storyblok:
 <div v-editable="blok" / >
 ```
 
-- Finally, use `<StoryblokComponent>` which available globally in the Nuxt app:
+- Finally, use `<StoryblokComponent>` which is available globally in the Nuxt app:
 
 ```html
 <StoryblokComponent :blok="blok" />
