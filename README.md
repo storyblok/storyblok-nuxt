@@ -46,13 +46,13 @@ npm install @storyblok/nuxt
 # yarn add @storyblok/nuxt
 ```
 
-Add following code to buildModules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
+Add following code to modules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
 
 ```js
 import { defineNuxtConfig } from "nuxt";
 
 export default defineNuxtConfig({
-  buildModules: [
+  modules: [
     ["@storyblok/nuxt", { accessToken: "<your-access-token>" }]
     // ...
   ]
@@ -65,7 +65,7 @@ You can also use the `storyblok` config if you prefer:
 import { defineNuxtConfig } from "nuxt";
 
 export default defineNuxtConfig({
-  buildModules: ["@storyblok/nuxt"],
+  modules: ["@storyblok/nuxt"],
   storyblok: {
     accessToken: "<your-access-token>"
   }
@@ -102,7 +102,7 @@ To link your Vue components to their equivalent you created in Storyblok:
 <div v-editable="blok" / >
 ```
 
-- Finally, use `<StoryblokComponent>` which available globally in the Nuxt app:
+- Finally, use `<StoryblokComponent>` which is available globally in the Nuxt app:
 
 ```html
 <StoryblokComponent :blok="blok" />
@@ -114,7 +114,7 @@ To link your Vue components to their equivalent you created in Storyblok:
 
 #### Composition API
 
-The simplest way is by using the `useStoryblok` one-liner composable (it's autoimported):
+The simplest way is by using the `useStoryblok` one-liner composable (it's autoimported) and passing as a first parameter a name of your content page from Storyblok (in this case, our content page name is `vue`, by default you get a content page named `home`):
 
 ```html
 <script setup>
