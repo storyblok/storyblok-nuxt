@@ -39,11 +39,11 @@ _Note: This module is for Nuxt 3. [Check out `@storyblok/nuxt-2` for Nuxt 2](htt
 
 ### Installation
 
-Install `@storyblok/nuxt` and `axios`:
+Install `@storyblok/nuxt`:
 
 ```bash
-npm install @storyblok/nuxt axios
-# yarn add @storyblok/nuxt axios
+npm install @storyblok/nuxt
+# yarn add @storyblok/nuxt
 ```
 
 Add following code to modules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
