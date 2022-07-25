@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0-rc.2",
-    "@storyblok/vue": "^6.0.3"
+    "@storyblok/vue": "^6.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
