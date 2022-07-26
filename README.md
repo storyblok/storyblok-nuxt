@@ -149,7 +149,7 @@ Which is the short-hand equivalent to using `useStoryblokApi` and `useStoryblokB
 
 #### Rendering Rich Text
 
-You can easily render rich text by using the `renderRichText` function that comes with `@storyblok/vue` and a Vue computed property:
+You can easily render rich text by using the `renderRichText` function that comes with `@storyblok/nuxt` and a Vue computed property:
 
 ```html
 <template>
