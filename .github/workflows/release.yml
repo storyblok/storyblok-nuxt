@@ -1,4 +1,4 @@
-name: Tests CI
+name: Release CI
 
 on:
   push:
