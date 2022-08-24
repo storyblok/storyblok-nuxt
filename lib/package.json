@@ -30,7 +30,7 @@
     "@storyblok/vue": "^6.2.1"
   },
   "devDependencies": {
-    "@nuxt/kit": "^3.0.0-rc.7",
+    "@nuxt/kit": "^3.0.0-rc.8",
     "@babel/core": "^7.15.0",
     "@nuxt/module-builder": "latest",
     "babel-jest": "^28.1.3",
