@@ -7,11 +7,11 @@
 </div>
 
 <p align="center">
-  <a href="https://npmjs.com/package/@storyblok/nuxt-2">
-    <img src="https://img.shields.io/npm/v/@storyblok/nuxt-2/latest.svg?style=flat-square" alt="Storyblok JS Client" />
+  <a href="https://npmjs.com/package/@storyblok/nuxt">
+    <img src="https://img.shields.io/npm/v/@storyblok/nuxt/latest.svg?style=flat-square" alt="Storyblok JS Client" />
   </a>
-  <a href="https://npmjs.com/package/@storyblok/nuxt-2" rel="nofollow">
-    <img src="https://img.shields.io/npm/dt/@storyblok/nuxt-2.svg?style=flat-square" alt="npm">
+  <a href="https://npmjs.com/package/@storyblok/nuxt" rel="nofollow">
+    <img src="https://img.shields.io/npm/dt/@storyblok/nuxt.svg?style=flat-square" alt="npm">
   </a>
   </p>
 
@@ -165,7 +165,7 @@ You can easily render rich text by using the `renderRichText` function that come
 
 #### useStoryblok(slug, apiOptions, bridgeOptions)
 
-Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt-beta) (passed to the Storyblok Bridge).
+Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
 #### useStoryblokApi()
 
@@ -178,7 +178,7 @@ Use this one-line function to cover the most common use case: updating the story
 ## 🔗 Related Links
 
 - **[Live Demo on Stackblitz](https://stackblitz.com/edit/nuxt-3-sdk-demo?file=pages%2Findex.vue&terminal=dev)**
-- **[Nuxt.js Hub](https://www.storyblok.com/tc/nuxtjs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt-beta)**: Learn how to develop your own Nuxt.js applications that use Storyblok APIs to retrieve and manage content;
+- **[Nuxt.js Hub](https://www.storyblok.com/tc/nuxtjs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)**: Learn how to develop your own Nuxt.js applications that use Storyblok APIs to retrieve and manage content;
 - **[Storyblok & Nuxt.js on GitHub](https://github.com/search?q=org%3Astoryblok+topic%3Anuxt)**: Check all of our Nuxt.js open source repos;
 - **[Storyblok CLI](https://github.com/storyblok/storyblok)**: A simple CLI for scaffolding Storyblok projects and fieldtypes.
 
@@ -192,5 +192,5 @@ Use this one-line function to cover the most common use case: updating the story
 
 ### Contributing
 
-Please see our [contributing guidelines](https://github.com/storyblok/.github/blob/master/contributing.md) and our [code of conduct](https://www.storyblok.com/trust-center#code-of-conduct?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt-beta).
+Please see our [contributing guidelines](https://github.com/storyblok/.github/blob/master/contributing.md) and our [code of conduct](https://www.storyblok.com/trust-center#code-of-conduct?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt).
 This project use [semantic-release](https://semantic-release.gitbook.io/semantic-release/) for generate new versions by using commit messages and we use the Angular Convention to naming the commits. Check [this question](https://semantic-release.gitbook.io/semantic-release/support/faq#how-can-i-change-the-type-of-commits-that-trigger-a-release) about it in semantic-release FAQ.
