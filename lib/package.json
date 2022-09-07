@@ -27,7 +27,7 @@
     "test:e2e-watch": "start-server-and-test playground:run http://localhost:3000 cy:open"
   },
   "dependencies": {
-    "@storyblok/vue": "^6.2.1"
+    "@storyblok/vue": "^6.3.0"
   },
   "devDependencies": {
     "@nuxt/kit": "^3.0.0-rc.7",

@@ -6,7 +6,7 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "nuxt": "^3.0.0-rc.2",
+    "nuxt": "^3.0.0-rc.9",
     "@storyblok/nuxt": "^0.0.1"
   }
 }
