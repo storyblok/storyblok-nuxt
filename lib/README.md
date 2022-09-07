@@ -147,6 +147,37 @@ Which is the short-hand equivalent to using `useStoryblokApi` and `useStoryblokB
 </template>
 ```
 
+#### Rendering Rich Text
+
+You can easily render rich text by using the auto-imported `renderRichText` and a Vue computed property:
+
+```html
+<template>
+  <div v-html="articleContent"></div>
+</template>
+
+<script setup>
+  const articleContent = computed(() => renderRichText(blok.articleContent));
+</script>
+```
+
+You can also set a **custom Schema and component resolver** by passing the options as the second parameter to `renderRichText` function:
+
+```js
+renderRichText(blok.richTextField, {
+  schema: mySchema,
+  resolver: (component, blok) => {
+    switch (component) {
+      case "my-custom-component":
+        return `<div class="my-component-class">${blok.text}</div>`;
+        break;
+      default:
+        return `Component ${component} not found`;
+    }
+  }
+});
+```
+
 ### API
 
 #### useStoryblok(slug, apiOptions, bridgeOptions)
