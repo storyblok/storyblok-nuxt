@@ -167,6 +167,12 @@ You can easily render rich text by using the `renderRichText` function that come
 
 Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
+#### useAsyncStoryblok(slug, apiOptions, bridgeOptions)
+
+Same implementation as `useStoryblok` using [`useAsyncData`](https://v3.nuxtjs.org/api/composables/use-async-data/) and [`useState`](https://v3.nuxtjs.org/api/composables/use-state) for genereting SSR or SSG applications.
+
+Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
+
 #### useStoryblokApi()
 
 Returns the instance of the `storyblok-js-client`.
