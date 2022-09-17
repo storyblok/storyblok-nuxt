@@ -114,11 +114,11 @@ To link your Vue components to their equivalent you created in Storyblok:
 
 #### Composition API
 
-The simplest way is by using the `useStoryblok` one-liner composable (it's autoimported) and passing as a first parameter a name of your content page from Storyblok (in this case, our content page name is `vue`, by default you get a content page named `home`):
+The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's autoimported) and passing as a first parameter a name of your content page from Storyblok (in this case, our content page name is `vue`, by default you get a content page named `home`):
 
 ```html
 <script setup>
-  const story = await useStoryblok("vue", { version: "draft" });
+  const story = await useAsyncStoryblok("vue", { version: "draft" });
 </script>
 
 <template>
@@ -126,16 +126,19 @@ The simplest way is by using the `useStoryblok` one-liner composable (it's autoi
 </template>
 ```
 
-Which is the short-hand equivalent to using `useStoryblokApi` and `useStoryblokBridge` functions separately:
+Which is the short-hand equivalent to using `useStoryblokApi` inside `useAsyncData` and `useStoryblokBridge` functions separately:
 
 ```html
 <script setup>
   const story = ref(null);
   const storyblokApi = useStoryblokApi();
-  const { data } = await storyblokApi.get("cdn/stories/vue", {
+  const { data } = await useAsyncData(
+    'vue',
+    async () => await storyblokApi.get(`cdn/stories/vue`, {
     version: "draft"
-  });
-  story.value = data.story;
+  })
+  );
+  story.value = data.value.data.story;
 
   onMounted(() => {
     useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory));
@@ -146,6 +149,8 @@ Which is the short-hand equivalent to using `useStoryblokApi` and `useStoryblokB
   <StoryblokComponent v-if="story" :blok="story.content" />
 </template>
 ```
+
+> Using `useAsyncData` SSR and SSG capabilities are enabled.
 
 #### Rendering Rich Text
 
