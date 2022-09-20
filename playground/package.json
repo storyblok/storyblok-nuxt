@@ -1,9 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "demo": "nuxi dev",
-    "build": "nuxi build",
-    "start": "node .output/server/index.mjs"
+    "demo": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt preview"
   },
   "devDependencies": {
     "nuxt": "^3.0.0-rc.9",

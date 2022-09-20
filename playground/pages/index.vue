@@ -1,7 +1,6 @@
 <script setup>
-const story = await useStoryblok("vue", { version: "draft" });
+const story = await useAsyncStoryblok("vue", { version: "draft" });
 const richText = computed(() => renderRichText(story.value.content.richText));
-console.log(richText);
 </script>
 
 <template>
