@@ -183,7 +183,6 @@ You can also set a **custom Schema and component resolver** by passing the optio
     renderRichText(props.blok.articleContent, {
       schema: mySchema,
       resolver: (component, blok) => {
-        console.log(component)
         switch (component) {
           case 'my-custom-component':
             return `<div class="my-component-class">${blok.text}</div>`
