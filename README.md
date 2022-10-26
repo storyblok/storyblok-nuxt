@@ -162,7 +162,37 @@ You can easily render rich text by using the `renderRichText` function that come
 </template>
 
 <script setup>
+  const props = defineProps({ blok: Object })
   const articleContent = computed(() => renderRichText(blok.articleContent));
+</script>
+```
+
+You can also set a **custom Schema and component resolver** by passing the options as the second parameter of the `renderRichText` function:
+
+```html
+<script setup>
+  import cloneDeep from 'clone-deep'
+
+  const mySchema = cloneDeep(RichTextSchema) // you can make a copy of the default RichTextSchema
+  // ... and edit the nodes and marks, or add your own.
+  // Check the base RichTextSchema source here https://github.com/storyblok/storyblok-js-client/blob/v4/source/schema.js
+
+  const props = defineProps({ blok: Object })
+
+  const articleContent = computed(() =>
+    renderRichText(props.blok.articleContent, {
+      schema: mySchema,
+      resolver: (component, blok) => {
+        console.log(component)
+        switch (component) {
+          case 'my-custom-component':
+            return `<div class="my-component-class">${blok.text}</div>`
+          default:
+            return 'Resolver not defined'
+        }
+      },
+    })
+  )
 </script>
 ```
 
