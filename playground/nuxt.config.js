@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
   modules: [
     [
-      "@storyblok/nuxt",
+      "../lib/src/module.js",
       {
         accessToken: "OurklwV5XsDJTIE1NJaD2wtt",
         apiOptions: {
