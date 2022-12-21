@@ -7,11 +7,11 @@
 </div>
 
 <p align="center">
-  <a href="https://npmjs.com/package/@storyblok/nuxt-2">
-    <img src="https://img.shields.io/npm/v/@storyblok/nuxt-2/latest.svg?style=flat-square" alt="Storyblok JS Client" />
+  <a href="https://npmjs.com/package/@storyblok/nuxt">
+    <img src="https://img.shields.io/npm/v/@storyblok/nuxt/latest.svg?style=flat-square" alt="Storyblok JS Client" />
   </a>
-  <a href="https://npmjs.com/package/@storyblok/nuxt-2" rel="nofollow">
-    <img src="https://img.shields.io/npm/dt/@storyblok/nuxt-2.svg?style=flat-square" alt="npm">
+  <a href="https://npmjs.com/package/@storyblok/nuxt" rel="nofollow">
+    <img src="https://img.shields.io/npm/dt/@storyblok/nuxt.svg?style=flat-square" alt="npm">
   </a>
   </p>
 
@@ -46,13 +46,13 @@ npm install @storyblok/nuxt
 # yarn add @storyblok/nuxt
 ```
 
-Add following code to buildModules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
+Add following code to modules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
 
 ```js
 import { defineNuxtConfig } from "nuxt";
 
 export default defineNuxtConfig({
-  buildModules: [
+  modules: [
     ["@storyblok/nuxt", { accessToken: "<your-access-token>" }]
     // ...
   ]
@@ -65,7 +65,7 @@ You can also use the `storyblok` config if you prefer:
 import { defineNuxtConfig } from "nuxt";
 
 export default defineNuxtConfig({
-  buildModules: ["@storyblok/nuxt"],
+  modules: ["@storyblok/nuxt"],
   storyblok: {
     accessToken: "<your-access-token>"
   }
@@ -74,7 +74,7 @@ export default defineNuxtConfig({
 
 #### Options
 
-When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `useApiClient` options:
+When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `useApiClient` option. For spaces created in the United States, you have to set the `region` parameter accordingly `{ apiOptions: { region: 'us' } }`.
 
 ```js
 // Defaults
@@ -102,7 +102,7 @@ To link your Vue components to their equivalent you created in Storyblok:
 <div v-editable="blok" / >
 ```
 
-- Finally, use `<StoryblokComponent>` which available globally in the Nuxt app:
+- Finally, use `<StoryblokComponent>` which is available globally in the Nuxt app:
 
 ```html
 <StoryblokComponent :blok="blok" />
@@ -114,11 +114,11 @@ To link your Vue components to their equivalent you created in Storyblok:
 
 #### Composition API
 
-The simplest way is by using the `useStoryblok` one-liner composable (it's autoimported):
+The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's autoimported) and passing as a first parameter a name of your content page from Storyblok (in this case, our content page name is `vue`, by default you get a content page named `home`):
 
 ```html
 <script setup>
-  const story = await useStoryblok("vue", { version: "draft" });
+  const story = await useAsyncStoryblok("vue", { version: "draft" });
 </script>
 
 <template>
@@ -126,16 +126,19 @@ The simplest way is by using the `useStoryblok` one-liner composable (it's autoi
 </template>
 ```
 
-Which is the short-hand equivalent to using `useStoryblokApi` and `useStoryblokBridge` functions separately:
+Which is the short-hand equivalent to using `useStoryblokApi` inside `useAsyncData` and `useStoryblokBridge` functions separately:
 
 ```html
 <script setup>
   const story = ref(null);
   const storyblokApi = useStoryblokApi();
-  const { data } = await storyblokApi.get("cdn/stories/vue", {
+  const { data } = await useAsyncData(
+    'vue',
+    async () => await storyblokApi.get(`cdn/stories/vue`, {
     version: "draft"
-  });
-  story.value = data.story;
+  })
+  );
+  story.value = data.value.data.story;
 
   onMounted(() => {
     useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory));
@@ -147,9 +150,11 @@ Which is the short-hand equivalent to using `useStoryblokApi` and `useStoryblokB
 </template>
 ```
 
+> Using `useAsyncData` SSR and SSG capabilities are enabled.
+
 #### Rendering Rich Text
 
-You can easily render rich text by using the auto-imported `renderRichText` and a computed property:
+You can easily render rich text by using the `renderRichText` function that comes with `@storyblok/nuxt` and a Vue computed property:
 
 ```html
 <template>
@@ -157,32 +162,52 @@ You can easily render rich text by using the auto-imported `renderRichText` and 
 </template>
 
 <script setup>
+  const props = defineProps({ blok: Object });
   const articleContent = computed(() => renderRichText(blok.articleContent));
 </script>
 ```
 
-You can also set a **custom Schema and component resolver** by passing the options as the second parameter to `renderRichText` function:
+You can also set a **custom Schema and component resolver** by passing the options as the second parameter of the `renderRichText` function:
 
-```js
-renderRichText(blok.richTextField, {
-  schema: mySchema,
-  resolver: (component, blok) => {
-    switch (component) {
-      case "my-custom-component":
-        return `<div class="my-component-class">${blok.text}</div>`;
-        break;
-      default:
-        return `Component ${component} not found`;
-    }
-  }
-});
+```html
+<script setup>
+  import cloneDeep from "clone-deep";
+
+  const mySchema = cloneDeep(RichTextSchema); // you can make a copy of the default RichTextSchema
+  // ... and edit the nodes and marks, or add your own.
+  // Check the base RichTextSchema source here https://github.com/storyblok/storyblok-js-client/blob/v4/source/schema.js
+
+  const props = defineProps({ blok: Object });
+
+  const articleContent = computed(() =>
+    renderRichText(props.blok.articleContent, {
+      schema: mySchema,
+      resolver: (component, blok) => {
+        switch (component) {
+          case "my-custom-component":
+            return `<div class="my-component-class">${blok.text}</div>`;
+          default:
+            return "Resolver not defined";
+        }
+      }
+    })
+  );
+</script>
 ```
 
 ### API
 
+#### useAsyncStoryblok(slug, apiOptions, bridgeOptions)
+
+(Recommended Option) Use [`useAsyncData`](https://v3.nuxtjs.org/api/composables/use-async-data/) and [`useState`](https://v3.nuxtjs.org/api/composables/use-state) under the hood for generating SSR or SSG applications.
+
+Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
+
 #### useStoryblok(slug, apiOptions, bridgeOptions)
 
-Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt-beta) (passed to the Storyblok Bridge).
+It could be helpful to use `useStoryblok` instead of `useAsyncStoryblok` when we need to make client-side requests, for example, getting personalized data for a logged user.
+
+Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
 #### useStoryblokApi()
 
@@ -195,7 +220,7 @@ Use this one-line function to cover the most common use case: updating the story
 ## 🔗 Related Links
 
 - **[Live Demo on Stackblitz](https://stackblitz.com/edit/nuxt-3-sdk-demo?file=pages%2Findex.vue&terminal=dev)**
-- **[Nuxt.js Hub](https://www.storyblok.com/tc/nuxtjs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt-beta)**: Learn how to develop your own Nuxt.js applications that use Storyblok APIs to retrieve and manage content;
+- **[Nuxt.js Hub](https://www.storyblok.com/tc/nuxtjs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)**: Learn how to develop your own Nuxt.js applications that use Storyblok APIs to retrieve and manage content;
 - **[Storyblok & Nuxt.js on GitHub](https://github.com/search?q=org%3Astoryblok+topic%3Anuxt)**: Check all of our Nuxt.js open source repos;
 - **[Storyblok CLI](https://github.com/storyblok/storyblok)**: A simple CLI for scaffolding Storyblok projects and fieldtypes.
 
@@ -209,5 +234,5 @@ Use this one-line function to cover the most common use case: updating the story
 
 ### Contributing
 
-Please see our [contributing guidelines](https://github.com/storyblok/.github/blob/master/contributing.md) and our [code of conduct](https://www.storyblok.com/trust-center#code-of-conduct?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt-beta).
+Please see our [contributing guidelines](https://github.com/storyblok/.github/blob/master/contributing.md) and our [code of conduct](https://www.storyblok.com/trust-center#code-of-conduct?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt).
 This project use [semantic-release](https://semantic-release.gitbook.io/semantic-release/) for generate new versions by using commit messages and we use the Angular Convention to naming the commits. Check [this question](https://semantic-release.gitbook.io/semantic-release/support/faq#how-can-i-change-the-type-of-commits-that-trigger-a-release) about it in semantic-release FAQ.

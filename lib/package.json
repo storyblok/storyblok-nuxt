@@ -2,16 +2,16 @@
   "name": "@storyblok/nuxt",
   "version": "0.0.1",
   "description": "Storyblok Nuxt.js module",
-  "main": "./src/module.js",
-  "module": "./src/module.js",
+  "module": "./dist/module.mjs",
   "exports": {
     ".": {
-      "import": "./src/module.js",
-      "require": "./src/module.js"
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
     }
   },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
   "files": [
-    "src",
     "dist"
   ],
   "repository": "https://github.com/storyblok/storyblok-nuxt",
