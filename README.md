@@ -72,10 +72,11 @@ export default defineNuxtConfig({
 });
 ```
 
+> ⚠️ This SDK uses the Fetch API under the hood. If your environment doesn't support it, you need to install a polyfill like [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch). More info on [storyblok-js-client docs](https://github.com/storyblok/storyblok-js-client#fetch-use-polyfill-if-needed---version-5).
+
 #### Options
 
 When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `useApiClient` option. For spaces created in the United States, you have to set the `region` parameter accordingly `{ apiOptions: { region: 'us' } }`.
-
 
 ```js
 // Defaults
@@ -163,7 +164,7 @@ You can easily render rich text by using the `renderRichText` function that come
 </template>
 
 <script setup>
-  const props = defineProps({ blok: Object })
+  const props = defineProps({ blok: Object });
   const articleContent = computed(() => renderRichText(blok.articleContent));
 </script>
 ```
@@ -172,27 +173,27 @@ You can also set a **custom Schema and component resolver** by passing the optio
 
 ```html
 <script setup>
-  import cloneDeep from 'clone-deep'
+  import cloneDeep from "clone-deep";
 
-  const mySchema = cloneDeep(RichTextSchema) // you can make a copy of the default RichTextSchema
+  const mySchema = cloneDeep(RichTextSchema); // you can make a copy of the default RichTextSchema
   // ... and edit the nodes and marks, or add your own.
   // Check the base RichTextSchema source here https://github.com/storyblok/storyblok-js-client/blob/v4/source/schema.js
 
-  const props = defineProps({ blok: Object })
+  const props = defineProps({ blok: Object });
 
   const articleContent = computed(() =>
     renderRichText(props.blok.articleContent, {
       schema: mySchema,
       resolver: (component, blok) => {
         switch (component) {
-          case 'my-custom-component':
-            return `<div class="my-component-class">${blok.text}</div>`
+          case "my-custom-component":
+            return `<div class="my-component-class">${blok.text}</div>`;
           default:
-            return 'Resolver not defined'
+            return "Resolver not defined";
         }
-      },
+      }
     })
-  )
+  );
 </script>
 ```
 
