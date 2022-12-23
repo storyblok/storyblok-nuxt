@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "demo": "nuxt dev",
+    "demo-https": "nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt preview"
