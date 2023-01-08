@@ -164,7 +164,7 @@ You can easily render rich text by using the `renderRichText` function that come
 
 <script setup>
   const props = defineProps({ blok: Object })
-  const articleContent = computed(() => renderRichText(blok.articleContent));
+  const articleContent = computed(() => renderRichText(props.blok.articleContent));
 </script>
 ```
 
