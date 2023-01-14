@@ -3,7 +3,11 @@ export default defineNuxtConfig({
     [
       "@storyblok/nuxt",
       {
-        accessToken: "OurklwV5XsDJTIE1NJaD2wtt"
+        accessToken: "OurklwV5XsDJTIE1NJaD2wtt",
+        apiOptions: {
+          region: ""
+        }
+        // usePlugin: false
       }
     ]
   ],
