@@ -164,7 +164,7 @@ You can easily render rich text by using the `renderRichText` function that come
 </template>
 
 <script setup>
-  const props = defineProps({ blok: Object })
+  const props = defineProps({ blok: Object });
   const articleContent = computed(() => renderRichText(props.blok.articleContent));
 </script>
 ```
@@ -187,7 +187,7 @@ You can also set a **custom Schema and component resolver** by passing the optio
       resolver: (component, blok) => {
         switch (component) {
           case "my-custom-component":
-            return `<div class="my-component-class">${blok.text}</div>`;
+            return `<div class="my-component-class">${props.blok.text}</div>`;
           default:
             return "Resolver not defined";
         }
