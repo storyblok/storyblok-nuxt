@@ -18,10 +18,12 @@ export default defineNuxtModule({
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
 
-    nuxt.options.vite.optimizeDeps.include =
-      nuxt.options.vite.optimizeDeps.include || [];
-    nuxt.options.vite.optimizeDeps.include.push("@storyblok/nuxt");
-    nuxt.options.vite.optimizeDeps.include.push("@storyblok/vue");
+    if(nuxt.options.vite.optimizeDeps) {
+      nuxt.options.vite.optimizeDeps.include =
+        nuxt.options.vite.optimizeDeps.include || [];
+      nuxt.options.vite.optimizeDeps.include.push("@storyblok/nuxt");
+      nuxt.options.vite.optimizeDeps.include.push("@storyblok/vue");
+    }
 
     // Enable dirs
     // nuxt.options.components.dirs = ["~/components/storyblok"];
