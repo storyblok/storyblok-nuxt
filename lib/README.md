@@ -96,7 +96,9 @@ When you initialize the module, you can pass all [_@storyblok/vue_ options](http
 
 To link your Vue components to their equivalent you created in Storyblok:
 
-- First, you need to load them globally. You can just place them on the `~/storyblok` directory and will be discovered automagically, otherwise you set another directory can load them manually (for example, by [using a Nuxt plugin](https://stackoverflow.com/questions/43040692/global-components-in-vue-nuxt)).
+- First, you need to load them globally. You can just place them on the `~/storyblok` directory, naming them with Pascal case in your code `ExampleComponent.vue` and with a hyphen in your Storyblok space `example-component`, so they will be imported automatically.
+
+  Otherwise you set another directory can load them manually (for example, by [using a Nuxt plugin](https://stackoverflow.com/questions/43040692/global-components-in-vue-nuxt)).
 
 - For each components, use the `v-editable` directive on its root element, passing the `blok` property that they receive:
 
