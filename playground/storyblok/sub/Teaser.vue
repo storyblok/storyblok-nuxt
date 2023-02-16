@@ -11,4 +11,8 @@
 
 <script setup>
 defineProps({ blok: Object });
+
+onMounted(() => {
+  console.log("mounted");
+});
 </script>
