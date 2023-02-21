@@ -49,8 +49,6 @@ npm install @storyblok/nuxt
 Add following code to modules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
 
 ```js
-import { defineNuxtConfig } from "nuxt";
-
 export default defineNuxtConfig({
   modules: [
     ["@storyblok/nuxt", { accessToken: "<your-access-token>" }]
@@ -62,8 +60,6 @@ export default defineNuxtConfig({
 You can also use the `storyblok` config if you prefer:
 
 ```js
-import { defineNuxtConfig } from "nuxt";
-
 export default defineNuxtConfig({
   modules: ["@storyblok/nuxt"],
   storyblok: {
@@ -120,12 +116,20 @@ The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's 
 
 ```html
 <script setup>
-  const story = await useAsyncStoryblok("vue", { version: "draft" });
+  const story = await useAsyncStoryblok("vue");
 </script>
 
 <template>
   <StoryblokComponent v-if="story" :blok="story.content" />
 </template>
+```
+
+However, if you need to pass the apiOptions as a second parameter of `useAsyncStoryblok` composable you can do so like this:
+
+```html
+<script setup>
+  const story = await useAsyncStoryblok("vue", { version: "draft" });
+</script>
 ```
 
 Which is the short-hand equivalent to using `useStoryblokApi` inside `useAsyncData` and `useStoryblokBridge` functions separately:

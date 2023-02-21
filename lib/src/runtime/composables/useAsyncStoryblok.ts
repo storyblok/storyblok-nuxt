@@ -4,7 +4,7 @@ import { useAsyncData, useState, onMounted, createError } from "#imports";
 
 export const useAsyncStoryblok = async (
   url: string,
-  apiOptions: ISbStoriesParams = {},
+  apiOptions: ISbStoriesParams = { version: 'draft' },
   bridgeOptions: StoryblokBridgeConfigV2 = {}
 ) => {
   const uniqueKey = `${JSON.stringify(apiOptions)}${url}`;
