@@ -94,11 +94,13 @@ When you initialize the module, you can pass all [_@storyblok/vue_ options](http
 
 ### 1. Creating and linking your components to Storyblok Visual Editor
 
-To link your Vue components to their equivalent you created in Storyblok:
+To link your Vue components to the equivalent one in your Storyblok space:
 
-- First, you need to load them globally. You can just place them on the `~/storyblok` directory, naming them with Pascal case in your code `ExampleComponent.vue` and with a hyphen in your Storyblok space `example-component`, so they will be imported automatically.
+- First, you need to load them globally adding them to the `~/storyblok` directory. It's important to name them with Pascal case in your code `ExampleComponent.vue` and with a hyphen inside your Storyblok space `example-component`, so they will be imported automatically.
 
-  Otherwise you set another directory can load them manually (for example, by [using a Nuxt plugin](https://stackoverflow.com/questions/43040692/global-components-in-vue-nuxt)).
+  Otherwise, you can set another directory and load them manually (for example, by [using a Nuxt plugin](https://stackoverflow.com/questions/43040692/global-components-in-vue-nuxt)).
+
+  > Take into account that if you name a component inside the `storyblok` folder the same as another in the `components` folder, it won't work properly. Tip: Keep the components in your Nuxt project with different names.
 
 - For each components, use the `v-editable` directive on its root element, passing the `blok` property that they receive:
 
