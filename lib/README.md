@@ -76,7 +76,9 @@ export default defineNuxtConfig({
 
 #### Options
 
-When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `useApiClient` option. For spaces created in the United States, you have to set the `region` parameter accordingly `{ apiOptions: { region: 'us' } }`.
+When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `useApiClient` option.
+
+> Note: For spaces created in the United States, you have to set the `region` parameter accordingly `{ apiOptions: { region: 'us' } }`.
 
 ```js
 // Defaults
@@ -121,6 +123,8 @@ To link your Vue components to the equivalent one in your Storyblok space:
 #### Composition API
 
 The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's autoimported) and passing as a first parameter a name of your content page from Storyblok (in this case, our content page name is `vue`, by default you get a content page named `home`):
+
+> If you want to know more about versioning `{ version: "draft" /* or "publish" */ }` then go to the section [Working with preview and/or production environments](#3-working-with-preview-andor-production-environments)
 
 ```html
 <script setup>
@@ -200,6 +204,16 @@ You can also set a **custom Schema and component resolver** by passing the optio
   );
 </script>
 ```
+
+### 3. Working with preview and/or production environments
+
+Remember that the bridge only works using `version: { 'draft' }` and the _Preview Access Token_.
+
+For the production site, NOT used as a preview for content editors, `version: { 'published' }` and _Public Access Token_ should be used.
+
+> If you're using production as a preview for marketeers and your public site, you will need a plugin to handle different .env variables, or versions using the _Preview Access Token_, checking if you are inside Storyblok or not. For example, something like `if (window.location.search.includes(_storyblok_tk[token]=<YOUR_TOKEN>)`.
+
+Check the official docs on how to [access different content versions](https://www.storyblok.com/docs/guide/essentials/accessing-data#content-versions).
 
 ### API
 
