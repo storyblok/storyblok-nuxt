@@ -7,21 +7,35 @@ import {
   createResolver
 } from "@nuxt/kit";
 
-export default defineNuxtModule({
+export interface ModuleOptions {
+  accessToken: string,
+  usePlugin: boolean,
+  bridge: boolean, // storyblok bridge on/off
+  apiOptions: any, // storyblok-js-client options
+  useApiClient: boolean,
+}
+
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: "@storyblok/nuxt",
     configKey: "storyblok"
   },
   defaults: {
-    usePlugin: true
+    accessToken: '',
+    usePlugin: true,
+    bridge: true,
+    apiOptions: {},
+    useApiClient: false,
   },
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
 
-    nuxt.options.vite.optimizeDeps.include =
-      nuxt.options.vite.optimizeDeps.include || [];
-    nuxt.options.vite.optimizeDeps.include.push("@storyblok/nuxt");
-    nuxt.options.vite.optimizeDeps.include.push("@storyblok/vue");
+    if(nuxt.options.vite.optimizeDeps) {
+      nuxt.options.vite.optimizeDeps.include =
+        nuxt.options.vite.optimizeDeps.include || [];
+      nuxt.options.vite.optimizeDeps.include.push("@storyblok/nuxt");
+      nuxt.options.vite.optimizeDeps.include.push("@storyblok/vue");
+    }
 
     // Enable dirs
     // nuxt.options.components.dirs = ["~/components/storyblok"];
