@@ -12,7 +12,6 @@ export interface ModuleOptions {
   usePlugin: boolean,
   bridge: boolean, // storyblok bridge on/off
   apiOptions: any, // storyblok-js-client options
-  useApiClient: boolean,
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -25,17 +24,14 @@ export default defineNuxtModule<ModuleOptions>({
     usePlugin: true,
     bridge: true,
     apiOptions: {},
-    useApiClient: false,
   },
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
 
-    if(nuxt.options.vite.optimizeDeps) {
-      nuxt.options.vite.optimizeDeps.include =
-        nuxt.options.vite.optimizeDeps.include || [];
-      nuxt.options.vite.optimizeDeps.include.push("@storyblok/nuxt");
-      nuxt.options.vite.optimizeDeps.include.push("@storyblok/vue");
-    }
+    nuxt.options.vite.optimizeDeps.include =
+      nuxt.options.vite.optimizeDeps.include || [];
+    nuxt.options.vite.optimizeDeps.include.push("@storyblok/nuxt");
+    nuxt.options.vite.optimizeDeps.include.push("@storyblok/vue");
 
     // Enable dirs
     // nuxt.options.components.dirs = ["~/components/storyblok"];
