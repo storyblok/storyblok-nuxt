@@ -26,8 +26,6 @@ export const useAsyncStoryblok = async (
     () => storyblokApiInstance.get(`cdn/stories/${url}`, apiOptions),
   );
 
-  if (error.value?.response.status >= 400 && error.value?.response.status < 600) {
-    throw createError({ statusCode: error.value?.response.status, statusMessage: error.value?.message.message });
   if (error.value?.response && error.value?.response.status >= 400 && error.value?.response.status < 600) {
     throw createError({ statusCode: error.value?.response.status, statusMessage: error.value?.message?.message || 'Something went wrong when fetching from storyblok.' });
   }
