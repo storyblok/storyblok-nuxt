@@ -7,13 +7,23 @@ import {
   createResolver
 } from "@nuxt/kit";
 
-export default defineNuxtModule({
+export interface ModuleOptions {
+  accessToken: string,
+  usePlugin: boolean,
+  bridge: boolean, // storyblok bridge on/off
+  apiOptions: any, // storyblok-js-client options
+}
+
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: "@storyblok/nuxt",
     configKey: "storyblok"
   },
   defaults: {
-    usePlugin: true
+    accessToken: '',
+    usePlugin: true,
+    bridge: true,
+    apiOptions: {},
   },
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);

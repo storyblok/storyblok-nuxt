@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 const story = await useAsyncStoryblok("vue", {
   version: "draft",
   language: "en",
-  resolve_relations: ["popular-articles.articles"]
+  resolve_relations: "popular-articles.articles"
 });
 const richText = computed(() => renderRichText(story.value.content.richText));
 </script>
