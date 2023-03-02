@@ -1,4 +1,4 @@
-<script setup>
+<script setup lant="ts">
 const story = ref(null);
 
 onMounted(async () => {
