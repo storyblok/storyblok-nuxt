@@ -50,8 +50,7 @@
   },
   "eslintIgnore": [
     "**/templates/plugin.js",
-    "playground/app.vue",
-    "lib/cypress/**/*"
+    "playground/app.vue"
   ],
   "prettier": {
     "trailingComma": "none",
