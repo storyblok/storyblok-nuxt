@@ -206,9 +206,9 @@ You can also set a **custom Schema and component resolver** by passing the optio
 
 ### 3. Working with preview and/or production environments
 
-Remember that the bridge only works using `version: { 'draft' }` and the _Preview Access Token_.
+Remember that the bridge only works using `version: 'draft'` and the _Preview Access Token_.
 
-For the production site, NOT used as a preview for content editors, `version: { 'published' }` and _Public Access Token_ should be used.
+For the production site, NOT used as a preview for content editors, `version: 'published'` and _Public Access Token_ should be used.
 
 > If you're using production as a preview for marketeers and your public site, you will need a plugin to handle different .env variables, or versions using the _Preview Access Token_, checking if you are inside Storyblok or not. For example, something like `if (window.location.search.includes(_storyblok_tk[token]=<YOUR_TOKEN>)`.
 
