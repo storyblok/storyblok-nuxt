@@ -77,6 +77,7 @@ export default defineNuxtConfig({
 #### Options
 
 When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `bridge` option explained in our [JS SDK Storyblok bridge section](https://github.com/storyblok/storyblok-js#storyblok-bridge).
+If you want to use Storyblok inside `nuxt-devtools` you can use the option `devtools`.
 
 > Note: For spaces created in the United States, you have to set the `region` parameter accordingly `{ apiOptions: { region: 'us' } }`.
 
@@ -86,6 +87,7 @@ When you initialize the module, you can pass all [_@storyblok/vue_ options](http
   {
     accessToken: "<your-access-token>",
     bridge: true,
+    devtools: true,
     apiOptions: {}, // storyblok-js-client options
   }
 }]
