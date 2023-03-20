@@ -6,10 +6,12 @@ export default defineNuxtConfig({
         accessToken: "OurklwV5XsDJTIE1NJaD2wtt",
         apiOptions: {
           region: ""
-        }
+        },
+        devtools: true,
         // usePlugin: false
-      }
-    ]
+      },
+    ],
+    '@nuxt/devtools'
   ],
   app: {
     head: {
