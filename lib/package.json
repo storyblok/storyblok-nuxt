@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
-    "@cypress/vite-dev-server": "^5.0.4",
+    "@cypress/vite-dev-server": "^5.0.5",
     "@nuxt/module-builder": "latest",
     "babel-jest": "^29.4.3",
     "cypress": "^12.8.1",
