@@ -100,12 +100,14 @@ Possible values:
 Full example for a space created in the US:
 
 ```js
-storyblok({
-  accessToken: "<your-access-token>",
-  apiOptions: {
-    region: "us"
+["@storyblok/nuxt", {
+  {
+    accessToken: "<your-access-token>",
+    apiOptions: {
+      region: "us"
+    }
   }
-});
+}]
 ```
 
 > Note: For spaces created in the United States or China, the `region` parameter **must** be specified.
