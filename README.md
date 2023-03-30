@@ -78,8 +78,6 @@ export default defineNuxtConfig({
 
 When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `bridge` option explained in our [JS SDK Storyblok bridge section](https://github.com/storyblok/storyblok-js#storyblok-bridge).
 
-> Note: For spaces created in the United States, you have to set the `region` parameter accordingly `{ apiOptions: { region: 'us' } }`.
-
 ```js
 // Defaults
 ["@storyblok/nuxt", {
@@ -90,6 +88,27 @@ When you initialize the module, you can pass all [_@storyblok/vue_ options](http
   }
 }]
 ```
+
+#### Region parameter
+
+Possible values:
+
+- `eu` (default): For spaces created in the EU
+- `us`: For spaces created in the US
+- `cn`: For spaces created in China
+
+Full example for a space created in the US:
+
+```js
+storyblok({
+  accessToken: "<your-access-token>",
+  apiOptions: {
+    region: "us"
+  }
+});
+```
+
+> Note: For spaces created in the United States or China, the `region` parameter **must** be specified.
 
 ### Getting started
 
@@ -172,7 +191,9 @@ You can easily render rich text by using the `renderRichText` function that come
 
 <script setup>
   const props = defineProps({ blok: Object });
-  const articleContent = computed(() => renderRichText(blok.articleContent));
+  const articleContent = computed(() =>
+    renderRichText(props.blok.articleContent)
+  );
 </script>
 ```
 
@@ -235,6 +256,10 @@ Returns the instance of the `storyblok-js-client`.
 #### useStoryblokBridge(storyId, callback, bridgeOptions)
 
 Use this one-line function to cover the most common use case: updating the story when any kind of change happens on Storyblok Visual Editor.
+
+## The Storyblok JavaScript SDK Ecosystem
+
+![A visual representation of the Storyblok JavaScript SDK Ecosystem](https://a.storyblok.com/f/88751/2400x1350/be4a4a4180/sdk-ecosystem.png/m/1200x0)
 
 ## 🔗 Related Links
 
