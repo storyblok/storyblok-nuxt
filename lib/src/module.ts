@@ -11,6 +11,7 @@ export interface ModuleOptions {
   accessToken: string,
   usePlugin: boolean,
   bridge: boolean, // storyblok bridge on/off
+  devtools: boolean, // enable nuxt/devtools integration
   apiOptions: any, // storyblok-js-client options
 }
 
@@ -23,6 +24,7 @@ export default defineNuxtModule<ModuleOptions>({
     accessToken: '',
     usePlugin: true,
     bridge: true,
+    devtools: false,
     apiOptions: {},
   },
   setup(options, nuxt) {
@@ -59,5 +61,20 @@ export default defineNuxtModule<ModuleOptions>({
       addImports({ name, as: name, from: "@storyblok/vue" });
     }
     addImportsDir(resolver.resolve("./runtime/composables"));
+
+    if (options.devtools) {
+      // @ts-expect-error - private API
+      nuxt.hook('devtools:customTabs', (iframeTabs) => {
+        iframeTabs.push({
+          name: 'storyblok',
+          title: 'Storyblok',
+          icon: 'i-logos-storyblok-icon',
+          view: {
+            type: 'iframe',
+            src: 'https://app.storyblok.com/#!/me/spaces/'
+          }
+        })
+      })
+    }
   }
 });
