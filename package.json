@@ -16,7 +16,7 @@
     "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
     "@nuxtjs/eslint-config-typescript": "latest",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-vue": "^9.9.0",
     "husky": "^8.0.3",
