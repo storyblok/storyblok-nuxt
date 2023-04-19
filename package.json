@@ -18,7 +18,7 @@
     "@nuxtjs/eslint-config-typescript": "latest",
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-vue": "^9.9.0",
+    "eslint-plugin-vue": "^9.11.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.7"
@@ -57,5 +57,8 @@
     "tabWidth": 2,
     "semi": true,
     "singleQuote": false
+  },
+  "overrides": {
+    "consola": "3.0.1" 
   }
 }
