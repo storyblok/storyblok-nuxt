@@ -4,7 +4,7 @@ const story = await useAsyncStoryblok("vue", {
   language: "en",
   resolve_relations: "popular-articles.articles"
 });
-const richText = computed(() => renderRichText(story.value.content.richText));
+const richText = computed(() => renderRichText(story.value?.content.richText));
 </script>
 
 <template>
