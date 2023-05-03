@@ -1,6 +1,6 @@
 import { useStoryblokApi, useStoryblokBridge } from "@storyblok/vue";
-import type { ISbStoriesParams, StoryblokBridgeConfigV2, ISbStoryData, ISbError, ISbResult } from '@storyblok/vue';
-import { useAsyncData, useState, onMounted, createError } from "#imports";
+import type { ISbStoriesParams, StoryblokBridgeConfigV2, ISbStoryData } from '@storyblok/vue';
+import { useState, onMounted } from "#imports";
 
 export const useAsyncStoryblok = async (
   url: string,
@@ -8,7 +8,7 @@ export const useAsyncStoryblok = async (
   bridgeOptions: StoryblokBridgeConfigV2 = {}
 ) => {
   const uniqueKey = `${JSON.stringify(apiOptions)}${url}`;
-  const story = useState<ISbStoryData>(`${uniqueKey}-state`, () => ({} as ISbStoryData));
+  const story = useState<ISbStoryData>(`${uniqueKey}-state`);
   const storyblokApiInstance = useStoryblokApi();
 
   onMounted(() => {
@@ -21,16 +21,13 @@ export const useAsyncStoryblok = async (
     }
   });
 
-  const { data, error } = await useAsyncData<ISbResult, ISbError>(
-    `${uniqueKey}-asyncdata`,
-    () => storyblokApiInstance.get(`cdn/stories/${url}`, apiOptions),
-  );
-
-  if (error.value?.response && error.value?.response.status >= 400 && error.value?.response.status < 600) {
-    throw createError({ statusCode: error.value?.response.status, statusMessage: error.value?.message?.message || 'Something went wrong when fetching from storyblok.' });
-  }
-
-  story.value = data.value?.data.story;
+  if (!story.value) {
+    const { data } = await storyblokApiInstance.get(
+      `cdn/stories/${url}`,
+      apiOptions
+    );
+    story.value = data.story;
+  };
 
   return story;
 };

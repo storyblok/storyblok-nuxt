@@ -9,7 +9,7 @@ try {
     resolve_relations: ["popular-articles.articles"]
   });
 } catch (error) {
-  console.log(error);
+  story.value = error;
 }
 </script>
 

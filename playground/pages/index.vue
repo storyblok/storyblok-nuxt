@@ -9,6 +9,7 @@ const richText = computed(() => renderRichText(story.value.content.richText));
 
 <template>
   <div>
+    <NuxtLink to="vue">Vue</NuxtLink>
     <div v-html="richText"></div>
     <StoryblokComponent v-if="story" :blok="story.content" />
   </div>
