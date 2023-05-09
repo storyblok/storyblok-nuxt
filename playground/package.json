@@ -7,7 +7,7 @@
     "start": "nuxt preview"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.4.5",
+    "@nuxt/devtools": "^0.4.6",
     "@storyblok/nuxt": "^0.0.1",
     "nuxt": "^3.4.3"
   }
