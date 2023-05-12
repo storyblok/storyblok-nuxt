@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
-    "@commitlint/config-conventional": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.3",
     "@nuxtjs/eslint-config-typescript": "latest",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
