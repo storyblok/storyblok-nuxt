@@ -1,4 +1,8 @@
 <script setup lang="ts">
+// const storyblokApi = useStoryblokApi();
+// // Checking custom Flush method
+// storyblokApi.flushCache();
+
 const story = await useAsyncStoryblok("vue", {
   version: "draft",
   language: "en",

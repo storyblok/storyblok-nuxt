@@ -8,7 +8,7 @@ export default defineNuxtConfig({
           region: ""
         },
         devtools: true,
-        // usePlugin: false
+        // enableSudoMode: true /* (or legacy) usePlugin: false */
       },
     ],
     '@nuxt/devtools'
@@ -17,5 +17,8 @@ export default defineNuxtConfig({
     head: {
       script: [{ src: "https://cdn.tailwindcss.com" }]
     }
+  },
+  vite: {
+    optimizeDeps: { exclude: ["fsevents"] },
   }
 });
