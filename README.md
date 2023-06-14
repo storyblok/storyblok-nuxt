@@ -76,8 +76,9 @@ export default defineNuxtConfig({
 
 #### Options
 
-When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `bridge` option explained in our [JS SDK Storyblok bridge section](https://github.com/storyblok/storyblok-js#storyblok-bridge).
-If you want to use Storyblok inside `nuxt-devtools` you can use the option `devtools`, if enabled, make sure to have installed the @nuxt/devtools module and enable it on your nuxt config.
+When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `bridge` option explained in our [JS SDK Storyblok bridge section](https://github.com/storyblok/storyblok-js#storyblok-bridge) and a `enableSudoMode` option to define your own plugin (see below).
+
+> If you want to use Storyblok inside `nuxt-devtools` you can use the option `devtools`, if enabled, make sure to have installed the @nuxt/devtools module and enable it on your nuxt config.
 
 ```js
 // Defaults
@@ -89,6 +90,47 @@ If you want to use Storyblok inside `nuxt-devtools` you can use the option `devt
     apiOptions: {}, // storyblok-js-client options
   }
 }]
+```
+
+**Define your own plugin**
+
+While the recommended approach covers most cases, there are specific instances where you may need to use the `enableSudoMode` option and disable our plugin, allowing you to incorporate your own.
+
+```js
+// nuxt.config.ts
+modules: [
+  [
+    "@storyblok/nuxt",
+    {
+      accessToken: "<your-access-token>",
+      enableSudoMode: true
+    }
+  ]
+];
+```
+
+To include additional functionalities in the SDK's `apiOptions`, such as custom cache methods, you can implement the following solution inside the plugins folder (autoimported):
+
+```js
+// plugins/storyblok.js
+import { StoryblokVue, apiPlugin } from "@storyblok/vue";
+
+export default defineNuxtPlugin(({ vueApp }) => {
+  vueApp.use(StoryblokVue, {
+    accessToken: "<your-access-token>",
+    apiOptions: {
+      cache: {
+        type: "custom",
+        custom: {
+          flush() {
+            console.log("all right");
+          }
+        }
+      }
+    },
+    use: [apiPlugin]
+  });
+});
 ```
 
 #### Region parameter

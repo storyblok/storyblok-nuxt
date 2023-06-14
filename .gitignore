@@ -7,6 +7,8 @@ node_modules
 .DS_STORE
 coverage
 dist
+.output
+
 lib/cypress/videos
 lib/cypress/screenshots
-.output
+lib/README.md
