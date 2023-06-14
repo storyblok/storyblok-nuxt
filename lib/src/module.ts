@@ -47,7 +47,8 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Add plugin
     nuxt.options.runtimeConfig.public.storyblok = options;
-    if (!(options.usePlugin === false || options.enableSudoMode === true)) {
+    const enablePluginCondition = options.usePlugin === true && options.enableSudoMode === false;
+    if (enablePluginCondition) {
       addPlugin(resolver.resolve("./runtime/plugin"));
     }
 
