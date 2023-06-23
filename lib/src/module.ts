@@ -9,7 +9,8 @@ import {
 
 export interface ModuleOptions {
   accessToken: string,
-  usePlugin: boolean,
+  enableSudoMode: boolean,
+  usePlugin: boolean, // legacy opt. for enableSudoMode
   bridge: boolean, // storyblok bridge on/off
   devtools: boolean, // enable nuxt/devtools integration
   apiOptions: any, // storyblok-js-client options
@@ -22,7 +23,8 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     accessToken: '',
-    usePlugin: true,
+    enableSudoMode: false,
+    usePlugin: true, // legacy opt. for enableSudoMode
     bridge: true,
     devtools: false,
     apiOptions: {},
@@ -45,7 +47,8 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Add plugin
     nuxt.options.runtimeConfig.public.storyblok = options;
-    if (options.usePlugin !== false) {
+    const enablePluginCondition = options.usePlugin === true && options.enableSudoMode === false;
+    if (enablePluginCondition) {
       addPlugin(resolver.resolve("./runtime/plugin"));
     }
 

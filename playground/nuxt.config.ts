@@ -8,7 +8,7 @@ export default defineNuxtConfig({
           region: ""
         },
         devtools: true,
-        // usePlugin: false
+        // enableSudoMode: true /* (or legacy) usePlugin: false */
       },
     ],
     '@nuxt/devtools'
