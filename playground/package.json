@@ -4,7 +4,8 @@
     "demo": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
-    "start": "nuxt preview"
+    "start": "nuxt preview",
+    "start-static": "npx serve .output/public"
   },
   "devDependencies": {
     "@nuxt/devtools": "^0.5.5",

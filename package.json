@@ -10,6 +10,7 @@
     "demo": "npm run demo --workspace=playground",
     "build": "npm run build --workspace=lib",
     "test:e2e": "npm run build && npm run test:e2e --workspace=lib",
+    "test:e2e-static": "npm run build && npm run test:e2e-static --workspace=lib",
     "prepare": "husky install"
   },
   "devDependencies": {

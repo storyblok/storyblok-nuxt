@@ -22,8 +22,11 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "playground:run": "cd ../playground && npm run start",
+    "playground:run-static": "cd ../playground && npm run start-static",
     "pretest:e2e": "cd ../playground && npm run build",
+    "pretest:e2e-static": "cd ../playground && npm run generate",
     "test:e2e": "start-server-and-test playground:run http://localhost:3000 cy:run",
+    "test:e2e-static": "start-server-and-test playground:run-static http://localhost:3000 cy:run",
     "test:e2e-watch": "start-server-and-test playground:run http://localhost:3000 cy:open"
   },
   "dependencies": {
