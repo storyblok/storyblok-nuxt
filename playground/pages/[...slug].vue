@@ -1,15 +1,18 @@
 <script setup>
-const route = useRoute();
-
+const { slug } = useRoute().params;
 const story = ref();
+
 try {
-  story.value = await useAsyncStoryblok(route.path, {
-    version: "draft",
-    language: "en",
-    resolve_relations: ["popular-articles.articles"]
-  });
+  story.value = await useAsyncStoryblok(
+    slug && slug.length > 0 ? slug.join("/") : "home",
+    {
+      version: "draft",
+      language: "en",
+      resolve_relations: ["popular-articles.articles"]
+    }
+  );
 } catch (error) {
-  story.value = error;
+  throw createError(error);
 }
 </script>
 
