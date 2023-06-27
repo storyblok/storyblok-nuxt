@@ -10,6 +10,6 @@
   "devDependencies": {
     "@nuxt/devtools": "^0.6.4",
     "@storyblok/nuxt": "^0.0.1",
-    "nuxt": "^3.6.0"
+    "nuxt": "^3.6.1"
   }
 }
