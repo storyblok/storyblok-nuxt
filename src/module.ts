@@ -6,6 +6,7 @@ import {
   addImportsDir,
   createResolver
 } from "@nuxt/kit";
+import { NuxtHookName } from "@nuxt/schema";
 
 export interface ModuleOptions {
   accessToken: string,
@@ -68,7 +69,7 @@ export default defineNuxtModule<ModuleOptions>({
     addImportsDir(resolver.resolve("./runtime/composables"));
 
     if (options.devtools) {
-      nuxt.hook('devtools:customTabs', (iframeTabs) => {
+      nuxt.hook('devtools:customTabs' as NuxtHookName, (iframeTabs: Array<unknown>): void => {
         iframeTabs.push({
           name: 'storyblok',
           title: 'Storyblok',
