@@ -25,8 +25,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.5",
-    "@commitlint/config-conventional": "^17.6.5",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
     "@cypress/vite-dev-server": "^5.0.5",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/module-builder": "^0.4.0",

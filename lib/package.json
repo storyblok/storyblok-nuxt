@@ -28,14 +28,14 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.4.2",
-    "@storyblok/vue": "^7.1.9"
+    "@storyblok/vue": "^7.1.10"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@cypress/vite-dev-server": "^5.0.5",
     "@nuxt/module-builder": "latest",
     "babel-jest": "^29.4.3",
-    "cypress": "^12.14.0",
+    "cypress": "^12.16.0",
     "eslint-plugin-cypress": "^2.13.3",
     "jest": "^29.4.3",
     "start-server-and-test": "^2.0.0",
