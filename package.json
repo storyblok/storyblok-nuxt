@@ -14,9 +14,10 @@
   },
   "scripts": {
     "prepack": "nuxt-module-build",
-    "build": "nuxt-module-build && nuxi prepare playground",
+    "build": "nuxt-module-build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
+    "prepare:playground": "nuxi prepare playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "prepare": "husky install",
     "cy:open": "cypress open",
