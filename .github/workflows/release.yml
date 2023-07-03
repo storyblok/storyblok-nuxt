@@ -18,7 +18,7 @@ jobs:
           node-version: "18"
           cache: "npm"
       - name: Install dependencies
-        run: npm ci
+        run: npm ci && cd playground && npm ci & cd ..
       - name: Prepare
         run: npm run prepare:playground
       - name: Build lib
