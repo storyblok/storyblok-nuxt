@@ -31,7 +31,7 @@
     "@storyblok/vue": "^7.1.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.6",
+    "@babel/core": "^7.22.8",
     "@cypress/vite-dev-server": "^5.0.5",
     "@nuxt/module-builder": "latest",
     "babel-jest": "^29.4.3",
