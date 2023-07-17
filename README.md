@@ -168,7 +168,7 @@ To link your Vue components to the equivalent one in your Storyblok space:
 
   > Take into account that if you name a component inside the `storyblok` folder the same as another in the `components` folder, it won't work properly. Tip: Keep the components in your Nuxt project with different names.
 
-- For each components, use the `v-editable` directive on its root element, passing the `blok` property that they receive:
+- For each component, use the `v-editable` directive on its root element, passing the `blok` property that they receive:
 
 ```html
 <div v-editable="blok" / >
@@ -186,13 +186,19 @@ To link your Vue components to the equivalent one in your Storyblok space:
 
 #### Composition API
 
-The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's autoimported) and passing as a first parameter a name of your content page from Storyblok (in this case, our content page name is `vue`, by default you get a content page named `home`):
+The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's autoimported). You need to pass the `slug` as the 1st parameter, _API parameters_ as the 2nd, and `bridgeOptions` as the 3rd.
+
+Check the available [API parameters](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) in our API docs and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) passed to the Storyblok Bridge.
 
 > If you want to know more about versioning `{ version: "draft" /* or "publish" */ }` then go to the section [Working with preview and/or production environments](#3-working-with-preview-andor-production-environments)
 
 ```html
 <script setup>
-  const story = await useAsyncStoryblok("vue", { version: "draft" });
+  const story = await useAsyncStoryblok(
+    "vue",
+    { version: "draft", resolve_relations: "Article.author" }, // API Parameters
+    { resolveRelations: ["Article.author"], resolveLinks: "url" } // Bridge Options
+  );
 </script>
 
 <template>
@@ -209,13 +215,17 @@ Which is the short-hand equivalent to using `useStoryblokApi` inside `useAsyncDa
   const { data } = await useAsyncData(
     'vue',
     async () => await storyblokApi.get(`cdn/stories/vue`, {
-    version: "draft"
-  })
+      version: "draft"
+    })
   );
   story.value = data.value.data.story;
 
   onMounted(() => {
-    useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory));
+    useStoryblokBridge(
+      story.value.id,
+      (evStory) => (story.value = evStory),
+      { resolveRelations: ["Article.author"], resolveLinks: "url" } // Bridge Options
+    );
   });
 </script>
 
@@ -283,17 +293,17 @@ Check the official docs on how to [access different content versions](https://ww
 
 ### API
 
-#### useAsyncStoryblok(slug, apiOptions, bridgeOptions)
+#### useAsyncStoryblok(slug, apiParameters, bridgeOptions)
 
 (Recommended Option) Use [`useAsyncData`](https://v3.nuxtjs.org/api/composables/use-async-data/) and [`useState`](https://v3.nuxtjs.org/api/composables/use-state) under the hood for generating SSR or SSG applications.
 
-Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
+Check the available [API parameters](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
-#### useStoryblok(slug, apiOptions, bridgeOptions)
+#### useStoryblok(slug, apiParameters, bridgeOptions)
 
 It could be helpful to use `useStoryblok` instead of `useAsyncStoryblok` when we need to make client-side requests, for example, getting personalized data for a logged user.
 
-Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
+Check the available [apiParameters](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
 #### useStoryblokApi()
 
