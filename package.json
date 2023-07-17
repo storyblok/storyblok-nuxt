@@ -17,12 +17,12 @@
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
     "@nuxtjs/eslint-config-typescript": "latest",
-    "eslint": "^8.43.0",
+    "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-vue": "^9.11.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.2",
-    "prettier": "^2.8.8"
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0"
   },
   "lint-staged": {
     "*.{vue,js,css}": [
