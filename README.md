@@ -168,7 +168,7 @@ To link your Vue components to the equivalent one in your Storyblok space:
 
   > Take into account that if you name a component inside the `storyblok` folder the same as another in the `components` folder, it won't work properly. Tip: Keep the components in your Nuxt project with different names.
 
-- For each components, use the `v-editable` directive on its root element, passing the `blok` property that they receive:
+- For each component, use the `v-editable` directive on its root element, passing the `blok` property that they receive:
 
 ```html
 <div v-editable="blok" / >
@@ -186,13 +186,19 @@ To link your Vue components to the equivalent one in your Storyblok space:
 
 #### Composition API
 
-The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's autoimported) and passing as a first parameter a name of your content page from Storyblok (in this case, our content page name is `vue`, by default you get a content page named `home`):
+The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's autoimported). Where you need to pass as first parameter the `slug`, while the second and third parameters, `apiOptions` and `bridgeOptions` respectively, are optional.
+
+Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) in our API docs and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) passed to the Storyblok Bridge.
 
 > If you want to know more about versioning `{ version: "draft" /* or "publish" */ }` then go to the section [Working with preview and/or production environments](#3-working-with-preview-andor-production-environments)
 
 ```html
 <script setup>
-  const story = await useAsyncStoryblok("vue", { version: "draft" });
+  const story = await useAsyncStoryblok(
+    "vue",
+    { version: "draft", resolve_relations: "Article.author" }, // API Options
+    { resolveRelations: ["Article.author"], resolveLinks: "url" } // Bridge Options
+  );
 
   if (story.value.status) {
     throw createError({
@@ -223,7 +229,11 @@ Which is the short-hand equivalent to using `useStoryblokApi` inside `useState` 
   story.value = data.story;
 
   onMounted(() => {
-    useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory));
+    useStoryblokBridge(
+      story.value.id,
+      (evStory) => (story.value = evStory),
+      { resolveRelations: ["Article.author"], resolveLinks: "url" } // Bridge Options
+    );
   });
 </script>
 
@@ -295,13 +305,13 @@ Check the official docs on how to [access different content versions](https://ww
 
 (Recommended Option) Uses [`useState`](https://v3.nuxtjs.org/api/composables/use-state) under the hood to help with SSR compatibility.
 
-Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
+Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
 #### useStoryblok(slug, apiOptions, bridgeOptions)
 
 It could be helpful to use `useStoryblok` instead of `useAsyncStoryblok` when we need to make full client-side requests, for example, getting personalized data for a logged user.
 
-Check the available [apiOptions](https://github.com/storyblok/storyblok-js-client#class-storyblok) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
+Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
 #### useStoryblokApi()
 
