@@ -6,6 +6,7 @@ import {
   addImportsDir,
   createResolver
 } from "@nuxt/kit";
+import { NuxtHookName } from "@nuxt/schema";
 
 export interface ModuleOptions {
   accessToken: string,
@@ -32,10 +33,12 @@ export default defineNuxtModule<ModuleOptions>({
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
 
-    nuxt.options.vite.optimizeDeps.include =
-      nuxt.options.vite.optimizeDeps.include || [];
-    nuxt.options.vite.optimizeDeps.include.push("@storyblok/nuxt");
-    nuxt.options.vite.optimizeDeps.include.push("@storyblok/vue");
+    if(nuxt.options.vite.optimizeDeps) {
+      nuxt.options.vite.optimizeDeps.include =
+        nuxt.options.vite.optimizeDeps.include || [];
+      nuxt.options.vite.optimizeDeps.include.push("@storyblok/nuxt");
+      nuxt.options.vite.optimizeDeps.include.push("@storyblok/vue");
+    }
 
     // Enable dirs
     // nuxt.options.components.dirs = ["~/components/storyblok"];
@@ -66,8 +69,7 @@ export default defineNuxtModule<ModuleOptions>({
     addImportsDir(resolver.resolve("./runtime/composables"));
 
     if (options.devtools) {
-      // @ts-expect-error - private API
-      nuxt.hook('devtools:customTabs', (iframeTabs) => {
+      nuxt.hook('devtools:customTabs' as NuxtHookName, (iframeTabs: Array<unknown>): void => {
         iframeTabs.push({
           name: 'storyblok',
           title: 'Storyblok',
