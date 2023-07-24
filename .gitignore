@@ -9,6 +9,5 @@ coverage
 dist
 .output
 
-lib/cypress/videos
-lib/cypress/screenshots
-lib/README.md
+cypress/videos
+cypress/screenshots
