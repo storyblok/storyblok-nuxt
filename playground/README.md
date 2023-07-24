@@ -47,7 +47,7 @@ pnpm run build
 yarn build
 ```
 
-Locally preview production build:
+Locally preview the production build:
 
 ```bash
 # npm
