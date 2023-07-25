@@ -8,13 +8,6 @@ const story = await useAsyncStoryblok(
     resolve_relations: ["popular-articles.articles"]
   }
 );
-
-if (story.value.status) {
-  throw createError({
-    statusCode: story.value.status,
-    statusMessage: story.value.response
-  });
-}
 </script>
 
 <template>
