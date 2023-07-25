@@ -17,6 +17,7 @@
     "build": "nuxt-module-build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
+    "dev:preview": "nuxi preview playground",
     "prepare:playground": "nuxi prepare playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "prepare": "husky install",
@@ -24,6 +25,8 @@
     "cy:run": "cypress run",
     "test:e2e": "start-server-and-test dev http://localhost:3000 cy:run",
     "test:e2e-watch": "start-server-and-test dev http://localhost:3000 cy:open",
+    "pretest:e2e-static": "nuxi generate playground",
+    "test:e2e-static": "start-server-and-test dev:preview http://localhost:3000 cy:run",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue"
   },
   "devDependencies": {

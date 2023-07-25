@@ -14,8 +14,5 @@ export default defineNuxtConfig({
       script: [{ src: "https://cdn.tailwindcss.com" }]
     }
   },
-  devtools: { enabled: true },
-  vite: {
-    optimizeDeps: { exclude: ["fsevents"] },
-  },
+  // devtools: { enabled: true },
 })

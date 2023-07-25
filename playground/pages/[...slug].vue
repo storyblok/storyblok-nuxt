@@ -1,20 +1,17 @@
-<script setup lang="ts">
-const route = useRoute();
-
-const story = ref();
-try {
-  story.value = await useAsyncStoryblok(route.path, {
+<script setup>
+const { slug } = useRoute().params;
+const story = await useAsyncStoryblok(
+  slug && slug.length > 0 ? slug.join("/") : "home",
+  {
     version: "draft",
     language: "en",
     resolve_relations: ["popular-articles.articles"]
-  });
-} catch (error) {
-  console.log(error);
-}
+  }
+);
 </script>
 
 <template>
   <div>
-    {{ story }}
+    <StoryblokComponent v-if="story" :blok="story.content" />
   </div>
 </template>

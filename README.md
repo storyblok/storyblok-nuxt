@@ -199,6 +199,13 @@ Check the available [apiOptions](https://www.storyblok.com/docs/api/content-deli
     { version: "draft", resolve_relations: "Article.author" }, // API Options
     { resolveRelations: ["Article.author"], resolveLinks: "url" } // Bridge Options
   );
+
+  if (story.value.status) {
+    throw createError({
+      statusCode: story.value.status,
+      statusMessage: story.value.response
+    });
+  }
 </script>
 
 <template>
@@ -206,19 +213,20 @@ Check the available [apiOptions](https://www.storyblok.com/docs/api/content-deli
 </template>
 ```
 
-Which is the short-hand equivalent to using `useStoryblokApi` inside `useAsyncData` and `useStoryblokBridge` functions separately:
+Which is the short-hand equivalent to using `useStoryblokApi` inside `useState` and `useStoryblokBridge` functions separately:
 
 ```html
 <script setup>
-  const story = ref(null);
+  const story = useState();
   const storyblokApi = useStoryblokApi();
-  const { data } = await useAsyncData(
-    'vue',
-    async () => await storyblokApi.get(`cdn/stories/vue`, {
+
+  const { data } = await storyblokApiInstance.get(
+    `cdn/stories/vue`,
+    {
       version: "draft"
-    })
+    }
   );
-  story.value = data.value.data.story;
+  story.value = data.story;
 
   onMounted(() => {
     useStoryblokBridge(
@@ -234,7 +242,7 @@ Which is the short-hand equivalent to using `useStoryblokApi` inside `useAsyncDa
 </template>
 ```
 
-> Using `useAsyncData` SSR and SSG capabilities are enabled.
+> `useState` is an SSR-friendly `ref` replacement. Its value will be preserved after server-side rendering (during client-side hydration).
 
 #### Rendering Rich Text
 
@@ -295,13 +303,13 @@ Check the official docs on how to [access different content versions](https://ww
 
 #### useAsyncStoryblok(slug, apiOptions, bridgeOptions)
 
-(Recommended Option) Use [`useAsyncData`](https://v3.nuxtjs.org/api/composables/use-async-data/) and [`useState`](https://v3.nuxtjs.org/api/composables/use-state) under the hood for generating SSR or SSG applications.
+(Recommended Option) Uses [`useState`](https://v3.nuxtjs.org/api/composables/use-state) under the hood to help with SSR compatibility.
 
 Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
 #### useStoryblok(slug, apiOptions, bridgeOptions)
 
-It could be helpful to use `useStoryblok` instead of `useAsyncStoryblok` when we need to make client-side requests, for example, getting personalized data for a logged user.
+It could be helpful to use `useStoryblok` instead of `useAsyncStoryblok` when we need to make full client-side requests, for example, getting personalized data for a logged user.
 
 Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 

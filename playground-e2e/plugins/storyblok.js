@@ -1,4 +1,4 @@
-import { StoryblokVue, apiPlugin } from "@storyblok/vue";
+/* import { StoryblokVue, apiPlugin } from "@storyblok/vue";
 
 export default defineNuxtPlugin(({ vueApp }) => {
   vueApp.use(StoryblokVue, {
@@ -16,3 +16,6 @@ export default defineNuxtPlugin(({ vueApp }) => {
     use: [apiPlugin]
   });
 });
+ */
+
+export default defineNuxtPlugin(() => {});
