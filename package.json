@@ -1,27 +1,58 @@
 {
-  "name": "@storyblok/nuxt-ws",
-  "private": true,
+  "name": "@storyblok/nuxt",
   "version": "0.0.1",
-  "workspaces": [
-    "./lib",
-    "./playground"
-  ],
+  "description": "Storyblok Nuxt module",
+  "type": "module",
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
   "scripts": {
-    "demo": "npm run demo --workspace=playground",
-    "build": "npm run build --workspace=lib",
-    "test:e2e": "npm run build && npm run test:e2e --workspace=lib",
-    "test:e2e-static": "npm run build && npm run test:e2e-static --workspace=lib",
-    "prepare": "husky install"
+    "prepack": "nuxt-module-build",
+    "build": "nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:preview": "nuxi preview playground",
+    "prepare:playground": "nuxi prepare playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "prepare": "husky install",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test:e2e": "start-server-and-test dev http://localhost:3000 cy:run",
+    "test:e2e-watch": "start-server-and-test dev http://localhost:3000 cy:open",
+    "pretest:e2e-static": "nuxi generate playground",
+    "test:e2e-static": "start-server-and-test dev:preview http://localhost:3000 cy:run",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue"
   },
   "devDependencies": {
+    "@cypress/vite-dev-server": "^5.0.5",
+    "@nuxt/eslint-config": "^0.1.1",
+    "@nuxt/module-builder": "^0.4.0",
+    "@nuxt/schema": "^3.6.5",
+    "@nuxt/test-utils": "^3.6.5",
+    "@types/node": "^20.4.4",
+    "cypress": "^12.17.2",
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
     "@nuxtjs/eslint-config-typescript": "latest",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-vue": "^9.11.0",
+    "eslint-plugin-cypress": "^2.13.3",
+    "eslint-plugin-vue": "^9.15.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
+    "nuxt": "^3.6.5",
+    "prettier": "^3.0.0",
+    "start-server-and-test": "^2.0.0"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.6.5",
+    "@storyblok/vue": "^7.1.11",
     "prettier": "^3.0.0"
   },
   "lint-staged": {

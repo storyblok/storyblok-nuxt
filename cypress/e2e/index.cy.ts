@@ -1,4 +1,4 @@
-describe("@storyblok/nuxt-beta", () => {
+describe("@storyblok/nuxt", () => {
   describe("Composition API", () => {
     beforeEach(() => {
       // cy.intercept("https://api.storyblok.com/**", {
