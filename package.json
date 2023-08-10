@@ -41,7 +41,7 @@
     "@commitlint/config-conventional": "^17.6.7",
     "@nuxtjs/eslint-config-typescript": "latest",
     "eslint": "^8.45.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-vue": "^9.15.1",
     "husky": "^8.0.3",
