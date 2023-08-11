@@ -12,6 +12,9 @@
       "require": "./dist/module.cjs"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "prepack": "nuxt-module-build",
     "build": "nuxt-module-build",
