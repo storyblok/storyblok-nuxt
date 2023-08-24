@@ -33,8 +33,10 @@ If you are in a hurry, check out our official **[live demo](https://stackblitz.c
 
 ## 🚀 Usage
 
-_Note: This module is for Nuxt 3. [Check out `@storyblok/nuxt-2` for Nuxt 2](https://github.com/storyblok/storyblok-nuxt-2)_.
+> **Note**
+> This module is for Nuxt 3. [Check out `@storyblok/nuxt-2` for Nuxt 2](https://github.com/storyblok/storyblok-nuxt-2).
 
+> **Important**
 > If you are first-time user of the Storyblok, read the [Getting Started](https://www.storyblok.com/docs/guide/getting-started?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) guide to get a project ready in less than 5 minutes.
 
 ### Installation
@@ -72,12 +74,14 @@ export default defineNuxtConfig({
 });
 ```
 
-> ⚠️ This SDK uses the Fetch API under the hood. If your environment doesn't support it, you need to install a polyfill like [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch). More info on [storyblok-js-client docs](https://github.com/storyblok/storyblok-js-client#fetch-use-polyfill-if-needed---version-5).
+> **Warning**
+> This SDK uses the Fetch API under the hood. If your environment doesn't support it, you need to install a polyfill like [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch). More info on [storyblok-js-client docs](https://github.com/storyblok/storyblok-js-client#fetch-use-polyfill-if-needed---version-5).
 
 #### Options
 
 When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `bridge` option explained in our [JS SDK Storyblok bridge section](https://github.com/storyblok/storyblok-js#storyblok-bridge) and a `enableSudoMode` option to define your own plugin (see below).
 
+> **Note**
 > If you want to use Storyblok inside `nuxt-devtools` you can use the option `devtools`, if enabled, make sure to have installed the @nuxt/devtools module and enable it on your nuxt config.
 
 ```js
@@ -154,7 +158,8 @@ Full example for a space created in the US:
 }]
 ```
 
-> Note: For spaces created in the United States or China, the `region` parameter **must** be specified.
+> **Important**
+> For spaces created in the United States or China, the `region` parameter **must** be specified.
 
 ### Getting started
 
@@ -166,6 +171,7 @@ To link your Vue components to the equivalent one in your Storyblok space:
 
   Otherwise, you can set another directory and load them manually (for example, by [using a Nuxt plugin](https://stackoverflow.com/questions/43040692/global-components-in-vue-nuxt)).
 
+  > **Warning**
   > Take into account that if you name a component inside the `storyblok` folder the same as another in the `components` folder, it won't work properly. Tip: Keep the components in your Nuxt project with different names.
 
 - For each component, use the `v-editable` directive on its root element, passing the `blok` property that they receive:
@@ -190,6 +196,7 @@ The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's 
 
 Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) in our API docs and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) passed to the Storyblok Bridge.
 
+> **Note**
 > If you want to know more about versioning `{ version: "draft" /* or "publish" */ }` then go to the section [Working with preview and/or production environments](#3-working-with-preview-andor-production-environments)
 
 ```html
@@ -242,7 +249,7 @@ Which is the short-hand equivalent to using `useStoryblokApi` inside `useState` 
 </template>
 ```
 
-> `useState` is an SSR-friendly `ref` replacement. Its value will be preserved after server-side rendering (during client-side hydration).
+> The `useState` is an SSR-friendly `ref` replacement. Its value will be preserved after server-side rendering (during client-side hydration).
 
 #### Rendering Rich Text
 
@@ -295,6 +302,7 @@ Remember that the bridge only works using `version: 'draft'` and the _Preview Ac
 
 For the production site, NOT used as a preview for content editors, `version: 'published'` and _Public Access Token_ should be used.
 
+> **Note**
 > If you're using production as a preview for marketeers and your public site, you will need a plugin to handle different .env variables, or versions using the _Preview Access Token_, checking if you are inside Storyblok or not. For example, something like `if (window.location.search.includes(_storyblok_tk[token]=<YOUR_TOKEN>)`.
 
 Check the official docs on how to [access different content versions](https://www.storyblok.com/docs/guide/essentials/accessing-data#content-versions).
