@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^0.7.1",
-    "@types/node": "^18",
+    "@types/node": "^20",
     "nuxt": "^3.7.0"
   }
 }
