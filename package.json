@@ -33,7 +33,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.7",
+    "@commitlint/cli": "^18.0.0",
     "@commitlint/config-conventional": "^17.6.7",
     "@cypress/vite-dev-server": "^5.0.5",
     "@nuxt/eslint-config": "^0.2.0",
