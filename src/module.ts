@@ -6,7 +6,7 @@ import {
   addImportsDir,
   createResolver
 } from "@nuxt/kit";
-import { NuxtHookName } from "@nuxt/schema";
+import type { NuxtHookName } from "@nuxt/schema";
 
 export interface ModuleOptions {
   accessToken: string,

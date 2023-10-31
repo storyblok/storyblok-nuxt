@@ -33,30 +33,30 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.1.0",
-    "@commitlint/config-conventional": "^18.0.0",
-    "@cypress/vite-dev-server": "^5.0.5",
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-conventional": "^18.1.0",
+    "@cypress/vite-dev-server": "^5.0.6",
     "@nuxt/eslint-config": "^0.2.0",
-    "@nuxt/module-builder": "^0.5.0",
-    "@nuxt/schema": "^3.6.5",
-    "@nuxt/test-utils": "^3.6.5",
+    "@nuxt/module-builder": "^0.5.2",
+    "@nuxt/schema": "^3.8.0",
+    "@nuxt/test-utils": "^3.8.0",
     "@nuxtjs/eslint-config-typescript": "latest",
-    "@types/node": "^20.4.4",
-    "cypress": "^13.0.0",
-    "eslint": "^8.45.0",
+    "@types/node": "^20.8.10",
+    "cypress": "^13.4.0",
+    "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-cypress": "^2.13.3",
-    "eslint-plugin-vue": "^9.15.1",
+    "eslint-plugin-cypress": "^2.15.1",
+    "eslint-plugin-vue": "^9.18.1",
     "husky": "^8.0.3",
-    "lint-staged": "^15.0.1",
-    "nuxt": "^3.7.0",
-    "prettier": "^3.0.0",
-    "start-server-and-test": "^2.0.0"
+    "lint-staged": "^15.0.2",
+    "nuxt": "^3.8.0",
+    "prettier": "^3.0.3",
+    "start-server-and-test": "^2.0.1"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.6.5",
-    "@storyblok/vue": "^7.1.11",
-    "prettier": "^3.0.0"
+    "@nuxt/kit": "^3.8.0",
+    "@storyblok/vue": "^7.3.1",
+    "prettier": "^3.0.3"
   },
   "lint-staged": {
     "*.{vue,js,css}": [
