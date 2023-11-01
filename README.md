@@ -178,10 +178,18 @@ To link your Vue components to the equivalent one in your Storyblok space:
       "@storyblok/nuxt",
       {
         accessToken: "<your-access-token>",
-        componentsDir: "~/components/storyblok"
+        componentsDir: false,
       }
     ]
-  ];
+  ],
+  components: {
+    dirs: [
+      {
+        path: '~/components/storyblok',
+        global: true,
+      }
+    ]
+  },
   ```
 
   Otherwise, you can set another directory and load them manually (for example, by [using a Nuxt plugin](https://stackoverflow.com/questions/43040692/global-components-in-vue-nuxt)).

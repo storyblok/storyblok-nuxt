@@ -48,8 +48,7 @@ export default defineNuxtModule<ModuleOptions>({
 
 
     // Enable dirs
-    // nuxt.options.components.dirs = ["~/components/storyblok"];
-    if(options.componentsDir){
+    if(options.componentsDir) {
       addComponentsDir({ path: options.componentsDir, global: true, pathPrefix: false });
     }
     nuxt.options.build.transpile.push(resolver.resolve("./runtime"));
