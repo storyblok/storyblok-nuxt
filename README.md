@@ -169,6 +169,21 @@ To link your Vue components to the equivalent one in your Storyblok space:
 
 - First, you need to load them globally adding them to the `~/storyblok` directory. It's important to name them with Pascal case in your code `ExampleComponent.vue` and with a hyphen inside your Storyblok space `example-component`, so they will be imported automatically.
 
+  If you want to define your own directory for the Storyblok related components, you can use the option `componentsDir` in the `nuxt.config.js`:
+
+  ```js
+  // nuxt.config.ts
+  modules: [
+    [
+      "@storyblok/nuxt",
+      {
+        accessToken: "<your-access-token>",
+        componentsDir: "~/components/storyblok"
+      }
+    ]
+  ];
+  ```
+
   Otherwise, you can set another directory and load them manually (for example, by [using a Nuxt plugin](https://stackoverflow.com/questions/43040692/global-components-in-vue-nuxt)).
 
   > **Warning**

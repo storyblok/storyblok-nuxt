@@ -15,7 +15,7 @@ export interface ModuleOptions {
   bridge: boolean, // storyblok bridge on/off
   devtools: boolean, // enable nuxt/devtools integration
   apiOptions: any, // storyblok-js-client options
-  globalDir: string, // enable storyblok global directory for components
+  componentsDir: string, // enable storyblok global directory for components
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -29,7 +29,7 @@ export default defineNuxtModule<ModuleOptions>({
     usePlugin: true, // legacy opt. for enableSudoMode
     bridge: true,
     devtools: false,
-    globalDir: '~/storyblok',
+    componentsDir: '~/storyblok',
     apiOptions: {},
   },
   setup(options, nuxt) {
@@ -49,8 +49,8 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Enable dirs
     // nuxt.options.components.dirs = ["~/components/storyblok"];
-    if(options.globalDir){
-      addComponentsDir({ path: options.globalDir, global: true, pathPrefix: false });
+    if(options.componentsDir){
+      addComponentsDir({ path: options.componentsDir, global: true, pathPrefix: false });
     }
     nuxt.options.build.transpile.push(resolver.resolve("./runtime"));
     nuxt.options.build.transpile.push("@storyblok/nuxt");
