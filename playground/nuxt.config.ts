@@ -7,8 +7,15 @@ export default defineNuxtConfig({
       region: ""
     },
     devtools: true,
+    // componentsDir: false,
     // enableSudoMode: true /* (or legacy) usePlugin: false */
   },
+  // components: {
+  //   dirs: [{
+  //     path: '~/components/storyblok',
+  //     global: true,
+  //   }]
+  // },
   app: {
     head: {
       script: [{ src: "https://cdn.tailwindcss.com" }]
