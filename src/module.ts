@@ -38,7 +38,6 @@ export default defineNuxtModule<ModuleOptions>({
     if(nuxt.options.vite.optimizeDeps) {
       nuxt.options.vite.optimizeDeps.include =
         nuxt.options.vite.optimizeDeps.include || [];
-      nuxt.options.vite.optimizeDeps.include.push("@storyblok/nuxt");
       nuxt.options.vite.optimizeDeps.include.push("@storyblok/vue");
 
       nuxt.options.vite.optimizeDeps.exclude =
