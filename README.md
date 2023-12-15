@@ -143,6 +143,8 @@ Possible values:
 
 - `eu` (default): For spaces created in the EU
 - `us`: For spaces created in the US
+- `ap`: For spaces created in Australia
+- `ca`: For spaces created in Canada
 - `cn`: For spaces created in China
 
 Full example for a space created in the US:
