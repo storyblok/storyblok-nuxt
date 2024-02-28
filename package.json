@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
-    "@commitlint/config-conventional": "^18.1.0",
+    "@commitlint/config-conventional": "^19.0.0",
     "@cypress/vite-dev-server": "^5.0.6",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/kit": "^3.8.0",
