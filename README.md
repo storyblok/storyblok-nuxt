@@ -45,7 +45,6 @@ Install `@storyblok/nuxt`:
 
 ```bash
 npx nuxi@latest module add storyblok
-# npx nuxi@latest module add storyblok
 ```
 
 Add following code to modules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
