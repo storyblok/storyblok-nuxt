@@ -95,7 +95,7 @@ When you initialize the module, you can pass all [_@storyblok/vue_ options](http
 }]
 ```
 
-**Define your own plugin**
+#### Define your own plugin
 
 While the recommended approach covers most cases, there are specific instances where you may need to use the `enableSudoMode` option and disable our plugin, allowing you to incorporate your own.
 
