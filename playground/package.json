@@ -4,6 +4,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:https": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https",
     "demo-ssl": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
