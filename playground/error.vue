@@ -1,3 +1,12 @@
+<script setup>
+defineProps <
+  {
+    error: { statusCode: number, statusMessage: string }
+  } >
+  {};
+
+const handleError = () => clearError({ redirect: "/" });
+</script>
 <template>
   <div class="grid place-items-center h-screen text-center">
     <div class="flex flex-col gap-y-4">
@@ -12,11 +21,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-defineProps({
-  error: Object
-});
-
-const handleError = () => clearError({ redirect: "/" });
-</script>
