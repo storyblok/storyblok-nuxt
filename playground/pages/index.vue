@@ -9,13 +9,11 @@ const story = await useAsyncStoryblok("vue", {
   resolve_relations: "popular-articles.articles"
 });
 
-const richText = computed(() => renderRichText(story.value.content.richText));
+/* const richText = computed(() => renderRichText(story.value.content.richText)); */
 </script>
 
 <template>
   <div>
-    <NuxtLink to="vue"> Vue </NuxtLink>
-    <div v-html="richText" />
     <StoryblokComponent v-if="story" :blok="story.content" />
   </div>
 </template>
