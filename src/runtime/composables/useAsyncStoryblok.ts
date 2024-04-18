@@ -7,9 +7,9 @@ export const useAsyncStoryblok = async (
   apiOptions: ISbStoriesParams = {},
   bridgeOptions: StoryblokBridgeConfigV2 = {}
 ) => {
+  const storyblokApiInstance = useStoryblokApi();
   const uniqueKey = `${JSON.stringify(apiOptions)}${url}`;
   const story = useState<ISbStoryData>(`${uniqueKey}-state`);
-  const storyblokApiInstance = useStoryblokApi();
 
   onMounted(() => {
     if (story.value && story.value.id) {
@@ -22,12 +22,15 @@ export const useAsyncStoryblok = async (
   });
 
   if (!story.value) {
-    const { data } = await storyblokApiInstance.get(
-      `cdn/stories/${url}`,
-      apiOptions
-    );
-    story.value = data.story;
-  };
-
-  return story;
+    const { data } = await useAsyncData('story', () => {
+      return storyblokApiInstance.get(
+        `cdn/stories/${url}`,
+        apiOptions
+      );
+    })
+    if(data) {
+      story.value = data.value?.data.story
+    }
+  }
+  return story
 };
