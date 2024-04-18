@@ -1,6 +1,6 @@
 import { useStoryblokApi, useStoryblokBridge } from "@storyblok/vue";
 import type { ISbStoriesParams, StoryblokBridgeConfigV2, ISbStoryData } from '@storyblok/vue';
-import { useState, onMounted } from "#imports";
+import { useState, onMounted, useAsyncData } from "#imports";
 
 export const useAsyncStoryblok = async (
   url: string,
