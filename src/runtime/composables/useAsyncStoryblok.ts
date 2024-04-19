@@ -22,7 +22,7 @@ export const useAsyncStoryblok = async (
   });
 
   if (!story.value) {
-    const { data } = await useAsyncData('story', () => {
+    const { data } = await useAsyncData(uniqueKey, () => {
       return storyblokApiInstance.get(
         `cdn/stories/${url}`,
         apiOptions
