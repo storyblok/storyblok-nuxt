@@ -21,7 +21,7 @@
    </a>
   <a href="https://twitter.com/intent/follow?screen_name=storyblok">
     <img src="https://img.shields.io/badge/Follow-%40storyblok-09b3af?style=appveyor&logo=twitter" alt="Follow @Storyblok" />
-  </a><br/>
+  </a><br />
   <a href="https://app.storyblok.com/#!/signup?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt">
     <img src="https://img.shields.io/badge/Try%20Storyblok-Free-09b3af?style=appveyor&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAHqADAAQAAAABAAAAHgAAAADpiRU/AAACRElEQVRIDWNgGGmAEd3D3Js3LPrP8D8WXZwSPiMjw6qvPoHhyGYwIXNAbGpbCjbzP0MYuj0YFqMroBV/wCxmIeSju64eDNzMBJUxvP/9i2Hnq5cM1devMnz984eQsQwETeRhYWHgIcJiXqC6VHlFBjUeXgav40cIWkz1oLYXFmGwFBImaDFBHyObcOzdW4aSq5eRhRiE2dgYlpuYoYSKJi8vw3GgWnyAJIs/AuPu4scPGObd/fqVQZ+PHy7+6udPOBsXgySLDfn5GRYYmaKYJcXBgWLpsx8/GPa8foWiBhuHJIsl2DkYQqWksZkDFgP5PObcKYYff//iVAOTIDlx/QPqRMb/YSYBaWlOToZIaVkGZmAZSQiQ5OPtwHwacuo4iplMQEu6tXUZMhSUGDiYmBjylFQYvv/7x9B04xqKOnQOyT5GN+Df//8M59ASXKyMHLoyDD5JPtbj42OYrm+EYgg70JfuYuIoYmLs7AwMjIzA+uY/zjAnyWJpDk6GOFnCvrn86SOwmsNtKciVFAc1ileBHFDC67lzG10Yg0+SjzF0ownsf/OaofvOLYaDQJoQIGix94ljv1gIZI8Pv38zPvj2lQWYf3HGKbpDCFp85v07NnRN1OBTPY6JdRSGxcCw2k6sZuLVMZ5AV4s1TozPnGGFKbz+/PE7IJsHmC//MDMyhXBw8e6FyRFLv3Z0/IKuFqvFyIqAzd1PwBzJw8jAGPfVx38JshwlbIygxmYY43/GQmpais0ODDHuzevLMARHBcgIAQAbOJHZW0/EyQAAAABJRU5ErkJggg==" alt="Follow @Storyblok" />
   </a>
@@ -201,7 +201,7 @@ To link your Vue components to the equivalent one in your Storyblok space:
 - For each component, use the `v-editable` directive on its root element, passing the `blok` property that they receive:
 
 ```html
-<div v-editable="blok" / >
+<div v-editable="blok"></div>
 ```
 
 - Finally, use `<StoryblokComponent>` which is available globally in the Nuxt app:
@@ -330,6 +330,43 @@ For the production site, NOT used as a preview for content editors, `version: 'p
 > If you're using production as a preview for marketeers and your public site, you will need a plugin to handle different .env variables, or versions using the _Preview Access Token_, checking if you are inside Storyblok or not. For example, something like `if (window.location.search.includes(_storyblok_tk[token]=<YOUR_TOKEN>)`.
 
 Check the official docs on how to [access different content versions](https://www.storyblok.com/docs/guide/essentials/accessing-data#content-versions).
+
+The recommended way to handle different content versions with Nuxt is by using environment variables in combination with [Nuxt runtime config](https://nuxt.com/docs/guide/going-further/runtime-config) to expose configuration and secrets within your application
+
+In your `nuxt.config.ts`:
+
+```ts
+export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      storyblokVersion: process.env.STORYBLOK_VERSION || "published"
+    }
+  }
+});
+```
+
+Then you can access the runtime config in your components:
+
+```ts
+const config = useRuntimeConfig();
+
+const story = await useAsyncStoryblok(
+  "blog",
+  {
+    version: config.public.storyblokVersion,
+    resolve_relations: "overview.featured_story"
+  },
+  { resolveRelations: "overview.featured_story" }
+);
+
+//or
+
+const { data: articles } = await storyblokApi.get("cdn/stories", {
+  version: config.public.storyblokVersion,
+  starts_with: "blog",
+  is_startpage: false
+});
+```
 
 ### API
 
