@@ -179,7 +179,7 @@ To link your Vue components to the equivalent one in your Storyblok space:
       "@storyblok/nuxt",
       {
         accessToken: "<your-access-token>",
-        componentsDir: false,
+        componentsDir: '~/components',
       }
     ]
   ],

@@ -7,7 +7,7 @@ export default defineNuxtConfig({
       region: ""
     },
     devtools: true,
-    // componentsDir: false,
+    /* componentsDir: '~/components/storyblok', */
     // enableSudoMode: true /* (or legacy) usePlugin: false */
   },
   // components: {
