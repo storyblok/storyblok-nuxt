@@ -275,6 +275,36 @@ Which is the short-hand equivalent to using `useStoryblokApi` inside `useState` 
 
 > The `useState` is an SSR-friendly `ref` replacement. Its value will be preserved after server-side rendering (during client-side hydration).
 
+You can also use the `useAsyncStoryblok` composable in a type-safe way:
+
+```html
+<script setup lang="ts">
+  import type { SbBlokData } from "@storyblok/js";
+
+  type MyArticleSbBlock = SbBlokData & {
+    title: string;
+    body: string;
+  };
+
+  const story = await useAsyncStoryblok<MyArticleSbBlock>(
+    "vue",
+    { version: "draft", resolve_relations: "Article.author" }, // API Options
+    { resolveRelations: ["Article.author"], resolveLinks: "url" } // Bridge Options
+  );
+
+  if (story.value.status) {
+    throw createError({
+      statusCode: story.value.status,
+      statusMessage: story.value.response
+    });
+  }
+</script>
+
+<template>
+  <StoryblokComponent v-if="story" :blok="story.content" />
+</template>
+```
+
 #### Rendering Rich Text
 
 You can easily render rich text by using the `renderRichText` function that comes with `@storyblok/nuxt` and a Vue computed property:

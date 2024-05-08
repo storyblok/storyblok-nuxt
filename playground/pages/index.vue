@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { SbBlokData } from "@storyblok/js";
 // const storyblokApi = useStoryblokApi();
 // // Checking custom Flush method
 // storyblokApi.flushCache();
 
-const story = await useAsyncStoryblok("vue", {
+const story = await useAsyncStoryblok<SbBlokData>("vue", {
   version: "draft",
   language: "en",
   resolve_relations: "popular-articles.articles"
