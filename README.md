@@ -27,19 +27,13 @@
   </a>
 </p>
 
-### Live Demo
+## Kickstart a new project
+Are you eager to dive into coding? **[Follow these steps to kickstart a new project with Storyblok and Nuxt](https://www.storyblok.com/technologies#nuxt?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)**, and get started in just a few minutes!
 
-If you are in a hurry, check out our official **[live demo](https://stackblitz.com/edit/nuxt-3-sdk-demo?file=pages/index.vue)** on Stackblitz.
+## Ultimate Tutorial
+Are you looking for a hands-on, step-by-step tutorial? The **[Nuxt Ultimate Tutorial](https://www.storyblok.com/tp/storyblok-nuxt-ultimate-tutorial?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)** has you covered! It provides comprehensive instructions on building a complete, multilingual website using Storyblok and Nuxt from start to finish.
 
-## 🚀 Usage
-
-> **Note**
-> This module is for Nuxt 3. [Check out `@storyblok/nuxt-2` for Nuxt 2](https://github.com/storyblok/storyblok-nuxt-2).
-
-> **Important**
-> If you are first-time user of the Storyblok, read the [Getting Started](https://www.storyblok.com/docs/guide/getting-started?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) guide to get a project ready in less than 5 minutes.
-
-### Installation
+## Installation
 
 Install `@storyblok/nuxt`:
 
@@ -76,7 +70,7 @@ export default defineNuxtConfig({
 > **Warning**
 > This SDK uses the Fetch API under the hood. If your environment doesn't support it, you need to install a polyfill like [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch). More info on [storyblok-js-client docs](https://github.com/storyblok/storyblok-js-client#fetch-use-polyfill-if-needed---version-5).
 
-#### Options
+### Options
 
 When you initialize the module, you can pass all [_@storyblok/vue_ options](https://github.com/storyblok/storyblok-vue#storyblok-api) plus a `bridge` option explained in our [JS SDK Storyblok bridge section](https://github.com/storyblok/storyblok-js#storyblok-bridge) and a `enableSudoMode` option to define your own plugin (see below).
 
@@ -95,7 +89,7 @@ When you initialize the module, you can pass all [_@storyblok/vue_ options](http
 }]
 ```
 
-#### Define your own plugin
+### Define your own plugin
 
 While the recommended approach covers most cases, there are specific instances where you may need to use the `enableSudoMode` option and disable our plugin, allowing you to incorporate your own.
 
@@ -136,7 +130,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
 });
 ```
 
-#### Region parameter
+## Region parameter
 
 Possible values:
 
@@ -162,9 +156,9 @@ Full example for a space created in the US:
 > **Important**
 > For spaces created in the United States or China, the `region` parameter **must** be specified.
 
-### Getting started
+## Getting started
 
-### 1. Creating and linking your components to Storyblok Visual Editor
+### 1. Creating and linking your components to the Storyblok Visual Editor
 
 To link your Vue components to the equivalent one in your Storyblok space:
 
@@ -275,7 +269,7 @@ Which is the short-hand equivalent to using `useStoryblokApi` inside `useState` 
 
 > The `useState` is an SSR-friendly `ref` replacement. Its value will be preserved after server-side rendering (during client-side hydration).
 
-#### Rendering Rich Text
+## Rendering Rich Text
 
 You can easily render rich text by using the `renderRichText` function that comes with `@storyblok/nuxt` and a Vue computed property:
 
@@ -320,7 +314,7 @@ You can also set a **custom Schema and component resolver** by passing the optio
 </script>
 ```
 
-### 3. Working with preview and/or production environments
+## 3. Working with preview and/or production environments
 
 Remember that the bridge only works using `version: 'draft'` and the _Preview Access Token_.
 
@@ -368,25 +362,25 @@ const { data: articles } = await storyblokApi.get("cdn/stories", {
 });
 ```
 
-### API
+## API
 
-#### useAsyncStoryblok(slug, apiOptions, bridgeOptions)
+### useAsyncStoryblok(slug, apiOptions, bridgeOptions)
 
 (Recommended Option) Uses [`useState`](https://v3.nuxtjs.org/api/composables/use-state) under the hood to help with SSR compatibility.
 
 Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
-#### useStoryblok(slug, apiOptions, bridgeOptions)
+### useStoryblok(slug, apiOptions, bridgeOptions)
 
 It could be helpful to use `useStoryblok` instead of `useAsyncStoryblok` when we need to make full client-side requests, for example, getting personalized data for a logged user.
 
 Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
-#### useStoryblokApi()
+### useStoryblokApi()
 
 Returns the instance of the `storyblok-js-client`.
 
-#### useStoryblokBridge(storyId, callback, bridgeOptions)
+### useStoryblokBridge(storyId, callback, bridgeOptions)
 
 Use this one-line function to cover the most common use case: updating the story when any kind of change happens on Storyblok Visual Editor.
 
@@ -394,22 +388,20 @@ Use this one-line function to cover the most common use case: updating the story
 
 ![A visual representation of the Storyblok JavaScript SDK Ecosystem](https://a.storyblok.com/f/88751/2400x1350/be4a4a4180/sdk-ecosystem.png/m/1200x0)
 
-## 🔗 Related Links
+## Further Resources
 
-- **[Live Demo on Stackblitz](https://stackblitz.com/edit/nuxt-3-sdk-demo?file=pages%2Findex.vue&terminal=dev)**
-- **[Nuxt.js Hub](https://www.storyblok.com/tc/nuxtjs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)**: Learn how to develop your own Nuxt.js applications that use Storyblok APIs to retrieve and manage content;
-- **[Storyblok & Nuxt.js on GitHub](https://github.com/search?q=org%3Astoryblok+topic%3Anuxt)**: Check all of our Nuxt.js open source repos;
-- **[Storyblok CLI](https://github.com/storyblok/storyblok)**: A simple CLI for scaffolding Storyblok projects and fieldtypes.
+- [Quick Start](https://www.storyblok.com/technologies?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)
+- [API Documentation](https://www.storyblok.com/docs/api?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)
+- [Developer Tutorials](https://www.storyblok.com/tutorials?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)
+- [Developer Guides](https://www.storyblok.com/docs/guide/introduction?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)
+- [FAQs](https://www.storyblok.com/faqs?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)
 
-## ℹ️ More Resources
-
-### Support
+## Support
 
 - Bugs or Feature Requests? [Submit an issue](/../../issues/new);
-
 - Do you have questions about Storyblok or you need help? [Join our Discord Community](https://discord.gg/jKrbAMz).
 
-### Contributing
+## Contributing
 
 Please see our [contributing guidelines](https://github.com/storyblok/.github/blob/master/contributing.md) and our [code of conduct](https://www.storyblok.com/trust-center#code-of-conduct?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt).
 This project use [semantic-release](https://semantic-release.gitbook.io/semantic-release/) for generate new versions by using commit messages and we use the Angular Convention to naming the commits. Check [this question](https://semantic-release.gitbook.io/semantic-release/support/faq#how-can-i-change-the-type-of-commits-that-trigger-a-release) about it in semantic-release FAQ.
