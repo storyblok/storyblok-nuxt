@@ -245,7 +245,7 @@ Which is the short-hand equivalent to using `useStoryblokApi` inside `useState` 
   const story = useState();
   const storyblokApi = useStoryblokApi();
 
-  const { data } = await storyblokApiInstance.get(
+  const { data } = await storyblokApi.get(
     `cdn/stories/vue`,
     {
       version: "draft"
