@@ -42,7 +42,7 @@
     "@nuxt/schema": "^3.8.0",
     "@nuxt/test-utils": "^3.8.0",
     "@nuxtjs/eslint-config-typescript": "latest",
-    "@types/node": "^20.8.10",
+    "@types/node": "^22.4.2",
     "cypress": "^13.4.0",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
