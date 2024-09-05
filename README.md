@@ -225,10 +225,10 @@ Check the available [apiOptions](https://www.storyblok.com/docs/api/content-deli
     { resolveRelations: ["Article.author"], resolveLinks: "url" } // Bridge Options
   );
 
-  if (story.value.status) {
+  if (!story.value) {
     throw createError({
-      statusCode: story.value.status,
-      statusMessage: story.value.response
+      statusCode: 404,
+      message: 'not found',
     });
   }
 </script>
