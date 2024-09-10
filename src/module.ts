@@ -67,11 +67,20 @@ export default defineNuxtModule<ModuleOptions>({
       "useStoryblokApi",
       "useStoryblokBridge",
       "renderRichText",
-      "RichTextSchema"
+      "RichTextSchema",
+      "StoryblokRichText",
+      "useStoryblokRichText",
+      "MarkTypes",
+      "BlockTypes",
+      "LinkTypes",
+      "AssetTypes",
     ];
     for (const name of names) {
       addImports({ name, as: name, from: "@storyblok/vue" });
     }
+    nuxt.hook('prepare:types', ({ references }) => {
+      references.push({ types: '@storyblok/vue' })
+    })
     addImportsDir(resolver.resolve("./runtime/composables"));
 
     if (options.devtools) {

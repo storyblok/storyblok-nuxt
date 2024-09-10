@@ -55,7 +55,7 @@
     "start-server-and-test": "^2.0.1"
   },
   "dependencies": {
-    "@storyblok/vue": "^8.0.0"
+    "@storyblok/vue": "^8.1.0"
   },
   "lint-staged": {
     "*.{vue,js,css}": [
