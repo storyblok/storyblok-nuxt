@@ -7,6 +7,7 @@ import {
   createResolver
 } from "@nuxt/kit";
 import type { NuxtHookName } from "@nuxt/schema";
+import type { Nuxt } from "nuxt/schema";
 
 export interface ModuleOptions {
   accessToken: string,
@@ -32,7 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
     componentsDir: '~/storyblok',
     apiOptions: {},
   },
-  setup(options, nuxt) {
+  setup(options: ModuleOptions, nuxt: Nuxt) {
     const resolver = createResolver(import.meta.url);
 
     if(nuxt.options.vite.optimizeDeps) {
@@ -72,6 +73,9 @@ export default defineNuxtModule<ModuleOptions>({
     for (const name of names) {
       addImports({ name, as: name, from: "@storyblok/vue" });
     }
+    
+/*     nuxt.options.typescript.hoist ??= [] */
+    nuxt.options.typescript.hoist.push("@storyblok/vue")
     addImportsDir(resolver.resolve("./runtime/composables"));
 
     if (options.devtools) {

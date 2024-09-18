@@ -9,6 +9,16 @@ const story = await useAsyncStoryblok("vue", {
   resolve_relations: "popular-articles.articles"
 });
 
+const penguin = await useStoryblok("vue", {
+  version: "draft",
+  language: "en",
+  resolve_relations: "popular-articles.articles"
+});
+
+const awiwi = ref<SbBlokData>({});
+
+renderRichText(story.value.content.richText);
+
 /* const richText = computed(() => renderRichText(story.value.content.richText)); */
 </script>
 
