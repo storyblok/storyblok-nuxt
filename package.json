@@ -37,9 +37,9 @@
     "@commitlint/cli": "^19.0.3",
     "@commitlint/config-conventional": "^19.0.3",
     "@cypress/vite-dev-server": "^5.0.6",
-    "@nuxt/eslint-config": "^0.5.2",
-    "@nuxt/kit": "^3.13.0",
-    "@nuxt/module-builder": "^0.8.3",
+    "@nuxt/eslint-config": "^0.5.7",
+    "@nuxt/kit": "^3.13.2",
+    "@nuxt/module-builder": "^0.8.4",
     "@nuxt/schema": "^3.13.0",
     "@nuxt/test-utils": "^3.14.1",
     "@nuxtjs/eslint-config-typescript": "latest",
@@ -51,12 +51,12 @@
     "eslint-plugin-vue": "^9.18.1",
     "husky": "^9.0.6",
     "lint-staged": "^15.0.2",
-    "nuxt": "^3.13.0",
+    "nuxt": "^3.13.2",
     "prettier": "^3.0.3",
     "start-server-and-test": "^2.0.1"
   },
   "dependencies": {
-    "@storyblok/vue": "^8.0.0"
+    "@storyblok/vue": "^8.1.1"
   },
   "lint-staged": {
     "*.{vue,js,css}": [
