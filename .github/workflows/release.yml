@@ -25,7 +25,7 @@ jobs:
           node-version: 18
           cache: pnpm
       - name: Install dependencies
-        run: pnpm install && cd playground && pnpm install && cd ..
+        run: pnpm install
       - name: Build lib
         run: pnpm run build
       - name: Cypress run
