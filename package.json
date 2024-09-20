@@ -2,6 +2,7 @@
   "name": "@storyblok/nuxt",
   "version": "0.0.1",
   "description": "Storyblok Nuxt module",
+  "packageManager": "pnpm@9.9.0",
   "type": "module",
   "main": "./dist/module.cjs",
   "types": "./dist/types.d.ts",
