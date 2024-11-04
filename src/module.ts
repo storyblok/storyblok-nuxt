@@ -74,7 +74,6 @@ export default defineNuxtModule<ModuleOptions>({
       addImports({ name, as: name, from: "@storyblok/vue" });
     }
     
-/*     nuxt.options.typescript.hoist ??= [] */
     nuxt.options.typescript.hoist.push("@storyblok/vue")
     addImportsDir(resolver.resolve("./runtime/composables"));
 

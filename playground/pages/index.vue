@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { SbBlokData } from "@storyblok/vue";
+
 // const storyblokApi = useStoryblokApi();
 // // Checking custom Flush method
 // storyblokApi.flushCache();
