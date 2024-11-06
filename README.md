@@ -44,11 +44,11 @@ npx nuxi@latest module add storyblok
 Add following code to modules section of `nuxt.config.js` and replace the accessToken with API token from Storyblok space.
 
 ```js
-import { defineNuxtConfig } from "nuxt";
+import { defineNuxtConfig } from 'nuxt';
 
 export default defineNuxtConfig({
   modules: [
-    ["@storyblok/nuxt", { accessToken: "<your-access-token>" }]
+    ['@storyblok/nuxt', { accessToken: '<your-access-token>' }]
     // ...
   ]
 });
@@ -57,12 +57,12 @@ export default defineNuxtConfig({
 You can also use the `storyblok` config if you prefer:
 
 ```js
-import { defineNuxtConfig } from "nuxt";
+import { defineNuxtConfig } from 'nuxt';
 
 export default defineNuxtConfig({
-  modules: ["@storyblok/nuxt"],
+  modules: ['@storyblok/nuxt'],
   storyblok: {
-    accessToken: "<your-access-token>"
+    accessToken: '<your-access-token>'
   }
 });
 ```
@@ -97,9 +97,9 @@ While the recommended approach covers most cases, there are specific instances w
 // nuxt.config.ts
 modules: [
   [
-    "@storyblok/nuxt",
+    '@storyblok/nuxt',
     {
-      accessToken: "<your-access-token>",
+      accessToken: '<your-access-token>',
       enableSudoMode: true
     }
   ]
@@ -110,17 +110,17 @@ To include additional functionalities in the SDK's `apiOptions`, such as custom 
 
 ```js
 // plugins/storyblok.js
-import { StoryblokVue, apiPlugin } from "@storyblok/vue";
+import { apiPlugin, StoryblokVue } from '@storyblok/vue';
 
 export default defineNuxtPlugin(({ vueApp }) => {
   vueApp.use(StoryblokVue, {
-    accessToken: "<your-access-token>",
+    accessToken: '<your-access-token>',
     apiOptions: {
       cache: {
-        type: "custom",
+        type: 'custom',
         custom: {
           flush() {
-            console.log("all right");
+            console.log('all right');
           }
         }
       }
@@ -280,9 +280,7 @@ You can easily render rich text by using the `renderRichText` function that come
 
 <script setup>
   const props = defineProps({ blok: Object });
-  const articleContent = computed(() =>
-    renderRichText(props.blok.articleContent)
-  );
+  const articleContent = computed(() => renderRichText(props.blok.articleContent));
 </script>
 ```
 
@@ -290,7 +288,7 @@ You can also set a **custom Schema and component resolver** by passing the optio
 
 ```html
 <script setup>
-  import cloneDeep from "clone-deep";
+  import cloneDeep from 'clone-deep';
 
   const mySchema = cloneDeep(RichTextSchema); // you can make a copy of the default RichTextSchema
   // ... and edit the nodes and marks, or add your own.
@@ -303,13 +301,13 @@ You can also set a **custom Schema and component resolver** by passing the optio
       schema: mySchema,
       resolver: (component, blok) => {
         switch (component) {
-          case "my-custom-component":
+          case 'my-custom-component':
             return `<div class="my-component-class">${blok.text}</div>`;
           default:
-            return "Resolver not defined";
+            return 'Resolver not defined';
         }
-      }
-    })
+      },
+    }),
   );
 </script>
 ```
@@ -333,7 +331,7 @@ In your `nuxt.config.ts`:
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      storyblokVersion: process.env.STORYBLOK_VERSION || "published"
+      storyblokVersion: process.env.STORYBLOK_VERSION || 'published'
     }
   }
 });
@@ -345,19 +343,19 @@ Then you can access the runtime config in your components:
 const config = useRuntimeConfig();
 
 const story = await useAsyncStoryblok(
-  "blog",
+  'blog',
   {
     version: config.public.storyblokVersion,
-    resolve_relations: "overview.featured_story"
+    resolve_relations: 'overview.featured_story'
   },
-  { resolveRelations: "overview.featured_story" }
+  { resolveRelations: 'overview.featured_story' }
 );
 
-//or
+// or
 
-const { data: articles } = await storyblokApi.get("cdn/stories", {
+const { data: articles } = await storyblokApi.get('cdn/stories', {
   version: config.public.storyblokVersion,
-  starts_with: "blog",
+  starts_with: 'blog',
   is_startpage: false
 });
 ```

@@ -1,24 +1,24 @@
 export default defineNuxtConfig({
   modules: [
     [
-      "@storyblok/nuxt",
+      '@storyblok/nuxt',
       {
-        accessToken: "OurklwV5XsDJTIE1NJaD2wtt",
+        accessToken: 'OurklwV5XsDJTIE1NJaD2wtt',
         apiOptions: {
-          region: ""
+          region: '',
         },
         devtools: true,
         // enableSudoMode: true /* (or legacy) usePlugin: false */
       },
     ],
-    '@nuxt/devtools'
+    '@nuxt/devtools',
   ],
   app: {
     head: {
-      script: [{ src: "https://cdn.tailwindcss.com" }]
-    }
+      script: [{ src: 'https://cdn.tailwindcss.com' }],
+    },
   },
   vite: {
-    optimizeDeps: { exclude: ["fsevents"] },
-  }
+    optimizeDeps: { exclude: ['fsevents'] },
+  },
 });
