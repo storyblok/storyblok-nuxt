@@ -63,17 +63,17 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Add auto imports
     const names = [
-      "useStoryblok",
-      "useStoryblokApi",
-      "useStoryblokBridge",
-      "renderRichText",
-      "RichTextSchema",
-      "StoryblokRichText",
-      "useStoryblokRichText",
-      "MarkTypes",
-      "BlockTypes",
-      "LinkTypes",
-      "AssetTypes",
+      'useStoryblok',
+      'useStoryblokApi',
+      'useStoryblokBridge',
+      'renderRichText',
+      'RichTextSchema',
+      'StoryblokRichText',
+      'useStoryblokRichText',
+      'MarkTypes',
+      'BlockTypes',
+      'LinkTypes',
+      'AssetTypes',
     ];
     for (const name of names) {
       addImports({ name, as: name, from: '@storyblok/vue' });
