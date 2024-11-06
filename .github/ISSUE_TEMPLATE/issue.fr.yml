@@ -1,4 +1,4 @@
-name: "\U0001F58C SDK Feature Request"
+name: 🖌 SDK Feature Request
 description: Propose a feature or improvement that the Storyblok SDK should have
 labels: [enhancement, pending-triage, pending-author]
 body:
@@ -10,7 +10,7 @@ body:
     id: feature-description
     attributes:
       label: Description
-      description: "Clear and concise description of what you want to include or enhance from the SDK. Please make the reason and usecases as detailed as possible. If you intend to submit a PR for this feature request, tell us in the description so we can review and be aware of it. Thanks in advance!"
+      description: 'Clear and concise description of what you want to include or enhance from the SDK. Please make the reason and usecases as detailed as possible. If you intend to submit a PR for this feature request, tell us in the description so we can review and be aware of it. Thanks in advance!'
       placeholder: As a developer using Storyblok SDK I want [wish] so that [benefit].
     validations:
       required: true
@@ -18,7 +18,7 @@ body:
     id: suggested-solution
     attributes:
       label: Suggested solution or improvement
-      description: "Link to the PR or what implementation you will expect from us (links to external examples if needed)."
+      description: Link to the PR or what implementation you will expect from us (links to external examples if needed).
     validations:
       required: true
   - type: textarea

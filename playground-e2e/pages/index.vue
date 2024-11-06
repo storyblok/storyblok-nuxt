@@ -3,10 +3,10 @@
 // // Checking custom Flush method
 // storyblokApi.flushCache();
 
-const story = await useAsyncStoryblok("vue", {
-  version: "draft",
-  language: "en",
-  resolve_relations: "popular-articles.articles"
+const story = await useAsyncStoryblok('vue', {
+  version: 'draft',
+  language: 'en',
+  resolve_relations: 'popular-articles.articles',
 });
 const richText = computed(() => renderRichText(story.value.content.richText));
 </script>

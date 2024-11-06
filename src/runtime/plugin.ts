@@ -1,5 +1,5 @@
-import { StoryblokVue, apiPlugin } from "@storyblok/vue";
-import { defineNuxtPlugin, useRuntimeConfig } from "#app";
+import { apiPlugin, StoryblokVue } from '@storyblok/vue';
+import { defineNuxtPlugin, useRuntimeConfig } from '#app';
 
 export default defineNuxtPlugin(({ vueApp }) => {
   let { storyblok } = useRuntimeConfig().public;

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const path = useRoute();
 const story = await useAsyncStoryblok(`vue/articles/${path.params.slug}`, {
-  version: "draft",
-  language: "en"
+  version: 'draft',
+  language: 'en',
 });
 </script>
 
