@@ -4,6 +4,13 @@
   "version": "6.1.0",
   "packageManager": "pnpm@9.9.0",
   "description": "Storyblok Nuxt module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/storyblok/storyblok-nuxt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/storyblok/storyblok-nuxt/issues"
+  },
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
