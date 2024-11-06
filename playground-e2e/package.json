@@ -8,8 +8,8 @@
     "start": "nuxt preview"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.6.1",
-    "@storyblok/nuxt": "^0.0.1",
-    "nuxt": "^3.5.3"
+    "@nuxt/devtools": "^1.5.2",
+    "@storyblok/nuxt": "workspace:*",
+    "nuxt": "^3.13.2"
   }
 }
