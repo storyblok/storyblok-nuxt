@@ -3,12 +3,12 @@ const story = ref(null);
 
 onMounted(async () => {
   const storyblokApi = useStoryblokApi();
-  const { data } = await storyblokApi.get("cdn/stories/vue/test", {
-    version: "draft"
+  const { data } = await storyblokApi.get('cdn/stories/vue/test', {
+    version: 'draft',
   });
   story.value = data.story;
 
-  useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory));
+  useStoryblokBridge(story.value.id, evStory => (story.value = evStory));
 });
 </script>
 

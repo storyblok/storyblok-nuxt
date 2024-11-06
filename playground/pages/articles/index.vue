@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const storyblokApi = useStoryblokApi();
 
-const { data: articles } = await storyblokApi.get("cdn/stories/", {
-  version: "draft",
-  starts_with: "vue/articles",
-  is_startpage: false
+const { data: articles } = await storyblokApi.get('cdn/stories/', {
+  version: 'draft',
+  starts_with: 'vue/articles',
+  is_startpage: false,
 });
 /* const storyblokApi = useStoryblokApi()
 

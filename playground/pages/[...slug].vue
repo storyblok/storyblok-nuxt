@@ -1,12 +1,12 @@
 <script setup>
 const { slug } = useRoute().params;
 const story = await useAsyncStoryblok(
-  slug && slug.length > 0 ? slug.join("/") : "home",
+  slug && slug.length > 0 ? slug.join('/') : 'home',
   {
-    version: "draft",
-    language: "en",
-    resolve_relations: ["popular-articles.articles"]
-  }
+    version: 'draft',
+    language: 'en',
+    resolve_relations: ['popular-articles.articles'],
+  },
 );
 </script>
 

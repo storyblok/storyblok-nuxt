@@ -1,12 +1,21 @@
 <script setup>
-defineProps <
+/* defineProps <
   {
-    error: { statusCode: number, statusMessage: string }
-  } >
-  {};
+    error: { statusCode: number; statusMessage: string };
+  }
+>;
+{}; */
 
-const handleError = () => clearError({ redirect: "/" });
+defineProps({
+  error: {
+    type: Object,
+    required: true,
+  },
+});
+
+const handleError = () => clearError({ redirect: '/' });
 </script>
+
 <template>
   <div class="grid place-items-center h-screen text-center">
     <div class="flex flex-col gap-y-4">
