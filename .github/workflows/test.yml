@@ -1,0 +1,35 @@
+name: Run E2E Tests
+on: [push]
+
+env:
+  PNPM_CACHE_FOLDER: .pnpm-store
+  HUSKY: 0 # Bypass husky commit hook for CI
+
+jobs:
+  test:
+    name: E2E Test
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+      - name: Set up Cypress binary cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build lib
+        run: pnpm run build
+      - name: Cypress run
+        run: pnpm run test:e2e
