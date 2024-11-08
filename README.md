@@ -271,6 +271,95 @@ Which is the short-hand equivalent to using `useStoryblokApi` inside `useState` 
 
 ## Rendering Rich Text
 
+You can render rich text fields by using the `StoryblokRichText` component:
+
+```html
+<template>
+  <StoryblokRichText :doc="blok.articleContent" />
+</template>
+```
+
+Or you can have more control by using the `useStoryblokRichText` composable:
+
+```html
+<script setup>
+  const { render } = useStoryblokRichText({
+    // options like resolvers
+  })
+
+  const root = () => render(blok.articleContent);
+</script>
+
+<template>
+  <root />
+</template>
+```
+
+For more incredible options you can pass to the `useStoryblokRichText`, please consult the [Full options](https://github.com/storyblok/richtext?tab=readme-ov-file#options) documentation.
+
+
+#### Overriding the default resolvers
+
+You can override the default resolvers by passing a `resolver` prop to the `StoryblokRichText` component, for example, to use vue-router links or add a custom codeblok component: :
+
+```html
+<script setup>
+  import { NuxtLink } from '#components';
+  import type { StoryblokRichTextNode } from '@storyblok/vue';
+  import CodeBlok from "./components/CodeBlok.vue";
+
+  const resolvers = {
+    // NuxtLink example:
+    [MarkTypes.LINK]: (node: StoryblokRichTextNode<VNode>) =>
+      h(NuxtLink, {
+        to: node.attrs?.href,
+        target: node.attrs?.target,
+      }, node.text),
+    // Custom code block component example:
+    [BlockTypes.CODE_BLOCK]: (node: Node) => {
+      return h(CodeBlock, {
+        class: node?.attrs?.class,
+      }, node.children)
+    },
+  }
+</script>
+
+<template>
+  <StoryblokRichText :doc="blok.articleContent" :resolvers="resolvers" />
+</template>
+```
+
+If you want to use the `useStoryblokRichText` composable, you can pass the `resolvers` via the options object:
+
+```html
+<script setup>
+  import CodeBlok from "./components/CodeBlok.vue";
+
+  const { render } = useStoryblokRichText({
+    resolvers: {
+      // NuxtLink example:
+      [MarkTypes.LINK]: (node: StoryblokRichTextNode<VNode>) =>
+        h(NuxtLink, {
+          to: node.attrs?.href,
+          target: node.attrs?.target,
+        }, node.text),
+      // Custom code block component example:
+      [BlockTypes.CODE_BLOCK]: (node: Node) => 
+        h(CodeBlock, {
+          class: node?.attrs?.class,
+        }, node.children)
+    }
+  });
+
+  const root = () => render(blok.articleContent);
+</script>
+```
+
+### Legacy Rendering Rich Text
+
+> [!WARNING]  
+> The legacy `richTextResolver` is soon to be deprecated. We recommend migrating to the new approach described above instead.
+
 You can easily render rich text by using the `renderRichText` function that comes with `@storyblok/nuxt` and a Vue computed property:
 
 ```html
