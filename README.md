@@ -317,7 +317,7 @@ You can override the default resolvers by passing a `resolver` prop to the `Stor
 ## Legacy Rendering Rich Text
 
 > [!WARNING]  
-> The legacy `richTextResolver` is soon to be deprecated. We recommend migrating to the new `useRichText` composable described above instead.
+> The legacy `richTextResolver` is soon to be deprecated. We recommend migrating to the new `useStoryblokRichText` composable described above instead.
 
 You can easily render rich text by using the `renderRichText` function that comes with `@storyblok/nuxt` and a Vue computed property:
 
