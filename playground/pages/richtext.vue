@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { NuxtLink } from '#build/components';
+import { MarkTypes, type StoryblokRichTextNode } from '@storyblok/vue';
+
 const story = await useAsyncStoryblok(
   "vue/test-richtext",
   {
