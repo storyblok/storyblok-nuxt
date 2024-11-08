@@ -295,7 +295,7 @@ Or you can have more control by using the `useStoryblokRichText` composable:
 </template>
 ```
 
-For more incredible options you can pass to the `useStoryblokRichtext`, please consult the [Full options](https://github.com/storyblok/richtext?tab=readme-ov-file#options) documentation.
+For more incredible options you can pass to the `useStoryblokRichText`, please consult the [Full options](https://github.com/storyblok/richtext?tab=readme-ov-file#options) documentation.
 
 
 #### Overriding the default resolvers
