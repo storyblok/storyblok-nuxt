@@ -1,4 +1,4 @@
-name: 🐞 SDK Bug Report
+name: "\U0001F41E SDK Bug Report"
 description: Report an issue using Nuxt 3 Storyblok SDK
 labels: [pending-triage, pending-author]
 body:
@@ -11,7 +11,7 @@ body:
     attributes:
       label: Describe the issue you're facing
       description: A clear and concise description of what the bug is. If you intend to submit a PR for this issue, tell us in the description so we can review it. Thanks in advance!
-      placeholder: My Nuxt 3 Storyblok SDK configuration is ... # # Expected behavior ... ## Current Behavior ...
+      placeholder: My Nuxt 3 Storyblok SDK configuration is ... ## Expected behavior ... ## Current Behavior ...
     validations:
       required: true
   - type: input
