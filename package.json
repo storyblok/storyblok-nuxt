@@ -48,7 +48,7 @@
     "@commitlint/config-conventional": "^19.5.0",
     "@cypress/vite-dev-server": "^5.2.0",
     "@nuxt/eslint": "^0.6.1",
-    "@nuxt/eslint-config": "^0.5.7",
+    "@nuxt/eslint-config": "^0.7.4",
     "@nuxt/kit": "^3.13.2",
     "@nuxt/module-builder": "^0.8.4",
     "@nuxt/schema": "^3.13.2",
