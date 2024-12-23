@@ -28,7 +28,7 @@
 </p>
 
 ## Kickstart a new project
-Are you eager to dive into coding? **[Follow these steps to kickstart a new project with Storyblok and Nuxt](https://www.storyblok.com/technologies#nuxt?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)**, and get started in just a few minutes!
+Are you eager to dive into coding? **[Follow these steps to kickstart a new project with Storyblok and Nuxt](https://www.storyblok.com/technologies?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt#nuxt)**, and get started in just a few minutes!
 
 ## Ultimate Tutorial
 Are you looking for a hands-on, step-by-step tutorial? The **[Nuxt Ultimate Tutorial](https://www.storyblok.com/tp/storyblok-nuxt-ultimate-tutorial?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt)** has you covered! It provides comprehensive instructions on building a complete, multilingual website using Storyblok and Nuxt from start to finish.
@@ -212,7 +212,7 @@ To link your Vue components to the equivalent one in your Storyblok space:
 
 The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's autoimported). Where you need to pass as first parameter the `slug`, while the second and third parameters, `apiOptions` and `bridgeOptions` respectively, are optional.
 
-Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) in our API docs and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) passed to the Storyblok Bridge.
+Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2/stories/retrieve-a-single-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) in our API docs and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) passed to the Storyblok Bridge.
 
 > **Note**
 > If you want to know more about versioning `{ version: "draft" /* or "publish" */ }` then go to the section [Working with preview and/or production environments](#3-working-with-preview-andor-production-environments)
@@ -455,13 +455,13 @@ const { data: articles } = await storyblokApi.get('cdn/stories', {
 
 (Recommended Option) Uses [`useState`](https://v3.nuxtjs.org/api/composables/use-state) under the hood to help with SSR compatibility.
 
-Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
+Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2/stories/retrieve-a-single-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
 ### useStoryblok(slug, apiOptions, bridgeOptions)
 
 It could be helpful to use `useStoryblok` instead of `useAsyncStoryblok` when we need to make full client-side requests, for example, getting personalized data for a logged user.
 
-Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2#core-resources/stories/retrieve-one-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
+Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2/stories/retrieve-a-single-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to `storyblok-js-client`) and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) (passed to the Storyblok Bridge).
 
 ### useStoryblokApi()
 
@@ -490,5 +490,5 @@ Use this one-line function to cover the most common use case: updating the story
 
 ## Contributing
 
-Please see our [contributing guidelines](https://github.com/storyblok/.github/blob/master/contributing.md) and our [code of conduct](https://www.storyblok.com/trust-center#code-of-conduct?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt).
+Please see our [contributing guidelines](https://github.com/storyblok/.github/blob/master/contributing.md) and our [code of conduct](https://www.storyblok.com/trust-center?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt#code-of-conduct).
 This project use [semantic-release](https://semantic-release.gitbook.io/semantic-release/) for generate new versions by using commit messages and we use the Angular Convention to naming the commits. Check [this question](https://semantic-release.gitbook.io/semantic-release/support/faq#how-can-i-change-the-type-of-commits-that-trigger-a-release) about it in semantic-release FAQ.
