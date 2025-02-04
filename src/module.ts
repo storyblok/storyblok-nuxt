@@ -1,12 +1,13 @@
 import {
-  defineNuxtModule,
-  addPlugin,
   addComponentsDir,
   addImports,
   addImportsDir,
-  createResolver
-} from "@nuxt/kit";
-import type { NuxtHookName } from "@nuxt/schema";
+  addPlugin,
+  createResolver,
+  defineNuxtModule,
+} from '@nuxt/kit';
+import type { NuxtHookName } from '@nuxt/schema';
+import type { Nuxt } from 'nuxt/schema';
 
 export interface ModuleOptions {
   accessToken: string,
@@ -21,8 +22,8 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: "@storyblok/nuxt",
-    configKey: "storyblok"
+    name: '@storyblok/nuxt',
+    configKey: 'storyblok',
   },
   defaults: {
     accessToken: '',
@@ -34,47 +35,54 @@ export default defineNuxtModule<ModuleOptions>({
     apiOptions: {},
     asyncDataOutput: false,
   },
-  setup(options, nuxt) {
+  setup(options: ModuleOptions, nuxt: Nuxt) {
     const resolver = createResolver(import.meta.url);
 
-    if(nuxt.options.vite.optimizeDeps) {
-      nuxt.options.vite.optimizeDeps.include =
-        nuxt.options.vite.optimizeDeps.include || [];
-      nuxt.options.vite.optimizeDeps.include.push("@storyblok/vue");
+    if (nuxt.options.vite.optimizeDeps) {
+      nuxt.options.vite.optimizeDeps.include
+        = nuxt.options.vite.optimizeDeps.include || [];
+      nuxt.options.vite.optimizeDeps.include.push('@storyblok/vue');
 
-      nuxt.options.vite.optimizeDeps.exclude =
-        nuxt.options.vite.optimizeDeps.exclude || [];
-      nuxt.options.vite.optimizeDeps.exclude.push("fsevents");
+      nuxt.options.vite.optimizeDeps.exclude
+        = nuxt.options.vite.optimizeDeps.exclude || [];
+      nuxt.options.vite.optimizeDeps.exclude.push('fsevents');
     }
-
 
     // Enable dirs
-    if(options.componentsDir) {
+    if (options.componentsDir) {
       addComponentsDir({ path: options.componentsDir, global: true, pathPrefix: false });
     }
-    nuxt.options.build.transpile.push(resolver.resolve("./runtime"));
-    nuxt.options.build.transpile.push("@storyblok/nuxt");
-    nuxt.options.build.transpile.push("@storyblok/vue");
+    nuxt.options.build.transpile.push(resolver.resolve('./runtime'));
+    nuxt.options.build.transpile.push('@storyblok/nuxt');
+    nuxt.options.build.transpile.push('@storyblok/vue');
 
     // Add plugin
     nuxt.options.runtimeConfig.public.storyblok = options;
     const enablePluginCondition = options.usePlugin === true && options.enableSudoMode === false;
     if (enablePluginCondition) {
-      addPlugin(resolver.resolve("./runtime/plugin"));
+      addPlugin(resolver.resolve('./runtime/plugin'));
     }
 
     // Add auto imports
     const names = [
-      "useStoryblok",
-      "useStoryblokApi",
-      "useStoryblokBridge",
-      "renderRichText",
-      "RichTextSchema"
+      'useStoryblok',
+      'useStoryblokApi',
+      'useStoryblokBridge',
+      'renderRichText',
+      'RichTextSchema',
+      'StoryblokRichText',
+      'useStoryblokRichText',
+      'MarkTypes',
+      'BlockTypes',
+      'LinkTypes',
+      'AssetTypes',
     ];
     for (const name of names) {
-      addImports({ name, as: name, from: "@storyblok/vue" });
+      addImports({ name, as: name, from: '@storyblok/vue' });
     }
-    addImportsDir(resolver.resolve("./runtime/composables"));
+
+    nuxt.options.typescript.hoist.push('@storyblok/vue');
+    addImportsDir(resolver.resolve('./runtime/composables'));
 
     if (options.devtools) {
       nuxt.hook('devtools:customTabs' as NuxtHookName, (iframeTabs: Array<unknown>): void => {
@@ -84,10 +92,10 @@ export default defineNuxtModule<ModuleOptions>({
           icon: 'i-logos-storyblok-icon',
           view: {
             type: 'iframe',
-            src: 'https://app.storyblok.com/#!/me/spaces/'
-          }
-        })
-      })
+            src: 'https://app.storyblok.com/#!/me/spaces/',
+          },
+        });
+      });
     }
-  }
+  },
 });

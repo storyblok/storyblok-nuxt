@@ -1,6 +1,6 @@
-import { useStoryblokApi, useStoryblokBridge } from "@storyblok/vue";
-import type { ISbStoriesParams, StoryblokBridgeConfigV2, ISbStoryData } from '@storyblok/vue';
-import { useState, onMounted, useAsyncData, useRuntimeConfig } from "#imports";
+import { useStoryblokApi, useStoryblokBridge } from '@storyblok/vue';
+import type { ISbStoriesParams, ISbStoryData, StoryblokBridgeConfigV2 } from '@storyblok/vue';
+import { onMounted, useAsyncData, useState, useRuntimeConfig } from '#imports';
 import { type AsyncDataOptions } from "#imports";
 import deprecate from "util-deprecate";
 
@@ -23,6 +23,7 @@ export const useAsyncStoryblok = async (
       );
     }
   });
+
 
   const options = useRuntimeConfig().public.storyblok;
   if (!options.asyncDataOutput && asyncOptions === undefined) {

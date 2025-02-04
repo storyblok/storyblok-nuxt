@@ -2,10 +2,11 @@
 defineProps({
   blok: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 });
 </script>
+
 <template>
   <div v-editable="blok" class="flex py-8 mb-6" data-test="grid">
     <div
