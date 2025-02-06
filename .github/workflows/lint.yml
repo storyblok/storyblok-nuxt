@@ -3,7 +3,7 @@ on: [push]
 
 env:
   PNPM_CACHE_FOLDER: .pnpm-store
-  HUSKY: 0 # Bypass husky commit hook for CI
+  SKIP_INSTALL_SIMPLE_GIT_HOOKS: 1 # Skip installing simple-git-hooks
 
 jobs:
   lint:

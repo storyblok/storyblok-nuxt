@@ -3,7 +3,7 @@ on: [push]
 
 env:
   PNPM_CACHE_FOLDER: .pnpm-store
-  HUSKY: 0 # Bypass husky commit hook for CI
+  SKIP_INSTALL_SIMPLE_GIT_HOOKS: 1 # Skip installing simple-git-hooks
 
 jobs:
   test:
@@ -33,3 +33,11 @@ jobs:
         run: pnpm run build
       - name: Cypress run
         run: pnpm run test:e2e
+      - name: Upload Cypress artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos

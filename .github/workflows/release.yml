@@ -2,40 +2,36 @@ name: Release CI
 
 on:
   push:
-    branches: [main, next]
+    branches: [main]
   pull_request:
-    branches: [main, next]
+    branches: [main]
 
 env:
   PNPM_CACHE_FOLDER: .pnpm-store
-  HUSKY: 0 # Bypass husky commit hook for CI
+  SKIP_INSTALL_SIMPLE_GIT_HOOKS: 1 # Skip installing simple-git-hooks
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        node-version: [20]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-      - name: Use Node.js 20
-        uses: actions/setup-node@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node-version }}
           cache: pnpm
-      - name: Set up Cypress binary cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Install dependencies
         run: pnpm install
       - name: Build lib
-        run: pnpm run build
-      - name: Cypress run
-        run: pnpm run test:e2e
+        run: pnpm build
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: pnpx semantic-release

@@ -8,7 +8,7 @@ on:
 
 env:
   PNPM_CACHE_FOLDER: .pnpm-store
-  HUSKY: 0 # Bypass husky commit hook for CI
+  SKIP_INSTALL_SIMPLE_GIT_HOOKS: 1 # Skip installing simple-git-hooks
 
 permissions: {}
 
@@ -18,6 +18,8 @@ concurrency:
 
 jobs:
   build:
+    # Skip job if PR is from Dependabot
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,7 +27,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - run: npm i -g --force corepack && corepack enable
       - uses: actions/setup-node@v4
         with:
