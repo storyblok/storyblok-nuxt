@@ -9,6 +9,8 @@ on:
 
 jobs:
   main:
+    # Skip job if PR is from Dependabot
+    if: github.actor != 'dependabot[bot]'
     name: Validate PR title
     runs-on: ubuntu-latest
     steps:
