@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@storyblok/vue':
-        specifier: ^8.1.10
-        version: 8.1.10(vue@3.5.13(typescript@5.6.2))
+        specifier: ^8.1.11
+        version: 8.1.11(vue@3.5.13(typescript@5.6.2))
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.7.1
@@ -1871,14 +1871,14 @@ packages:
     peerDependencies:
       eslint: '>=8.40.0'
 
-  '@storyblok/js@3.2.1':
-    resolution: {integrity: sha512-oi6vynMfCrCQQYZohNLS7YT00izFaXC7VIuQmHfqJx8nu9dUUYtiStPE9b1OjxlbX+TDpzuxTGxK1lhfFbBRyw==}
+  '@storyblok/js@3.2.3':
+    resolution: {integrity: sha512-RRnskb6GCpy2CeVVxQMEwAgbWqG7ehnzCVqbidsR7GpPhcdfdCgsAYDlSnAePwzbpMZXqpW1itJXDnuLmm1LXQ==}
 
   '@storyblok/richtext@3.0.2':
     resolution: {integrity: sha512-KBLx9ycNVMyVnNyPiwBH5g9uWmiJpMzp9YvpnnADXlPLoksusrwI56BusSM8HaIgJgcnB5RR0LvhySkPFdC8Zg==}
 
-  '@storyblok/vue@8.1.10':
-    resolution: {integrity: sha512-pCWhtDF1u0/LaWrsap0xxi9BvbNg+XWvYvYKcL9TJ2/JIR+idVGKSiIE9Yvq/fvSG0/wZ9gW6KWkBmi8qyr4xw==}
+  '@storyblok/vue@8.1.11':
+    resolution: {integrity: sha512-Ewce5hVOjzqEZKF8Q05ZM7HwMAxjzoFQ3Zp+DOqXJkLr1hp5kVO+ZPXVkgnvyb7bq5K/HNWRYLuN1CHosCFv3g==}
     peerDependencies:
       vue: '>=3.4'
 
@@ -6036,8 +6036,8 @@ packages:
   std-env@3.8.0:
     resolution: {integrity: sha512-Bc3YwwCB+OzldMxOXJIIvC6cPRWr/LxOp48CdQTOkPyk/t4JWWJbrilwBd7RJzKV8QW7tJkcgAmeuLLJugl5/w==}
 
-  storyblok-js-client@6.10.6:
-    resolution: {integrity: sha512-4n/n6tkLu3kmZwb2aSZgwqGta8DodbQbGjuclWY+A6xsmrVWrRBytUs+5lvJVTGkshLflVPhufeO4j/1zvVSPQ==}
+  storyblok-js-client@6.10.8:
+    resolution: {integrity: sha512-yjXzKQO16ry+LMEUksfLjO/Eq88DwMflHVxg1YDF2Ak13fHhSD/M36XE/E1jrTbjdVuxSnlxrt8jYP6NiCnCSQ==}
 
   stream-combiner@0.0.4:
     resolution: {integrity: sha512-rT00SPnTVyRsaSz5zgSPma/aHSOic5U1prhYdRy5HS2kTZviFpmDgzilbtsJsxiroqACmayynDN/9VzIbX5DOw==}
@@ -9242,16 +9242,16 @@ snapshots:
       - typescript
       - vitest
 
-  '@storyblok/js@3.2.1':
+  '@storyblok/js@3.2.3':
     dependencies:
       '@storyblok/richtext': 3.0.2
-      storyblok-js-client: 6.10.6
+      storyblok-js-client: 6.10.8
 
   '@storyblok/richtext@3.0.2': {}
 
-  '@storyblok/vue@8.1.10(vue@3.5.13(typescript@5.6.2))':
+  '@storyblok/vue@8.1.11(vue@3.5.13(typescript@5.6.2))':
     dependencies:
-      '@storyblok/js': 3.2.1
+      '@storyblok/js': 3.2.3
       vue: 3.5.13(typescript@5.6.2)
 
   '@stylistic/eslint-plugin@2.8.0(eslint@8.57.1)(typescript@5.6.2)':
@@ -14987,7 +14987,7 @@ snapshots:
 
   std-env@3.8.0: {}
 
-  storyblok-js-client@6.10.6: {}
+  storyblok-js-client@6.10.8: {}
 
   stream-combiner@0.0.4:
     dependencies:

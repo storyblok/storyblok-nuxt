@@ -41,7 +41,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@storyblok/vue": "^8.1.10"
+    "@storyblok/vue": "^8.1.11"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
