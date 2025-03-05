@@ -55,7 +55,7 @@
     "@nuxt/test-utils": "^3.15.4",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@storyblok/eslint-config": "^0.3.0",
-    "@types/node": "^22.13.1",
+    "@types/node": "^20.17.23",
     "cypress": "^13.15.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
