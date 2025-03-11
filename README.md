@@ -215,7 +215,7 @@ The simplest way is by using the `useAsyncStoryblok` one-liner composable (it's 
 Check the available [apiOptions](https://www.storyblok.com/docs/api/content-delivery/v2/stories/retrieve-a-single-story?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) in our API docs and [bridgeOptions](https://www.storyblok.com/docs/Guides/storyblok-latest-js?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt) passed to the Storyblok Bridge.
 
 > **Note**
-> If you want to know more about versioning `{ version: "draft" /* or "publish" */ }` then go to the section [Working with preview and/or production environments](#3-working-with-preview-andor-production-environments)
+> If you want to know more about versioning `{ version: "draft" /* or "published" */ }` then go to the section [Working with preview and/or production environments](#3-working-with-preview-andor-production-environments)
 
 ```html
 <script setup>
