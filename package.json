@@ -38,7 +38,8 @@
     "pretest:e2e-static": "nuxi generate playground",
     "test:e2e-static": "start-server-and-test dev:preview http://localhost:3000 cy:run",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "check-licenses": "node scripts/license-checker.mjs"
   },
   "dependencies": {
     "@storyblok/vue": "^8.1.11"
@@ -61,20 +62,27 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-cypress": "^3.5.0",
     "eslint-plugin-vue": "^9.28.0",
+    "license-checker": "^25.0.1",
     "nuxt": "^3.15.4",
     "prettier": "^3.4.2",
     "simple-git-hooks": "^2.11.1",
     "start-server-and-test": "^2.0.10"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["cypress"]
+    "onlyBuiltDependencies": [
+      "cypress"
+    ]
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ],
     "rules": {
-      "body-max-line-length": [2, "always", 200]
+      "body-max-line-length": [
+        2,
+        "always",
+        200
+      ]
     }
   },
   "release": {
