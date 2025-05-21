@@ -67,7 +67,6 @@ export default defineNuxtModule<ModuleOptions>({
       'useStoryblokApi',
       'useStoryblokBridge',
       'renderRichText',
-      'RichTextSchema',
       'StoryblokRichText',
       'useStoryblokRichText',
       'MarkTypes',

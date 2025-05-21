@@ -355,52 +355,6 @@ If you want to use the `useStoryblokRichText` composable, you can pass the `reso
 </script>
 ```
 
-### Legacy Rendering Rich Text
-
-> [!WARNING]  
-> The legacy `richTextResolver` is soon to be deprecated. We recommend migrating to the new approach described above instead.
-
-You can easily render rich text by using the `renderRichText` function that comes with `@storyblok/nuxt` and a Vue computed property:
-
-```html
-<template>
-  <div v-html="articleContent"></div>
-</template>
-
-<script setup>
-  const props = defineProps({ blok: Object });
-  const articleContent = computed(() => renderRichText(props.blok.articleContent));
-</script>
-```
-
-You can also set a **custom Schema and component resolver** by passing the options as the second parameter of the `renderRichText` function:
-
-```html
-<script setup>
-  import cloneDeep from 'clone-deep';
-
-  const mySchema = cloneDeep(RichTextSchema); // you can make a copy of the default RichTextSchema
-  // ... and edit the nodes and marks, or add your own.
-  // Check the base RichTextSchema source here https://github.com/storyblok/storyblok-js-client/blob/v4/source/schema.js
-
-  const props = defineProps({ blok: Object });
-
-  const articleContent = computed(() =>
-    renderRichText(props.blok.articleContent, {
-      schema: mySchema,
-      resolver: (component, blok) => {
-        switch (component) {
-          case 'my-custom-component':
-            return `<div class="my-component-class">${blok.text}</div>`;
-          default:
-            return 'Resolver not defined';
-        }
-      },
-    }),
-  );
-</script>
-```
-
 ## 3. Working with preview and/or production environments
 
 Remember that the bridge only works using `version: 'draft'` and the _Preview Access Token_.
