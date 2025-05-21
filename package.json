@@ -42,7 +42,7 @@
     "check-licenses": "node scripts/license-checker.mjs"
   },
   "dependencies": {
-    "@storyblok/vue": "^8.1.11"
+    "@storyblok/vue": "^9.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
