@@ -10,13 +10,14 @@ import type { NuxtHookName } from '@nuxt/schema';
 import type { Nuxt } from 'nuxt/schema';
 
 export interface ModuleOptions {
-  accessToken: string;
-  enableSudoMode: boolean;
-  usePlugin: boolean; // legacy opt. for enableSudoMode
-  bridge: boolean; // storyblok bridge on/off
-  devtools: boolean; // enable nuxt/devtools integration
-  apiOptions: any; // storyblok-js-client options
-  componentsDir: string; // enable storyblok global directory for components
+  accessToken: string,
+  enableSudoMode: boolean,
+  usePlugin: boolean, // legacy opt. for enableSudoMode
+  bridge: boolean, // storyblok bridge on/off
+  devtools: boolean, // enable nuxt/devtools integration
+  apiOptions: any, // storyblok-js-client options
+  componentsDir: string, // enable storyblok global directory for components
+  asyncDataOutput: boolean, // enable asyncData output, will become default
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -32,6 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
     devtools: false,
     componentsDir: '~/storyblok',
     apiOptions: {},
+    asyncDataOutput: false,
   },
   setup(options: ModuleOptions, nuxt: Nuxt) {
     const resolver = createResolver(import.meta.url);
