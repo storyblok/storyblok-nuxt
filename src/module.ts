@@ -73,6 +73,13 @@ export default defineNuxtModule<ModuleOptions>({
       'BlockTypes',
       'LinkTypes',
       'AssetTypes',
+      'StoryblokRichTextResolvers',
+      'StoryblokRichTextDocumentNode',
+      'StoryblokRichTextImageOptimizationOptions',
+      'StoryblokRichTextNode',
+      'StoryblokRichTextNodeResolver',
+      'StoryblokRichTextNodeTypes',
+      'StoryblokRichTextOptions',
     ];
     for (const name of names) {
       addImports({ name, as: name, from: '@storyblok/vue' });
