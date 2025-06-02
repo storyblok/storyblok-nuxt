@@ -22,9 +22,9 @@ pnpm build
 
 ### Development
 
-We strongly recommend using the `playgrounds` within the package to develop and manually test the package.
+We strongly recommend using the _playgrounds_ within the package to develop and manually test the package.
 
-Make sure the playground project has the root project as a dependency using `workspace:^` in the `package.json`:
+Make sure the playground project has the root project as a dependency using `workspace:^` in the _package.json_:
 
 ```json
 {
@@ -34,7 +34,7 @@ Make sure the playground project has the root project as a dependency using `wor
 }
 ```
 
-Use the Google Chrome developer tools to debug the package from the playground project by resolving the package from the local file system in your `vite.config.ts` file. Example:
+Use the Google Chrome developer tools to debug the package from the playground project by resolving the package from the local file system in your _vite.config.ts_ file. Example:
 
 ```ts
 import { defineConfig } from 'vite';
@@ -50,7 +50,7 @@ export default defineConfig({
 
 ### Test
 
-Depending on the package, you might have a combination of unit tests, integration tests, and/or end-to-end tests. Make sure to check `scripts` in `package.json` and run the right command, like:
+Depending on the package, you might have a combination of unit tests, integration tests, and/or end-to-end tests. Make sure to check `scripts` in _package.json_ and run the right command, like:
 
 ```bash
 pnpm test
