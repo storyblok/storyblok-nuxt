@@ -17,6 +17,7 @@ export interface ModuleOptions {
   devtools: boolean; // enable nuxt/devtools integration
   apiOptions: any; // storyblok-js-client options
   componentsDir: string; // enable storyblok global directory for components
+  ignoreComponents: string[]; // ignore adding files in your componentsDir as components
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -32,6 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
     devtools: false,
     componentsDir: '~/storyblok',
     apiOptions: {},
+    ignoreComponents: [],
   },
   setup(options: ModuleOptions, nuxt: Nuxt) {
     const resolver = createResolver(import.meta.url);
@@ -48,7 +50,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Enable dirs
     if (options.componentsDir) {
-      addComponentsDir({ path: options.componentsDir, global: true, pathPrefix: false });
+      addComponentsDir({ path: options.componentsDir, global: true, pathPrefix: false, ignore: options.ignoreComponents });
     }
     nuxt.options.build.transpile.push(resolver.resolve('./runtime'));
     nuxt.options.build.transpile.push('@storyblok/nuxt');
