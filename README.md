@@ -1,3 +1,14 @@
+> [!IMPORTANT]
+> **📦 Package Migration Notice**
+> 
+> This package has been migrated to the [Storyblok monorepo](https://github.com/storyblok/monoblok). 
+> 
+> **⚠️ This repository has been archived and is no longer maintained. Development has moved to the monorepo.**
+> 
+> **New Location**: You can now find this package at [packages/nuxt](https://github.com/storyblok/monoblok/tree/main/packages/nuxt)
+> 
+> Please visit the monorepo for the latest updates, issues, and contributions.
+
 <div align="center">
 	<a  href="https://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-nuxt"  align="center">
 		<img  src="https://a.storyblok.com/f/88751/1776x360/b8979e5c96/sb-nuxt.png"  alt="Storyblok Logo">
